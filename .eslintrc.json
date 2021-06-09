@@ -17,7 +17,21 @@
     "plugins": [
         "react"
     ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ],
     "rules": {
-      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+      "no-unused-vars": "off",
+      "react/jsx-props-no-spreading": "off",
+      "no-trailing-spaces": "off",
+      "react/button-has-type": "off"
     }
 }
