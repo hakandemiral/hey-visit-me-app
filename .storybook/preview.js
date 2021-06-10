@@ -1,9 +1,7 @@
 import { ThemeProvider } from 'styled-components';
-import { addDecorator } from '@storybook/react';
-import { withThemes } from '@react-theming/storybook-addon';
 import theming from '../src/Theming/creator.theme';
-
-addDecorator(withThemes(ThemeProvider, [theming(true)]));
+import { themes } from '@storybook/theming';
+import { useDarkMode } from 'storybook-dark-mode';
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -13,4 +11,10 @@ export const parameters = {
       date: /Date$/,
     },
   },
-}
+  darkMode: {
+    dark: { ...themes.dark, appBg: 'black' },
+    light: { ...themes.normal, appBg: 'white' }
+  }
+};
+
+export const decorators = [renderStory => <ThemeProvider theme={theming(useDarkMode())}>{ renderStory() }</ThemeProvider>];
