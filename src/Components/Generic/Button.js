@@ -76,7 +76,7 @@ const ButtonComponent = ({
 
 ButtonComponent.propTypes = {
   text: PropTypes.string.isRequired,
-  type: PropTypes.bool,
+  type: PropTypes.oneOf(['primary', 'secondary']),
   size: PropTypes.oneOf(['normal', 'small']),
   disabled: PropTypes.bool,
 };
