@@ -19,6 +19,10 @@ const Button = styled.button(({
   ${type === 'primary' && css`
     background-color: ${theme.colors.brand};
     color: ${theme.colors.white};
+
+    &:hover {
+      filter: ${theme.filters.softShadow};
+    };
   `}
 
   /* Secondary Type */
@@ -26,6 +30,11 @@ const Button = styled.button(({
     background-color: ${theme.colors.paper};
     color: ${theme.colors.brand};
     border: solid 0.8px ${theme.colors.brand};
+
+    &:hover {
+      background-color: ${theme.colors.brandMoreLight};
+      filter: ${theme.filters.softShadow};
+    };
   `}
 
   /* Small Size */
@@ -36,11 +45,6 @@ const Button = styled.button(({
   ${size === 'normal' && css`
     padding: 16px 32px;
   `}
-  
-  &:hover {
-    background-color: ${theme.colors.brandMoreLight};
-    filter: ${theme.filters.softShadow};
-  };
   
   &:disabled {
     color: ${theme.colors.borderDivider};
