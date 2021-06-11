@@ -1,13 +1,17 @@
 import theme from './variables.theme';
 
 const theming = (isDark) => {
-  let newTheme = { ...theme.constantColors, ...theme.typography };
+  let newTheme = {
+    typography: { ...theme.typography },
+    filters: { ...theme.filters },
+  };
 
   if (isDark) {
-    newTheme = { ...newTheme, ...theme.darkTheme };
+    newTheme = { ...newTheme, colors: { ...theme.constantColors, ...theme.darkTheme } };
   } else {
-    newTheme = { ...newTheme, ...theme.lightTheme };
+    newTheme = { ...newTheme, colors: { ...theme.constantColors, ...theme.lightTheme } };
   }
+  console.log(newTheme);
   return newTheme;
 };
 

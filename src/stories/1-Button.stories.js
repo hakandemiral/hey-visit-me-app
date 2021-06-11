@@ -1,9 +1,31 @@
 import React from 'react';
-import Paper from '../Components/Paper';
+import Button from '../Components/Generic/Button';
 
 export default {
-  title: 'Button',
-  component: Paper,
+  title: 'Buttons',
+  component: Button,
 };
 
-export const Area = () => <Paper />;
+export const Secondary = () => (
+  <>
+    <Button text="Normal Button" />
+    <br />
+    <Button text="Small Button" size="small" />
+    <br />
+    <Button text="Disabled Button" disabled />
+    <br />
+    <Button text="Disabled Small Button" size="small" disabled />
+  </>
+);
+
+export const Primary = () => (
+  <>
+    <Button type="primary" text="Normal Button" />
+    <br />
+    <Button type="primary" text="Small Button" size="small" />
+    <br />
+    <Button type="primary" text="Disabled Button" disabled />
+    <br />
+    <Button type="primary" text="Disabled Small Button" size="small" disabled />
+  </>
+);

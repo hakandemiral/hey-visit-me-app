@@ -36,7 +36,7 @@ const theme = {
     placeholder: '#A5A1A1',
   },
   typography: {
-    headings: {
+    heading: {
       regular24: '400 1.5rem/135% Exo',
       regular20: '400 1.25rem/140% Exo',
       regular16: '400 1rem/150% Exo',
@@ -45,7 +45,7 @@ const theme = {
       medium24: '500 1.5rem/135% Exo',
       medium20: '500 1.25rem/140% Exo',
     },
-    bodies: {
+    body: {
       regular12: '400 0.75rem/162.5% Inter',
       regular14: '400 0.875rem/155% Inter',
       regular16: '400 1rem/150% Inter',
@@ -59,6 +59,9 @@ const theme = {
       semibold12: '600 0.75rem/162.5% Inter',
       semibold16: '600 1rem/150% Inter',
     },
+  },
+  filters: {
+    softShadow: 'drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.1))',
   },
 };
 

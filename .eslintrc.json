@@ -32,6 +32,9 @@
       "no-unused-vars": "off",
       "react/jsx-props-no-spreading": "off",
       "no-trailing-spaces": "off",
-      "react/button-has-type": "off"
+      "react/button-has-type": "off",
+      "no-multiple-empty-lines": "warn",
+      "react/jsx-tag-spacing": "warn",
+      "eqeqeq": "off"
     }
 }

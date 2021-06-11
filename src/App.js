@@ -4,6 +4,7 @@ import Paper from './Components/Paper';
 import useTheme from './Hooks/useTheme';
 import RootWrapper from './Components/RootWrapper';
 import theming from './Theming/creator.theme';
+import Button from './Components/Generic/Button';
 
 function App() {
   const [isDark, setIsDark] = useTheme('isDark');
@@ -20,6 +21,8 @@ function App() {
           isDark.toString()
         }
         <Paper />
+        <br />
+        <Button text="Selam Test!" primary size="small" />
       </RootWrapper>
     </ThemeProvider>
   );
