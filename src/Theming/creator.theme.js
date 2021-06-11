@@ -11,7 +11,6 @@ const theming = (isDark) => {
   } else {
     newTheme = { ...newTheme, colors: { ...theme.constantColors, ...theme.lightTheme } };
   }
-  console.log(newTheme);
   return newTheme;
 };
 

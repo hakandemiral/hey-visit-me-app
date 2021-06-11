@@ -19,6 +19,17 @@ const Button = styled.button(({
   ${type === 'primary' && css`
     background-color: ${theme.colors.brand};
     color: ${theme.colors.white};
+
+    &:hover {
+      filter: ${theme.filters.softShadow};
+    };
+
+    &:disabled {
+      background-color: ${theme.colors.brandDisabled};
+      color: ${theme.colors.white};
+      cursor: not-allowed;
+      filter: none;
+    }
   `}
 
   /* Secondary Type */
@@ -26,6 +37,19 @@ const Button = styled.button(({
     background-color: ${theme.colors.paper};
     color: ${theme.colors.brand};
     border: solid 0.8px ${theme.colors.brand};
+
+    &:hover {
+      background-color: ${theme.colors.brandMoreLight};
+      filter: ${theme.filters.softShadow};
+    };
+
+    &:disabled {
+      color: ${theme.colors.borderDivider};
+      border-color: ${theme.colors.borderDivider};
+      cursor: not-allowed;
+      filter: none;
+      background-color: ${theme.colors.paper};
+    }
   `}
 
   /* Small Size */
@@ -36,17 +60,6 @@ const Button = styled.button(({
   ${size === 'normal' && css`
     padding: 16px 32px;
   `}
-  
-  &:hover {
-    background-color: ${theme.colors.brandMoreLight};
-    filter: ${theme.filters.softShadow};
-  };
-  
-  &:disabled {
-    color: ${theme.colors.borderDivider};
-    border-color: ${theme.colors.borderDivider};
-    cursor: not-allowed;
-  }
 `);
 
 const ButtonComponent = ({

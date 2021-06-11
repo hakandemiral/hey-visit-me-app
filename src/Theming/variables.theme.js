@@ -34,6 +34,7 @@ const theme = {
     pink: '#EEA2D4',
     pink2: '#CF76A4',
     placeholder: '#A5A1A1',
+    brandDisabled: '#D1DAE0',
   },
   typography: {
     heading: {
