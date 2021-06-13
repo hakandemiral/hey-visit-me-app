@@ -8,9 +8,13 @@ export default {
 
 export const Secondary = () => (
   <>
+    <Button text="Little Button" size="little" />
+    <br />
+    <Button text="Little Button" size="little" icon="ExternalLink" disabled />
+    <br />
     <Button text="Normal Button" />
     <br />
-    <Button text="Small Button" size="small" />
+    <Button text="Small Button" size="small" icon="Bell" />
     <br />
     <Button text="Disabled Button" disabled />
     <br />
@@ -20,6 +24,10 @@ export const Secondary = () => (
 
 export const Primary = () => (
   <>
+    <Button type="primary" text="Little Button" size="little" />
+    <br />
+    <Button type="primary" text="Little Button" size="little" icon="ExternalLink" disabled />
+    <br />
     <Button type="primary" text="Normal Button" />
     <br />
     <Button type="primary" text="Small Button" size="small" />
@@ -27,5 +35,7 @@ export const Primary = () => (
     <Button type="primary" text="Disabled Button" disabled />
     <br />
     <Button type="primary" text="Disabled Small Button" size="small" disabled />
+    <br />
+    <Button type="primary" text="Button with icon" icon="Eye" />
   </>
 );

@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
+import * as Icons from '../icons';
 
 const Button = styled.button(({
-  theme, size, type,
+  theme, size, type, icon,
 }) => css`
   /* Generic */
   display: flex;
@@ -12,7 +13,6 @@ const Button = styled.button(({
   justify-content: center;
   font: ${theme.typography.body.medium16};
   border: none;
-  border-radius: 8px;
   cursor: pointer;
 
   /* Primary Type */
@@ -52,32 +52,51 @@ const Button = styled.button(({
     }
   `}
 
-  /* Small Size */
-  ${size === 'small' && css`
-    padding: 16px;
+  /* Little Size */
+  ${size === 'little' && css`
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
   `}
-  /* Normal Size */
+  /* Short Size */
+  ${size === 'small' && css`
+    padding: 1rem;
+    border-radius: 0.5rem;
+  `}
+  /* Long Size */
   ${size === 'normal' && css`
-    padding: 16px 32px;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+  `}
+  
+  /* With Icon */
+  ${icon && css`
+    svg {
+      color: inherit;
+      font-size: 1.5rem;
+      margin-right: 0.5rem;
+    }
   `}
 `);
 
 const ButtonComponent = ({
-  text, type, size, disabled,
+  text, type, size, disabled, icon,
 }) => (
   <Button
     type={type}
     size={size}
     disabled={disabled}
+    icon={Boolean(icon)}
   >
+    {icon && Icons[icon]()}
     {text}
   </Button>
 );
 
 ButtonComponent.propTypes = {
   text: PropTypes.string.isRequired,
+  icon: PropTypes.string,
   type: PropTypes.oneOf(['primary', 'secondary']),
-  size: PropTypes.oneOf(['normal', 'small']),
+  size: PropTypes.oneOf(['little', 'long', 'short']),
   disabled: PropTypes.bool,
 };
 
@@ -85,6 +104,7 @@ ButtonComponent.defaultProps = {
   type: 'secondary',
   size: 'normal',
   disabled: false,
+  icon: '',
 };
 
 export default ButtonComponent;
