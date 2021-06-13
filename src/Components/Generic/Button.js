@@ -58,12 +58,12 @@ const Button = styled.button(({
     border-radius: 0.25rem;
   `}
   /* Short Size */
-  ${size === 'small' && css`
+  ${size === 'short' && css`
     padding: 1rem;
     border-radius: 0.5rem;
   `}
   /* Long Size */
-  ${size === 'normal' && css`
+  ${size === 'long' && css`
     padding: 1rem 2rem;
     border-radius: 0.5rem;
   `}
@@ -102,7 +102,7 @@ ButtonComponent.propTypes = {
 
 ButtonComponent.defaultProps = {
   type: 'secondary',
-  size: 'normal',
+  size: 'long',
   disabled: false,
   icon: '',
 };
