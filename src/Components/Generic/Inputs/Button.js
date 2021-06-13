@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import * as Icons from '../icons';
+import * as Icons from '../../icons';
 
 const Button = styled.button(({
   theme, size, type, icon,

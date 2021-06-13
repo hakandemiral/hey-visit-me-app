@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import * as Icon from '../../Components/icons';
+import * as Icon from '../Components/icons';
 
 export default {
   title: 'Icons',
