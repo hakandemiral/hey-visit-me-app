@@ -116,7 +116,7 @@ const TextInput = ({
   <InputArea
     label={label}
     error={error}
-    icon={Boolean(icon)}
+    icon={icon}
     prefix={prefix}
     disabled={disabled}
   >
