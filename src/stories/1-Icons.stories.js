@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import * as Icon from '../Components/icons';
 
 export default {
-  title: 'Icons',
+  title: 'Generic/Icons',
   component: Icon,
 };
 

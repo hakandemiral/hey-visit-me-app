@@ -62,7 +62,7 @@ const theme = {
     },
   },
   filters: {
-    softShadow: 'drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.1))',
+    softShadow: 'drop-shadow(0px 0.125rem 0.5rem rgba(0, 0, 0, 0.1))',
   },
 };
 

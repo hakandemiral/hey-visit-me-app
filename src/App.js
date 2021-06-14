@@ -22,7 +22,7 @@ function App() {
         }
         <Paper />
         <br />
-        <Button text="Selam Test!" primary size="small" />
+        <Button text="Selam Test!" primary size="short" icon="Bell" />
       </RootWrapper>
     </ThemeProvider>
   );

@@ -10,11 +10,6 @@ const InputArea = styled.div(({
   width: 26rem;
   height: 5.5rem;
   
-  /* Disabled */
-  ${disabled && css`
-    cursor: not-allowed;
-  `}
-  
   ${label && css`
     & span.label {
       display: inline-block;
@@ -43,6 +38,7 @@ const InputArea = styled.div(({
       padding: 1rem;
       color: ${theme.colors.bodyText};
       font: inherit;
+      cursor: inherit;
       
       /* If Iconed */
       ${icon && css`
@@ -54,12 +50,19 @@ const InputArea = styled.div(({
       }
     }
 
-    &:focus-within {
-      box-shadow: 0 0 0 0.15rem ${theme.colors.brand};
-      
-      svg {
-       color: ${theme.colors.brand}; 
+    ${!error && css`
+      &:focus-within {
+        box-shadow: 0 0 0 0.15rem ${theme.colors.brand};
+        border-color: transparent;
+
+        svg {
+          color: ${theme.colors.brand};
+        }
       }
+    `}
+    
+    &:hover {
+      filter: ${theme.filters.softShadow};
     }
     
     /* If prefixed */
@@ -80,6 +83,7 @@ const InputArea = styled.div(({
     
     ${error && css`
       box-shadow: 0 0 0 0.15rem ${theme.colors.red};
+      border-color: transparent;
 
       svg {
         color: ${theme.colors.red} !important;
@@ -93,23 +97,34 @@ const InputArea = styled.div(({
       margin: 1rem;
     }
   }
-  
+
+  /* Disabled */
+  ${disabled && css`
+    cursor: not-allowed;
+    
+    .box {
+      &:hover {
+        filter: none;
+      }
+    }
+  `}
 `);
 
 const TextInput = ({
-  placeholder, label, icon, error, type, prefix,
+  placeholder, label, icon, error, type, prefix, disabled,
 }) => (
   <InputArea
     label={label}
     error={error}
     icon={Boolean(icon)}
     prefix={prefix}
+    disabled={disabled}
   >
     { label && <span className="label">{label}</span> }
     <div className="box">
       { icon && Icons[icon]() }
       { prefix && <span className="prefix">{prefix}</span> }
-      <input type={type} name="aa" placeholder={placeholder} />
+      <input type={type} name="aa" placeholder={placeholder} disabled={disabled} />
     </div>
   </InputArea>
 );
@@ -121,6 +136,7 @@ TextInput.propTypes = {
   error: propTypes.bool,
   type: propTypes.oneOf(['email', 'password', 'text', 'password']),
   prefix: propTypes.string,
+  disabled: propTypes.bool,
 };
 
 TextInput.defaultProps = {
@@ -130,6 +146,7 @@ TextInput.defaultProps = {
   error: false,
   type: 'text',
   prefix: '',
+  disabled: false,
 };
 
 export default TextInput;
