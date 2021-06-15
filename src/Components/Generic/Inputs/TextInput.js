@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import propTypes from 'prop-types';
 import * as Icons from '../../icons';
@@ -96,6 +96,14 @@ const InputArea = styled.div(({
       color: ${theme.colors.borderDivider};
       margin: 1rem;
     }
+    
+    .eye-off {
+      position: absolute; 
+      top: 0;
+      right: 0;
+      cursor: pointer;
+      user-select: none;
+    }
   }
 
   /* Disabled */
@@ -112,22 +120,32 @@ const InputArea = styled.div(({
 
 const TextInput = ({
   placeholder, label, icon, error, type, prefix, disabled,
-}) => (
-  <InputArea
-    label={label}
-    error={error}
-    icon={icon}
-    prefix={prefix}
-    disabled={disabled}
-  >
-    { label && <span className="label">{label}</span> }
-    <div className="box">
-      { icon && Icons[icon]() }
-      { prefix && <span className="prefix">{prefix}</span> }
-      <input type={type} name="aa" placeholder={placeholder} disabled={disabled} />
-    </div>
-  </InputArea>
-);
+}) => {
+  const [passwordMask, setPasswordMask] = useState(true);
+
+  return (
+    <InputArea
+      label={label}
+      error={error}
+      icon={icon}
+      prefix={prefix}
+      disabled={disabled}
+    >
+      { label && <span className="label">{label}</span> }
+      <div className="box">
+        { icon && Icons[icon]() }
+        { prefix && <span className="prefix">{prefix}</span> }
+        <input type={passwordMask || type} name="aa" placeholder={placeholder} disabled={disabled} />
+        { type === 'password'
+        && (
+          passwordMask
+            ? <Icons.Eye onClick={() => setPasswordMask(!passwordMask)} className="eye-off" />
+            : <Icons.EyeOff onClick={() => setPasswordMask(!passwordMask)} className="eye-off" />
+        )}
+      </div>
+    </InputArea>
+  );
+};
 
 TextInput.propTypes = {
   placeholder: propTypes.string,

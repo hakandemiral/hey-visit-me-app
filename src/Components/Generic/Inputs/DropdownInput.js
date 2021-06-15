@@ -68,9 +68,11 @@ const DropDown = styled.div(({
     border: solid 0.05rem ${theme.colors.borderDivider};
     border-radius: 0.5rem;
     background-color: ${theme.colors.dropDown10};
+    backdrop-filter: blur(32px);
     margin-top: 0.25rem;
     padding: 1rem;
     max-height: 26rem;
+    overflow: hidden;
     overflow-scrolling: auto;
     transition: 250ms max-height;
     
@@ -184,7 +186,7 @@ const DropdownInput = ({
       listing={listing}
     >
       { label && <span className="label">{label}</span> }
-      <button className="box" onClick={handleListing} role="columnheader">
+      <button className="box" onClick={handleListing}>
         { (selected && Icons[selected]()) || (icon && Icons[icon]()) }
         { selected || placeholder }
         <Icons.Selector className="selector-icon" />
@@ -200,7 +202,7 @@ const DropdownInput = ({
               options
                 .filter((option) => option.toLowerCase().includes(search.toLowerCase()))
                 .map((item) => (
-                  <div className="item" role="" onClick={() => handleSelect(item)}>
+                  <div className="item" onClick={() => handleSelect(item)}>
                     {Icons[item] && Icons[item]()}
                     {item}
                   </div>

@@ -6,7 +6,6 @@ const Container = styled.div(({ theme }) => `
   flex-direction: column;
   width: 500px;
   min-height: 400px;
-  margin: auto;
   padding: 25px;
   background-color: ${theme.colors.paper};
   color: ${theme.colors.bodyText};
