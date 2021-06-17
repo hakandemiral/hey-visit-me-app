@@ -91,6 +91,7 @@ const DropDown = styled.div(({
       transition: 110ms color, 110ms background-color;
       color: ${theme.colors.bodyText};
       border-radius: 0.5rem;
+      user-select: none;
       
       &:hover {
         background-color: ${theme.colors.brandMoreLight};
