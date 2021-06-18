@@ -140,3 +140,5 @@ export { default as X } from './X';
 export { default as YellowStar } from './YellowStar';
 export { default as ZoomIn } from './ZoomIn';
 export { default as ZoomOut } from './ZoomOut';
+export { default as Home } from './Home';
+export { default as Identification } from './Identification';

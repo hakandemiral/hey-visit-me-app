@@ -24,6 +24,10 @@ const Item = styled.div(({
   margin-right: 4rem;
   cursor: pointer;
   
+  &:hover {
+    color: ${theme.colors.bodyText};
+  }
+  
   svg {
     color: inherit;
     font-size: 1.5rem;
@@ -32,6 +36,9 @@ const Item = styled.div(({
   
   ${active && css`
     color: ${theme.colors.brand};
+    &:hover {
+      color: ${theme.colors.brand};
+    }
   `}
 `);
 
@@ -40,16 +47,16 @@ const Navbar = ({
 }) => (
   <Bar>
     <Item active={active === 'overview'}>
-      <Icons.Document />
+      <Icons.Home />
       Overview
     </Item>
     <Item active={active === 'home'}>
-      <Icons.Document />
-      Home
+      <Icons.User />
+      Profile
     </Item>
     <Item active={active === 'drawer'}>
-      <Icons.Bell />
-      Drawer
+      <Icons.Identification />
+      Business Cardvisit
     </Item>
   </Bar>
 );
