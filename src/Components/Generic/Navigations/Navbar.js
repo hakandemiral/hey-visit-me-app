@@ -56,7 +56,7 @@ const Navbar = ({
     </Item>
     <Item active={active === 'drawer'}>
       <Icons.Identification />
-      Business Cardvisit
+      Business Card
     </Item>
   </Bar>
 );

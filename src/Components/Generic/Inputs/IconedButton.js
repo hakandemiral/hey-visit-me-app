@@ -54,7 +54,7 @@ IconedButtons.propTypes = {
 };
 
 IconedButtons.defaultProps = {
-  badge: 8,
+  badge: 0,
 };
 
 export default IconedButtons;

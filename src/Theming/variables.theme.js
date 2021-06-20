@@ -36,6 +36,7 @@ const theme = {
     placeholder: '#A5A1A1',
     brandDisabled: '#D1DAE0',
     dropDownOpacity10: 'rgba(41,55,66,0.1)',
+    yellow: '#EFD287',
   },
   typography: {
     heading: {
