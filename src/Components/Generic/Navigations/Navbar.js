@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import * as Icons from '../../icons';
+import * as Icons from '../../Icons';
 
 const Bar = styled.div(({
   theme,

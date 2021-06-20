@@ -1,6 +1,6 @@
 import React from 'react';
 import TextInput from '../Components/Generic/Inputs/TextInput';
-import * as Icons from '../Components/icons';
+import * as Icons from '../Components/Icons';
 import getIconNames from '../Helpers/getIconNames';
 
 export default {

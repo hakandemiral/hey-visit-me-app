@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import propTypes from 'prop-types';
-import * as Icons from '../../icons';
+import * as Icons from '../../Icons';
 
 const DropDown = styled.div(({
   theme, label, disabled, error, selected, listing,
