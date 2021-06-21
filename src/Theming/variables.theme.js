@@ -17,7 +17,7 @@ const theme = {
     heading: '#0A0A0A',
     bodyText: '#494646',
     brandMoreLight: '#F1F5F9',
-    secondaryText: '#969191',
+    secondaryText: '#878282',
     brandLight: '#DCE2F9',
     borderDivider: '#B9B6B6',
     dropDown10: 'rgba(255, 255, 255, 0.1)',
@@ -65,6 +65,7 @@ const theme = {
   },
   filters: {
     softShadow: 'drop-shadow(0px 0.125rem 0.5rem rgba(0, 0, 0, 0.1))',
+    photoInnerShadow: 'box-shadow: inset 0px 0.125rem 0.25rem rgba(0, 0, 0, 0.25);',
   },
 };
 

@@ -5,6 +5,7 @@ const RootWrapper = styled.div`
   width: 100vw;
   height: auto;
   background-color: ${({ theme }) => theme.colors.background};
+  overflow: hidden;
 `;
 
 // eslint-disable-next-line react/prop-types

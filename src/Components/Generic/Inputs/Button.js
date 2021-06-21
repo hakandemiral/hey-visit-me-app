@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import * as Icons from '../../Icons';
 
 const Button = styled.button(({
-  theme, size, type, icon,
+  theme, size, type, icon, text,
 }) => css`
   /* Generic */
   display: flex;
@@ -73,7 +73,11 @@ const Button = styled.button(({
     svg {
       color: inherit;
       font-size: 1.5rem;
-      margin-right: 0.5rem;
+      
+      /* Only Icon */
+      ${text && css`
+        margin-right: 0.5rem;
+      `}
     }
   `}
 `);
@@ -86,6 +90,7 @@ const ButtonComponent = ({
     size={size}
     disabled={disabled}
     icon={Boolean(icon)}
+    text={text}
   >
     {icon && Icons[icon]()}
     {text}
@@ -93,7 +98,7 @@ const ButtonComponent = ({
 );
 
 ButtonComponent.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
   icon: PropTypes.string,
   type: PropTypes.oneOf(['primary', 'secondary']),
   size: PropTypes.oneOf(['little', 'long', 'short']),
@@ -101,6 +106,7 @@ ButtonComponent.propTypes = {
 };
 
 ButtonComponent.defaultProps = {
+  text: '',
   type: 'secondary',
   size: 'long',
   disabled: false,
