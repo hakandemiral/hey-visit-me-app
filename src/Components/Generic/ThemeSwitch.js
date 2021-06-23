@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import * as Icons from './Icons';
+import { useSelector, useDispatch } from 'react-redux';
+import { setDark, setLight } from '../../features/theme/themeSlice';
+import * as Icons from '../Icons';
 
 const Box = styled.div(({
   theme,
@@ -43,15 +45,28 @@ const Option = styled.div(({
   `}
 `);
 
-const ThemeSwitch = () => (
-  <Box>
-    <Option className="light" active={0}>
-      <Icons.Sun />
-    </Option>
-    <Option className="dark" active={1}>
-      <Icons.Moon />
-    </Option>
-  </Box>
-);
+const ThemeSwitch = () => {
+  const isDark = useSelector((state) => state.theme.isDark);
+  const dispatch = useDispatch();
+
+  return (
+    <Box>
+      <Option
+        className="light"
+        active={!isDark}
+        onClick={() => isDark && dispatch(setLight())}
+      >
+        <Icons.Sun />
+      </Option>
+      <Option
+        className="dark"
+        active={isDark}
+        onClick={() => !isDark && dispatch(setDark())}
+      >
+        <Icons.Moon />
+      </Option>
+    </Box>
+  );
+};
 
 export default ThemeSwitch;
