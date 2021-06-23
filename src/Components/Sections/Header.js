@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import * as Icons from '../Icons';
 import IconedButton from '../Generic/Inputs/IconedButton';
 import Container from '../Layout/Container';
-import ThemeSwitch from '../ThemeSwitch';
+import ThemeSwitch from '../Generic/ThemeSwitch';
 import Navbar from '../Generic/Navigations/Navbar';
 
 const Wrapper = styled.div(({

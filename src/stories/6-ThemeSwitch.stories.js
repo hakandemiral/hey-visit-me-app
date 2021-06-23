@@ -1,5 +1,5 @@
 import React from 'react';
-import ThemeSwitch from '../Components/ThemeSwitch';
+import ThemeSwitch from '../Components/Generic/ThemeSwitch';
 
 export default {
   title: 'ThemeSwitch',

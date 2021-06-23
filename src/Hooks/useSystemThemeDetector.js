@@ -1,17 +1,22 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setDark, setLight } from '../features/theme/themeSlice';
 
 const useSystemThemeDetector = () => {
   const getCurrentTheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
   const [isDarkTheme, setIsDarkTheme] = useState(getCurrentTheme());
+  const dispatch = useDispatch();
   const mqListener = ((e) => {
-    setIsDarkTheme(e.matches);
+    if (e.matches) {
+      dispatch(setDark());
+    } else {
+      dispatch(setLight());
+    }
   });
 
   useEffect(() => {
     const darkThemeMq = window.matchMedia('(prefers-color-scheme: dark)');
-    darkThemeMq.addListener(mqListener);
-
-    return () => darkThemeMq.removeListener(mqListener);
+    darkThemeMq.addEventListener('change', mqListener);
   }, []);
 
   return isDarkTheme;

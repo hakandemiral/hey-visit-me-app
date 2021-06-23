@@ -90,7 +90,7 @@ const ShowCase = ({ showCaseId }) => (
       <Slide>
         {
           getShowCaseImages(showCaseId)
-            .map((image) => <img key={Math.random} src={image.default} alt="Example Card" />)
+            .map((image) => <img key={image.default.slice(-8, -4)} src={image.default} alt="Example Card" />)
         }
         <button>
           <Icons.ChevronRight />

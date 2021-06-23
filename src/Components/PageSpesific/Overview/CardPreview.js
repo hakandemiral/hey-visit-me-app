@@ -19,7 +19,8 @@ const Wrapper = styled(Paper)(({
   }
   
   .body {
-    min-height: 15rem;
+    min-height: 18rem;
+    color: ${theme.colors.heading};
   }
 `);
 
@@ -30,7 +31,7 @@ const CardPreview = () => (
       <Button icon="DotsHorizontal" size="short" />
     </div>
     <div className="body">
-
+      Nothing
     </div>
   </Wrapper>
 );

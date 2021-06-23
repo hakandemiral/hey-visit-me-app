@@ -43,6 +43,8 @@ const Select = styled.select(({
   width: 11rem;
   height: 3.5rem;
   padding-left: 1rem;
+  background-color: transparent;
+  color: ${theme.colors.bodyText};
 `);
 
 const Filter = () => (

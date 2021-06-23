@@ -38,13 +38,12 @@ const Paper = ({
 );
 
 Paper.propTypes = {
-  padding: propTypes.oneOf(['narrow', 'large', 'none']),
-  children: propTypes.element,
+  padding: propTypes.oneOf(['narrow', 'large', 'none', 'wide']),
+  children: propTypes.node.isRequired,
 };
 
 Paper.defaultProps = {
   padding: 'large',
-  children: null,
 };
 
 export default Paper;

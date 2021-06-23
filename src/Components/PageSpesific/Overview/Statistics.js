@@ -32,6 +32,10 @@ const Wrapper = styled.div(({
   
   @media screen and (max-width: 1440px) {
     flex-direction: column;
+    
+    .right {
+      display: flex;
+    }
   }
   
 `);
