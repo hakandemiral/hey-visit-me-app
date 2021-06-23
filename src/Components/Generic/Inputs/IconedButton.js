@@ -41,9 +41,12 @@ const Button = styled.button(({
 `);
 
 const IconedButtons = ({
-  icon, badge,
+  icon, badge, ...props
 }) => (
-  <Button badge={badge}>
+  <Button
+    badge={badge}
+    {...props}
+  >
     { Icons[icon]() }
   </Button>
 );

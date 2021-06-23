@@ -20,6 +20,10 @@ export const Wrapper = styled.div(({
   ${padding === 'wide' && css`
     padding: 1rem 2rem;
   `}
+  
+  ${padding === 'none' && css`
+    padding: 0;
+  `}
 `);
 
 const Paper = ({
@@ -34,7 +38,7 @@ const Paper = ({
 );
 
 Paper.propTypes = {
-  padding: propTypes.oneOf(['narrow', 'large']),
+  padding: propTypes.oneOf(['narrow', 'large', 'none']),
   children: propTypes.element,
 };
 
