@@ -41,23 +41,26 @@ const Button = styled.button(({
 `);
 
 const IconedButtons = ({
-  icon, badge, ...props
+  icon, badge, children, ...props
 }) => (
   <Button
     badge={badge}
     {...props}
   >
     { Icons[icon]() }
+    { children }
   </Button>
 );
 
 IconedButtons.propTypes = {
   icon: propTypes.string.isRequired,
   badge: propTypes.number,
+  children: propTypes.node,
 };
 
 IconedButtons.defaultProps = {
   badge: 0,
+  children: null,
 };
 
 export default IconedButtons;

@@ -8,7 +8,7 @@ const theme = {
     secondaryText: '#A5A1A1',
     brandLight: '#465E72',
     borderDivider: '#635F5F',
-    dropDown10: 'rgba(41, 55, 66, 0.1)',
+    dropDown10: 'rgba(41, 55, 66, 0.8)',
     dialogBackground: 'rgba(20, 20, 20, 0.5)',
   },
   lightTheme: {
@@ -20,7 +20,7 @@ const theme = {
     secondaryText: '#878282',
     brandLight: '#DCE2F9',
     borderDivider: '#B9B6B6',
-    dropDown10: 'rgba(255, 255, 255, 0.1)',
+    dropDown10: 'rgba(255, 255, 255, 0.8)',
     dialogBackground: 'rgba(245, 245, 245, 0.5)',
   },
   constantColors: {
@@ -35,7 +35,6 @@ const theme = {
     pink2: '#CF76A4',
     placeholder: '#A5A1A1',
     brandDisabled: '#D1DAE0',
-    dropDownOpacity10: 'rgba(41,55,66,0.1)',
     yellow: '#EFD287',
   },
   typography: {

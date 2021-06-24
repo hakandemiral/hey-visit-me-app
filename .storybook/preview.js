@@ -2,6 +2,8 @@ import { ThemeProvider } from 'styled-components';
 import theming from '../src/Theming/creator.theme';
 import { themes } from '@storybook/theming';
 import { useDarkMode } from 'storybook-dark-mode';
+import { Provider } from 'react-redux';
+import store from '../src/store';
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -17,4 +19,4 @@ export const parameters = {
   }
 };
 
-export const decorators = [renderStory => <ThemeProvider theme={theming(useDarkMode())}>{ renderStory() }</ThemeProvider>];
+export const decorators = [renderStory => <Provider store={store}><ThemeProvider theme={theming(useDarkMode())}>{ renderStory() }</ThemeProvider></Provider>];

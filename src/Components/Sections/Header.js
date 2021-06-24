@@ -5,10 +5,16 @@ import Container from '../Layout/Container';
 import ThemeSwitch from '../Generic/ThemeSwitch';
 import Navbar from '../Generic/Navigations/Navbar';
 
+/* Dropdown Components */
+import ProfileDropDown from '../Generic/Navigations/DropdownMenus/Profile';
+import SupportDropDown from '../Generic/Navigations/DropdownMenus/Support';
+import NotificationDropDown from '../Generic/Navigations/DropdownMenus/Notification';
+
 const Wrapper = styled.div(({
   theme,
 }) => css`
   border-bottom: 0.065rem solid ${theme.colors.borderDivider};
+  z-index: -100;
 `);
 
 const Top = styled.div(({
@@ -24,13 +30,26 @@ const Top = styled.div(({
   }
 `);
 
+const IconedButtonExt = styled(IconedButton)`
+  z-index: 99;
+  &:hover #dropdown {
+    display: block;
+  }
+`;
+
 const Header = () => (
   <Wrapper>
     <Container>
       <Top>
-        <IconedButton icon="Bell" badge={8} />
-        <IconedButton icon="Support" />
-        <IconedButton icon="User" />
+        <IconedButtonExt icon="Bell" badge={8}>
+          <NotificationDropDown />
+        </IconedButtonExt>
+        <IconedButtonExt icon="Support">
+          <SupportDropDown />
+        </IconedButtonExt>
+        <IconedButtonExt icon="User">
+          <ProfileDropDown />
+        </IconedButtonExt>
         <ThemeSwitch />
       </Top>
       <Navbar />
