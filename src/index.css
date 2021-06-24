@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo:wght@400;500&family=Inter:wght@400;500;600&display=swap');
 
 * {
-    transition: 400ms background-color, 800ms color, 400ms border-color;
+    transition: 400ms background-color, 50ms color, 400ms border-color;
     box-sizing: border-box;
     padding: 0;
     margin: 0;
