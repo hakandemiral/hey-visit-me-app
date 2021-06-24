@@ -1,6 +1,5 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import * as Icons from '../Icons';
 import IconedButton from '../Generic/Inputs/IconedButton';
 import Container from '../Layout/Container';
 import ThemeSwitch from '../Generic/ThemeSwitch';
@@ -34,7 +33,7 @@ const Header = () => (
         <IconedButton icon="User" />
         <ThemeSwitch />
       </Top>
-      <Navbar active="overview" />
+      <Navbar />
     </Container>
   </Wrapper>
 );

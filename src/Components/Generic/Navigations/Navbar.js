@@ -1,5 +1,5 @@
-import React from 'react';
-import propTypes from 'prop-types';
+import React, { useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import * as Icons from '../../Icons';
 
@@ -14,7 +14,7 @@ const Bar = styled.div(({
   user-select: none;
 `);
 
-const Item = styled.div(({
+const Item = styled(NavLink)(({
   theme, active,
 }) => css`
   display: flex;
@@ -23,6 +23,7 @@ const Item = styled.div(({
   color: ${theme.colors.secondaryText};
   margin-right: 4rem;
   cursor: pointer;
+  text-decoration: none;
   
   &:hover {
     color: ${theme.colors.bodyText};
@@ -34,38 +35,29 @@ const Item = styled.div(({
     margin-right: 0.5rem;
   }
   
-  ${active && css`
+  &.active {
     color: ${theme.colors.brand};
     &:hover {
       color: ${theme.colors.brand};
     }
-  `}
+  }
 `);
 
-const Navbar = ({
-  active,
-}) => (
+const Navbar = () => (
   <Bar>
-    <Item active={active === 'overview'}>
+    <Item activeClassName="active" to="/overview">
       <Icons.Home />
       Overview
     </Item>
-    <Item active={active === 'home'}>
+    <Item activeClassName="active" to="/profile">
       <Icons.User />
       Profile
     </Item>
-    <Item active={active === 'drawer'}>
+    <Item activeClassName="active" to="/business-card">
       <Icons.Identification />
       Business Card
     </Item>
   </Bar>
 );
-
-Navbar.propTypes = {
-  active: propTypes.string.isRequired,
-};
-
-Navbar.defaultProps = {
-};
 
 export default Navbar;

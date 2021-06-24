@@ -33,9 +33,10 @@ const Link = styled.a(({
   text-decoration: none;
   margin-right: 3rem;
   transition: 100ms color;
-  
+  color: ${theme.colors.brand};
+
   &:visited {
-    color: ${theme.colors.brand};
+    color: inherit;
   }
   
   &:hover {
