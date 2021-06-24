@@ -41,6 +41,10 @@ const Link = styled.a(({
   
   &:hover {
     color: ${theme.colors.brandMoreLight};
+
+    svg {
+      color: ${theme.colors.brandMoreLight};
+    }
   }
 `);
 

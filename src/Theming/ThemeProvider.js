@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import theming from './creator.theme';
 import useSystemThemeDetector from '../Hooks/useSystemThemeDetector';
+import RootWrapper from '../Components/Generic/RootWrapper';
 
 const Provider = ({ children }) => {
   const isDark = useSelector((state) => state.theme.isDark);
@@ -11,7 +12,9 @@ const Provider = ({ children }) => {
 
   return (
     <ThemeProvider theme={theming(isDark)}>
-      {children}
+      <RootWrapper>
+        {children}
+      </RootWrapper>
     </ThemeProvider>
   );
 };
