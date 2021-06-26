@@ -137,7 +137,7 @@ const TextInput = ({
       <div className="box">
         { icon && Icons[icon]() }
         { prefix && <span className="prefix">{prefix}</span> }
-        <input type={passwordMask || type} name="aa" placeholder={placeholder} disabled={disabled} {...props} />
+        <input type={passwordMask ? type : ''} name="aa" placeholder={placeholder} disabled={disabled} {...props} />
         { type === 'password'
         && (
           passwordMask

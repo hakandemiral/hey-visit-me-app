@@ -5,6 +5,7 @@ import profilePhoto from '../../../Images/Photos/profile-picture.png';
 import Button from '../../Generic/Inputs/Button';
 import TextInput from '../../Generic/Inputs/TextInput';
 import DropdownInput from '../../Generic/Inputs/DropdownInput';
+import TextArea from '../../Generic/Inputs/TextArea';
 
 const Wrapper = styled.div(({
   theme,
@@ -32,9 +33,10 @@ const Wrapper = styled.div(({
     }
   }
   
-  #text-input {
+  #text-input, #dropdown-input {
     margin-bottom: 4rem;
   }
+
 `);
 
 const ProfileSettings = () => (
@@ -55,21 +57,22 @@ const ProfileSettings = () => (
         label="Country"
         options={[
           { title: 'Norway' },
-          { title: 'Holland' },
+          { title: 'Holland', initialSelected: true },
         ]}
       />
       <TextInput placeholder="City" label="City" />
-      <TextInput placeholder="DD/MM/YYYY" label="Birth Date" />
+      <TextInput placeholder="DD.MM.YYYY" label="Birth Date" />
       <DropdownInput
         placeholder="Account Status"
         label="Account Status"
         options={[
           { title: 'Active', icon: 'Eye' },
-          { title: 'Passive', icon: 'EyeOff' },
+          { title: 'Passive', icon: 'EyeOff', initialSelected: true },
         ]}
         searchable={false}
         icon="Eye"
       />
+      <TextArea label="Bio" size={0} />
     </Wrapper>
   </FormBase>
 );

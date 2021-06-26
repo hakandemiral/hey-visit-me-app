@@ -164,7 +164,9 @@ const DropDown = styled.div(({
 const DropdownInput = ({
   placeholder, icon, label, error, disabled, options, searchable,
 }) => {
-  const [selected, setSelected] = useState(false);
+  const [selected, setSelected] = useState(() => (
+    options.filter((item) => item.initialSelected)[0] || false
+  ));
   const [listing, setListing] = useState(false);
   const [search, setSearch] = useState('');
 
@@ -188,6 +190,7 @@ const DropdownInput = ({
       disabled={disabled}
       selected={selected}
       listing={listing}
+      id="dropdown-input"
     >
       { label && <span className="label">{label}</span> }
       <button className="box" onClick={handleListing}>
