@@ -7,7 +7,7 @@ const InputArea = styled.div(({
   theme, label, disabled, error, icon, prefix,
 }) => css`
   /* Generic */
-  width: 26rem;
+  min-width: 24rem;
   height: 5.5rem;
   
   ${label && css`
@@ -74,6 +74,7 @@ const InputArea = styled.div(({
         display: grid;
         place-items: center;
         background-color: ${theme.colors.background};
+        color: ${theme.colors.bodyText};
       }
       
       input {
@@ -119,7 +120,7 @@ const InputArea = styled.div(({
 `);
 
 const TextInput = ({
-  placeholder, label, icon, error, type, prefix, disabled,
+  placeholder, label, icon, error, type, prefix, disabled, ...props
 }) => {
   const [passwordMask, setPasswordMask] = useState(true);
 
@@ -130,12 +131,13 @@ const TextInput = ({
       icon={icon}
       prefix={prefix}
       disabled={disabled}
+      id="text-input"
     >
       { label && <span className="label">{label}</span> }
       <div className="box">
         { icon && Icons[icon]() }
         { prefix && <span className="prefix">{prefix}</span> }
-        <input type={passwordMask || type} name="aa" placeholder={placeholder} disabled={disabled} />
+        <input type={passwordMask || type} name="aa" placeholder={placeholder} disabled={disabled} {...props} />
         { type === 'password'
         && (
           passwordMask
@@ -163,7 +165,7 @@ TextInput.defaultProps = {
   icon: '',
   error: false,
   type: 'text',
-  prefix: '',
+  prefix: null,
   disabled: false,
 };
 

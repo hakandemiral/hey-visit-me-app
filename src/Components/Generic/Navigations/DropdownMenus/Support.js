@@ -35,19 +35,19 @@ const LinkItem = styled(Link)(({
 
 const Support = () => (
   <List id="dropdown">
-    <LinkItem>
+    <LinkItem to="#">
       <Icons.QuestionMarkCircle />
       <span>Help</span>
     </LinkItem>
-    <LinkItem>
+    <LinkItem to="#">
       <Icons.YellowStar />
       <span>Give Feedback</span>
     </LinkItem>
-    <LinkItem>
+    <LinkItem to="#">
       <Icons.PencilAlt />
       <span>Contact Us</span>
     </LinkItem>
-    <LinkItem>
+    <LinkItem to="#">
       <Icons.ShieldCheck />
       <span>Privacy & Terms</span>
     </LinkItem>

@@ -7,8 +7,9 @@ const DropDown = styled.div(({
   theme, label, disabled, error, selected, listing,
 }) => css`
   /* Generic */
-  width: 26rem;
+  min-width: 24rem;
   height: 5.5rem;
+  position: relative;
 
   ${label && css`
     & span.label {
@@ -64,6 +65,7 @@ const DropDown = styled.div(({
   }
   
   .list {
+    position: absolute;
     width: 100%;
     border: solid 0.05rem ${theme.colors.borderDivider};
     border-radius: 0.5rem;
@@ -75,6 +77,7 @@ const DropDown = styled.div(({
     overflow: hidden;
     overflow-scrolling: auto;
     transition: 250ms max-height;
+    z-index: 99;
     
     &.hidden {
       max-height: 0;
@@ -159,7 +162,7 @@ const DropDown = styled.div(({
 `);
 
 const DropdownInput = ({
-  placeholder, icon, label, error, disabled, options,
+  placeholder, icon, label, error, disabled, options, searchable,
 }) => {
   const [selected, setSelected] = useState(false);
   const [listing, setListing] = useState(false);
@@ -188,27 +191,36 @@ const DropdownInput = ({
     >
       { label && <span className="label">{label}</span> }
       <button className="box" onClick={handleListing}>
-        { (selected && Icons[selected]()) || (icon && Icons[icon]()) }
-        { selected || placeholder }
+        { (Icons[selected.icon] && Icons[selected.icon]()) || (icon && Icons[icon]()) }
+        { selected.title || placeholder }
         <Icons.Selector className="selector-icon" />
       </button>
       {
         !disabled && (
           <div className={`list${!listing ? ' hidden' : ''}`}>
-            <div className="item search">
-              <Icons.Search />
-              <input type="text" placeholder="Search" value={search} onChange={(e) => handleSearch(e)} />
-            </div>
+
+            {/*If options is searchable */}
+            {
+              searchable && (
+                <div className="item search">
+                  <Icons.Search />
+                  <input type="text" placeholder="Search" value={search} onChange={(e) => handleSearch(e)} />
+                </div>
+              )
+            }
+
+            {/* Input options rendering */}
             {
               options
-                .filter((option) => option.toLowerCase().includes(search.toLowerCase()))
+                .filter((item) => item.title.toLowerCase().includes(search.toLowerCase()))
                 .map((item) => (
-                  <div className="item" onClick={() => handleSelect(item)}>
-                    {Icons[item] && Icons[item]()}
-                    {item}
+                  <div key={item.title} className="item" onClick={() => handleSelect(item)}>
+                    {Icons[item.icon] && Icons[item.icon]()}
+                    {item.title}
                   </div>
                 ))
             }
+
           </div>
         )
       }
@@ -222,7 +234,11 @@ DropdownInput.propTypes = {
   label: propTypes.string,
   error: propTypes.bool,
   disabled: propTypes.bool,
-  options: propTypes.arrayOf(propTypes.string),
+  options: propTypes.arrayOf(propTypes.shape({
+    title: propTypes.string.isRequired,
+    icon: propTypes.string,
+  })),
+  searchable: propTypes.bool,
 };
 
 DropdownInput.defaultProps = {
@@ -232,6 +248,7 @@ DropdownInput.defaultProps = {
   error: false,
   disabled: false,
   options: ['Ankara', 'İstanbul'],
+  searchable: true,
 };
 
 export default DropdownInput;

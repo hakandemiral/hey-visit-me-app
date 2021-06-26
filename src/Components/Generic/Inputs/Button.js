@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import * as Icons from '../../Icons';
 
 const Button = styled.button(({
-  theme, size, type, icon, text,
+  theme, size, variant, icon, text,
 }) => css`
   /* Generic */
   display: flex;
@@ -16,7 +16,7 @@ const Button = styled.button(({
   cursor: pointer;
 
   /* Primary Type */
-  ${type === 'primary' && css`
+  ${variant === 'primary' && css`
     background-color: ${theme.colors.brand};
     color: ${theme.colors.white};
 
@@ -33,7 +33,7 @@ const Button = styled.button(({
   `}
 
   /* Secondary Type */
-  ${type === 'secondary' && css`
+  ${variant === 'secondary' && css`
     background-color: ${theme.colors.paper};
     color: ${theme.colors.brand};
     border: solid 0.8px ${theme.colors.brand};
@@ -83,14 +83,15 @@ const Button = styled.button(({
 `);
 
 const ButtonComponent = ({
-  text, type, size, disabled, icon,
+  text, variant, size, disabled, icon, ...props
 }) => (
   <Button
-    type={type}
+    variant={variant}
     size={size}
     disabled={disabled}
     icon={Boolean(icon)}
     text={text}
+    {...props}
   >
     {icon && Icons[icon]()}
     {text}
@@ -100,14 +101,14 @@ const ButtonComponent = ({
 ButtonComponent.propTypes = {
   text: PropTypes.string,
   icon: PropTypes.string,
-  type: PropTypes.oneOf(['primary', 'secondary']),
+  variant: PropTypes.oneOf(['primary', 'secondary']),
   size: PropTypes.oneOf(['little', 'long', 'short']),
   disabled: PropTypes.bool,
 };
 
 ButtonComponent.defaultProps = {
   text: '',
-  type: 'secondary',
+  variant: 'secondary',
   size: 'long',
   disabled: false,
   icon: '',

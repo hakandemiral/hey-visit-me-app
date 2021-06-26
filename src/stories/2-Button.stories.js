@@ -7,13 +7,13 @@ export default {
   component: Button,
   args: {
     text: 'Your text is here',
-    type: 'secondary',
+    variant: 'secondary',
     size: 'long',
   },
   argTypes: {
     icon: {
       control: {
-        type: 'select',
+        variant: 'select',
         options: getIconNames(),
       },
     },

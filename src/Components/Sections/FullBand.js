@@ -45,7 +45,7 @@ const FullBand = () => (
       <br />
       creative minds into actions.
     </Text>
-    <Button text="Create Business Card" type="primary" />
+    <Button text="Create Business Card" variant="primary" />
   </Band>
 );
 
