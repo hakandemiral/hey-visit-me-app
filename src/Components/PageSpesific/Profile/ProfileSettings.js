@@ -113,10 +113,8 @@ const ProfileSettings = () => {
     resolver: yupResolver(validationSchema),
   });
 
-  console.log(watch());
-  console.log(errors);
   return (
-    <FormBase onSubmit={handleSubmit((e) => console.log(e))}>
+    <FormBase onSubmit={handleSubmit((e) => {})}>
       <Wrapper>
 
         <div className="profile-photo">
