@@ -12,6 +12,11 @@ const Bar = styled.div(({
   background-color: ${theme.colors.background};
   padding: 1rem 4rem;
   user-select: none;
+
+  @media screen and (max-width: 960px) {
+    padding: 0;
+    justify-content: space-around;
+  }
 `);
 
 const Item = styled(NavLink)(({
@@ -39,6 +44,15 @@ const Item = styled(NavLink)(({
     color: ${theme.colors.brand};
     &:hover {
       color: ${theme.colors.brand};
+    }
+  }
+
+  @media screen and (max-width: 960px) {
+    margin: 0;
+    flex-direction: column;
+    
+    svg {
+      margin: 0;
     }
   }
 `);

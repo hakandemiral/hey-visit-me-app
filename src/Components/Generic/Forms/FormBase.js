@@ -20,6 +20,14 @@ const InputArea = styled.div(({
   padding: 4rem;
   background-color: ${theme.colors.paper};
   border-radius: 1rem 1rem 0 0;
+
+  @media screen and (max-width: 576px) {
+    padding: 2rem 0;
+  }
+
+  @media screen and (max-width: 420px) {
+    padding: 2rem 0;
+  }
 `);
 
 const FormBase = ({

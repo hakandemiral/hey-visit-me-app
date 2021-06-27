@@ -10,7 +10,7 @@ const Foot = styled.div(({
   align-items: center;
   color: ${theme.colors.brand};
   font: ${theme.typography.body.regular16};
-  padding: 11rem 0 4rem 0;
+  padding: 8rem 0 4rem 0;
 `);
 
 const Row = styled.div(({
@@ -23,7 +23,6 @@ const Row = styled.div(({
   svg {
     font-size: 1.5rem;
     color: inherit;
-    margin-right: 0.5rem;
   }
 `);
 
@@ -31,7 +30,7 @@ const Link = styled.a(({
   theme,
 }) => css`
   text-decoration: none;
-  margin-right: 3rem;
+  margin: 0 1.5rem;
   transition: 100ms color;
   color: ${theme.colors.brand};
 
@@ -57,7 +56,7 @@ const Footer = () => (
     </Row>
     <Row>
       <Icons.Copyright />
-      <Link href="#">Heyvisit.me 👋</Link>
+      <span>Heyvisit.me 👋</span>
     </Row>
   </Foot>
 );

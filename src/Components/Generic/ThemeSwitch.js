@@ -50,7 +50,7 @@ const ThemeSwitch = () => {
   const dispatch = useDispatch();
 
   return (
-    <Box>
+    <Box className="theme-switch">
       <Option
         className="light"
         active={!isDark}

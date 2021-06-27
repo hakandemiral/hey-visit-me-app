@@ -92,6 +92,7 @@ const ButtonComponent = ({
     icon={Boolean(icon)}
     text={text}
     {...props}
+    className="hey-button"
   >
     {icon && Icons[icon]()}
     {text}

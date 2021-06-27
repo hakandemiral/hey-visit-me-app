@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import propTypes from 'prop-types';
 import * as Icons from '../../Icons';
@@ -7,7 +7,7 @@ const DropDown = styled.div(({
   theme, label, disabled, error, selected, listing,
 }) => css`
   /* Generic */
-  min-width: 24rem;
+  width: 100%;
   height: 5.5rem;
   position: relative;
 
@@ -159,41 +159,41 @@ const DropDown = styled.div(({
     }
   `}
   
+  .reference-select {
+    display: block;
+  }
 `);
 
 const DropdownInput = ({
-  placeholder, icon, label, error, disabled, options, searchable,
+  placeholder, icon, label, error, disabled, value, options, searchable, field, name,
 }) => {
   const [selected, setSelected] = useState(() => (
-    options.filter((item) => item.initialSelected)[0] || false
+    options.find((item) => item.title === value) || false
   ));
   const [listing, setListing] = useState(false);
   const [search, setSearch] = useState('');
 
-  const handleListing = () => {
-    setListing(!listing);
-  };
-
-  const handleSearch = (e) => {
-    setSearch(e.target.value);
-  };
-
   const handleSelect = (item) => {
     setSelected(item);
-    handleListing();
+    setListing(false);
   };
+
+  useEffect(() => {
+    if (field) field.onChange(selected.title);
+  }, [selected]);
 
   return (
     <DropDown
       label={label}
-      error={error}
+      error={Boolean(error[name])}
       disabled={disabled}
       selected={selected}
       listing={listing}
-      id="dropdown-input"
+      className="dropdown-input"
     >
+
       { label && <span className="label">{label}</span> }
-      <button className="box" onClick={handleListing}>
+      <button className="box" onClick={() => setListing(!listing)}>
         { (Icons[selected.icon] && Icons[selected.icon]()) || (icon && Icons[icon]()) }
         { selected.title || placeholder }
         <Icons.Selector className="selector-icon" />
@@ -207,7 +207,7 @@ const DropdownInput = ({
               searchable && (
                 <div className="item search">
                   <Icons.Search />
-                  <input type="text" placeholder="Search" value={search} onChange={(e) => handleSearch(e)} />
+                  <input type="text" placeholder="Search" value={search} onChange={(e) => setSearch(e.target.value)} />
                 </div>
               )
             }
@@ -227,6 +227,9 @@ const DropdownInput = ({
           </div>
         )
       }
+      <div className="error-message">
+        { error[name] && error[name].message}
+      </div>
     </DropDown>
   );
 };
@@ -235,23 +238,28 @@ DropdownInput.propTypes = {
   placeholder: propTypes.string,
   icon: propTypes.string,
   label: propTypes.string,
-  error: propTypes.bool,
+  error: propTypes.object,
   disabled: propTypes.bool,
   options: propTypes.arrayOf(propTypes.shape({
     title: propTypes.string.isRequired,
     icon: propTypes.string,
   })),
   searchable: propTypes.bool,
+  field: propTypes.any,
+  value: propTypes.string,
+  name: propTypes.string.isRequired,
 };
 
 DropdownInput.defaultProps = {
   placeholder: '',
   icon: '',
   label: '',
-  error: false,
+  error: {},
   disabled: false,
   options: ['Ankara', 'İstanbul'],
   searchable: true,
+  value: '',
+  field: null,
 };
 
 export default DropdownInput;

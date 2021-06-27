@@ -8,7 +8,10 @@ const Wrapper = styled.div(({
   theme,
 }) => css`
   display: flex;
-  margin-top: 4rem;
+  
+  @media screen and (max-width: 1440px) {
+    flex-direction: column;
+  }
 `);
 
 const Profile = () => (

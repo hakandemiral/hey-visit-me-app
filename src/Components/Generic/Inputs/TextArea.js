@@ -50,7 +50,7 @@ const Wrapper = styled.div(({
 const TextArea = ({
   label, size,
 }) => (
-  <Wrapper>
+  <Wrapper className="text-area">
     <div className="top">
       { label && <span className="label">{label}</span> }
       <div className="counter">{`${size} / 1000`}</div>

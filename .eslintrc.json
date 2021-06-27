@@ -44,6 +44,7 @@
       "react/jsx-curly-brace-presence": "off",
       "no-param-reassign": ["error", { "props": false }],
       "spaced-comment": "off",
-      "react/jsx-indent": "warn"
+      "react/jsx-indent": "warn",
+      "react/forbid-prop-types": "off"
     }
 }
