@@ -80,7 +80,7 @@ const Experience = () => {
           placeholder="2006"
         />
 
-        <Checkbox label="Test test test" name="asd"/>
+        <Checkbox label="Test test test" name="asd" />
 
         <TextArea
           label="Description"

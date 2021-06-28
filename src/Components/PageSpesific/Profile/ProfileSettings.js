@@ -126,8 +126,6 @@ const ProfileSettings = () => {
     defaultValues,
   });
 
-  console.log('renderr');
-
   return (
     <FormBase onSubmit={handleSubmit((e) => {})}>
       <Wrapper>

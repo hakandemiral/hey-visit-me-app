@@ -56,7 +56,11 @@ const validationSchema = yup.object({
 
 const ContactInfo = () => {
   const defaultValues = {
-
+    socialAccounts: [
+      { id: 0, network: 'Instagram', userName: '@hakan' },
+      { id: 0, network: 'Instagram', userName: '@hakan' },
+      { id: 0, network: 'Instagram', userName: '@hakan' },
+    ],
   };
 
   const {
@@ -65,8 +69,6 @@ const ContactInfo = () => {
     resolver: yupResolver(validationSchema),
     defaultValues,
   });
-
-  console.log(watch());
 
   return (
     <FormBase onSubmit={handleSubmit((e) => {})}>

@@ -39,7 +39,13 @@ const Wrapper = styled.div(({
 `);
 
 const SocialAccountInput = ({ field }) => {
-  const [socialList, setSocialList] = useState([{ id: 0, network: '', userName: '' }]);
+  const [socialList, setSocialList] = useState(() => {
+    if (field) {
+      return field.value;
+    }
+
+    return [{ id: 0, network: '', userName: '' }];
+  });
 
   useEffect(() => {
     if (field) field.onChange(socialList);
