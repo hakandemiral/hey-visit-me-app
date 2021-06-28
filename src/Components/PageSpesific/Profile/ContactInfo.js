@@ -51,7 +51,10 @@ const validationSchema = yup.object({
   emailAddress: yup.string().email(),
   websiteKind: yup.string(),
   websiteUrl: yup.string(),
-  socialAccounts: yup.object(),
+  socialAccounts: yup.array().of(yup.object().shape({
+    network: yup.string(),
+    userName: yup.string(),
+  })),
 });
 
 const ContactInfo = () => {
