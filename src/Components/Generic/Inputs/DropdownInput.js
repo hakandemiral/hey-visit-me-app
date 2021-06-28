@@ -8,7 +8,6 @@ const DropDown = styled.div(({
 }) => css`
   /* Generic */
   width: 100%;
-  height: 5.5rem;
   position: relative;
 
   ${label && css`
@@ -74,8 +73,7 @@ const DropDown = styled.div(({
     margin-top: 0.25rem;
     padding: 1rem;
     max-height: 26rem;
-    overflow: hidden;
-    overflow-scrolling: auto;
+    overflow-y: scroll;
     transition: 250ms max-height;
     z-index: 99;
     
@@ -109,6 +107,14 @@ const DropDown = styled.div(({
         margin-right: 0.5rem;
         color: ${theme.colors.borderDivider};
         font-size: 24px;
+      }
+
+      &.placeholder {
+        color: ${theme.colors.brand};
+        
+        svg {
+          color: inherit;
+        }
       }
     }
     
@@ -165,11 +171,21 @@ const DropDown = styled.div(({
 `);
 
 const DropdownInput = ({
-  placeholder, icon, label, error, disabled, value, options, searchable, field, name,
+  placeholder, icon, label, error, disabled, options, searchable, field, name,
+  controlledInput, value,
 }) => {
-  const [selected, setSelected] = useState(() => (
-    options.find((item) => item.title === value) || false
-  ));
+  const [selected, setSelected] = useState(() => {
+    if (field) {
+      return options.find((item) => item.title === field.value);
+    }
+
+    if (value) {
+      return options.find((item) => item.title === value);
+    }
+
+    return false;
+  });
+
   const [listing, setListing] = useState(false);
   const [search, setSearch] = useState('');
 
@@ -180,6 +196,7 @@ const DropdownInput = ({
 
   useEffect(() => {
     if (field) field.onChange(selected.title);
+    controlledInput(selected.title);
   }, [selected]);
 
   return (
@@ -193,11 +210,13 @@ const DropdownInput = ({
     >
 
       { label && <span className="label">{label}</span> }
-      <button className="box" onClick={() => setListing(!listing)}>
+
+      <button className="box" onClick={() => setListing(!listing)} type="button">
         { (Icons[selected.icon] && Icons[selected.icon]()) || (icon && Icons[icon]()) }
         { selected.title || placeholder }
         <Icons.Selector className="selector-icon" />
       </button>
+
       {
         !disabled && (
           <div className={`list${!listing ? ' hidden' : ''}`}>
@@ -213,6 +232,10 @@ const DropdownInput = ({
             }
 
             {/* Input options rendering */}
+            <div className="item placeholder" onClick={() => handleSelect(false)}>
+              {Icons[icon] && Icons[icon]()}
+              {placeholder}
+            </div>
             {
               options
                 .filter((item) => item.title.toLowerCase().includes(search.toLowerCase()))
@@ -223,7 +246,6 @@ const DropdownInput = ({
                   </div>
                 ))
             }
-
           </div>
         )
       }
@@ -248,6 +270,7 @@ DropdownInput.propTypes = {
   field: propTypes.any,
   value: propTypes.string,
   name: propTypes.string.isRequired,
+  controlledInput: propTypes.func,
 };
 
 DropdownInput.defaultProps = {
@@ -258,8 +281,9 @@ DropdownInput.defaultProps = {
   disabled: false,
   options: ['Ankara', 'İstanbul'],
   searchable: true,
-  value: '',
+  value: null,
   field: null,
+  controlledInput: () => {},
 };
 
 export default DropdownInput;

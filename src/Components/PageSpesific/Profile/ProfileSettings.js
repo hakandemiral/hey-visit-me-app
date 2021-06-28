@@ -103,15 +103,30 @@ const validationSchema = yup.object({
   company: yup.string(),
   country: yup.string(),
   city: yup.string(),
-  // birthDate: yup.date().format('DD-MM-YYYY', true),
+  birthDate: yup.string().matches(/^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/, 'Enter a valid date. dd.mm.yyyy'),
 });
 
 const ProfileSettings = () => {
+  const defaultValues = {
+    fullName: 'Hakan Demiral',
+    userName: 'hakan',
+    job: 'Javascript Developer',
+    company: 'Nothing',
+    country: 'Turkey',
+    city: 'Ankara',
+    birthDate: '25.03.1998',
+    accountStatus: 'Active',
+    bio: 'I\'m Hakan, since the day I was born, I have created myself by producing something. I have not been educated in any formal education institution, I believe that I can educate myself more effectively. I\'m actively working on front-end technologies, the incredible rise of javascript in the last period and the fact that it can work wonders without realizing the platform is the main reason I work with javascript. I am excited to produce a new generation of solutions without the cumbersome traditional technologies.',
+  };
+
   const {
     register, watch, handleSubmit, control, formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
+    defaultValues,
   });
+
+  console.log('renderr');
 
   return (
     <FormBase onSubmit={handleSubmit((e) => {})}>
@@ -162,7 +177,7 @@ const ProfileSettings = () => {
 
         <Controller
           control={control}
-          name="country-select"
+          name="country"
           render={({ field }) => (
             <DropdownInput
               field={field}
@@ -172,8 +187,8 @@ const ProfileSettings = () => {
               options={[
                 { title: 'Norway' },
                 { title: 'Holland' },
+                { title: 'Turkey' },
               ]}
-              value="Holland"
               error={errors}
             />
           )}
@@ -184,6 +199,7 @@ const ProfileSettings = () => {
           name="city"
           placeholder="City"
           label="City"
+          error={errors}
         />
 
         <TextInput
@@ -191,11 +207,12 @@ const ProfileSettings = () => {
           name="birthDate"
           placeholder="DD.MM.YYYY"
           label="Birth Date"
+          error={errors}
         />
 
         <Controller
           control={control}
-          name="account-status-select"
+          name="accountStatus"
           render={({ field }) => (
             <DropdownInput
               field={field}
@@ -205,11 +222,14 @@ const ProfileSettings = () => {
                 { title: 'Active', icon: 'Eye' },
                 { title: 'Passive', icon: 'EyeOff' },
               ]}
-              value="Active"
             />
           )}
         />
-        <TextArea label="Bio" size={0} />
+        <TextArea
+          label="Bio"
+          placeholder="Brief description about yourself. Personal information and details..."
+          hookForm={{ ...register('bio') }}
+        />
       </Wrapper>
     </FormBase>
   );

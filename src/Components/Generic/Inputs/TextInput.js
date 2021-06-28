@@ -4,11 +4,10 @@ import propTypes from 'prop-types';
 import * as Icons from '../../Icons';
 
 const InputArea = styled.div(({
-  theme, label, disabled, error, icon, prefix,
+  theme, label, disabled, error, icon, prefix, description,
 }) => css`
   /* Generic */
   width: 100%;
-  height: 5.5rem;
   
   ${label && css`
     & span.label {
@@ -16,6 +15,19 @@ const InputArea = styled.div(({
       margin-bottom: 0.35rem;
       color: ${theme.colors.heading};
       font: ${theme.typography.body.regular16};
+    }
+  `}
+
+  ${description && css`
+    & span.label {
+      margin-bottom: 0.5rem;
+    }
+    
+    & span.description {
+      display: block;
+      font: ${theme.typography.body.regular12};
+      color: ${theme.colors.bodyText};
+      margin-bottom: 1rem;
     }
   `}
   
@@ -126,24 +138,42 @@ const InputArea = styled.div(({
 `);
 
 const TextInput = ({
-  placeholder, label, icon, error, type, prefix, disabled, hookForm, name,
+  placeholder, label, icon, error, type, prefix, disabled, hookForm, name, description,
+  controlledInput, ...props
 }) => {
   const [passwordMask, setPasswordMask] = useState(true);
 
   return (
     <InputArea
       label={label}
+      description={Boolean(description)}
       error={Boolean(error[name])}
       icon={icon}
       prefix={prefix}
       disabled={disabled}
       className="text-input"
     >
+
       { label && <span className="label">{label}</span> }
+
+      { description && <span className="description">{description}</span> }
+
       <div className="box">
+
         { icon && Icons[icon]() }
+
         { prefix && <span className="prefix">{prefix}</span> }
-        <input type={passwordMask ? type : ''} name="aa" placeholder={placeholder} disabled={disabled} {...hookForm} />
+
+        <input
+          type={passwordMask ? type : ''}
+          name={name}
+          placeholder={placeholder}
+          disabled={disabled}
+          onBlur={(e) => controlledInput(e.target.value)}
+          {...props}
+          {...hookForm}
+        />
+
         { type === 'password'
         && (
           passwordMask
@@ -168,6 +198,8 @@ TextInput.propTypes = {
   disabled: propTypes.bool,
   hookForm: propTypes.any,
   name: propTypes.string.isRequired,
+  description: propTypes.string,
+  controlledInput: propTypes.func,
 };
 
 TextInput.defaultProps = {
@@ -179,6 +211,8 @@ TextInput.defaultProps = {
   prefix: null,
   disabled: false,
   hookForm: null,
+  description: null,
+  controlledInput: () => {},
 };
 
 export default TextInput;

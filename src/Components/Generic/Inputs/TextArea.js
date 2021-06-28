@@ -17,11 +17,6 @@ const Wrapper = styled.div(({
       font: ${theme.typography.body.regular16};
       color: ${theme.colors.heading};
     }
-    
-    .counter {
-      font: ${theme.typography.body.regular12};
-      color: ${theme.colors.secondaryText};
-    }
   }
   
   textarea {
@@ -48,24 +43,26 @@ const Wrapper = styled.div(({
 `);
 
 const TextArea = ({
-  label, size,
+  label, placeholder, hookForm,
 }) => (
   <Wrapper className="text-area">
     <div className="top">
       { label && <span className="label">{label}</span> }
-      <div className="counter">{`${size} / 1000`}</div>
     </div>
-    <textarea placeholder="Brief description about yourself. Personal information and details..." />
+    <textarea placeholder={placeholder && `${placeholder} (max 1000 character)`} {...hookForm} />
   </Wrapper>
 );
 
 TextArea.propTypes = {
   label: propTypes.string,
-  size: propTypes.number.isRequired,
+  placeholder: propTypes.string,
+  hookForm: propTypes.any,
 };
 
 TextArea.defaultProps = {
   label: '',
+  placeholder: '',
+  hookForm: null,
 };
 
 export default TextArea;
