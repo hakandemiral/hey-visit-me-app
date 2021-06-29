@@ -70,7 +70,7 @@ const ContactInfo = () => {
   });
 
   return (
-    <FormBase onSubmit={handleSubmit((e) => { console.log(e); })}>
+    <FormBase>
       <Wrapper>
 
         <TextInput

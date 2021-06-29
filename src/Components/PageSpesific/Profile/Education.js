@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { useForm } from 'react-hook-form';
 import FormBase from '../../Generic/Forms/FormBase';
 import TextInput from '../../Generic/Inputs/TextInput';
 import TextArea from '../../Generic/Inputs/TextArea';
@@ -24,6 +25,8 @@ const Wrapper = styled.div(({
 `);
 
 const Education = () => {
+  const { register } = useForm();
+
   return (
     <FormBase onSubmit={(e) => { e.preventDefault(); }}>
       <Wrapper>

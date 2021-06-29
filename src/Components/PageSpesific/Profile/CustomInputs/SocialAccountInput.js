@@ -57,7 +57,6 @@ const SocialAccountInput = ({ field }) => {
   };
 
   const handleRemoveClick = (index) => {
-    console.log('remove');
     const list = [...socialList];
     list.splice(index, 1);
     setSocialList(list);
