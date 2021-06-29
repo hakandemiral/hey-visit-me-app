@@ -11,18 +11,20 @@ const Wrapper = styled.div(({
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin: 2rem 0;
+  margin: 2rem 0 4rem 0;
   
   .row {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-end;
+    margin-top: 1rem;
     
     h4 {
       width: 100%;
       font: ${theme.typography.heading.regular16};
       color: ${theme.colors.heading};
+      margin: 0;
     }
   }
   
@@ -32,11 +34,26 @@ const Wrapper = styled.div(({
 `);
 
 const DateRange = ({
-  label, name, checkboxLabel,
+  label, name, checkboxLabel, fields,
 }) => {
-  const [checked, setChecked] = useState();
-  const handleCheckbox = (value) => {
-    setChecked(value);
+  const [state, setState] = useState(() => {
+    if (fields) {
+      return fields.value;
+    }
+
+    return {};
+  });
+
+  const handleCurentWorking = (value) => {
+    const newState = {
+      ...state,
+      currentWorking: value,
+    };
+    setState(newState);
+  };
+
+  const handleDates = (date) => {
+    setState({ ...state, [date.type]: date.value });
   };
 
   return (
@@ -62,17 +79,21 @@ const DateRange = ({
             { title: 'November' },
             { title: 'December' },
           ]}
+          controlledInput={(value) => handleDates({ type: 'startMonth', value })}
+          value={state.startMonth}
         />
 
         <TextInput
           name={`${name}-text-input`}
           placeholder="Year"
           label="Year"
+          controlledInput={(value) => handleDates({ type: 'startYear', value })}
+          value={state.startYear}
         />
       </div>
 
       {
-        !checked && (
+        !state.currentWorking && (
           <div className="row">
             <h4>End</h4>
             <DropdownInput
@@ -93,28 +114,29 @@ const DateRange = ({
                 { title: 'November' },
                 { title: 'December' },
               ]}
+              controlledInput={(value) => handleDates({ type: 'endMonth', value })}
+              value={state.endMonth}
             />
 
             <TextInput
               name={`${name}-text-input`}
               placeholder="Year"
               label="Year"
+              controlledInput={(value) => handleDates({ type: 'endYear', value })}
+              value={state.endYear}
             />
           </div>
         )
       }
 
-      {
-        checkboxLabel && (
-          <div className="actions">
-            <Checkbox
-              label={checkboxLabel}
-              name={name}
-              controlledComponent={handleCheckbox}
-            />
-          </div>
-        )
-      }
+      <div className="actions">
+        <Checkbox
+          label={checkboxLabel}
+          name={name}
+          controlledComponent={handleCurentWorking}
+          value={state.curentWorking}
+        />
+      </div>
 
     </Wrapper>
   );
@@ -124,11 +146,13 @@ DateRange.propTypes = {
   label: propTypes.string,
   name: propTypes.string.isRequired,
   checkboxLabel: propTypes.string,
+  fields: propTypes.any,
 };
 
 DateRange.defaultProps = {
   label: '',
   checkboxLabel: '',
+  fields: null,
 };
 
 export default DateRange;

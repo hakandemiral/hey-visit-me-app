@@ -6,6 +6,7 @@ import ProfileSettings from '../PageSpesific/Profile/ProfileSettings';
 import ContactInfo from '../PageSpesific/Profile/ContactInfo';
 import Experience from '../PageSpesific/Profile/Experience';
 import Education from '../PageSpesific/Profile/Education';
+import Competencies from '../PageSpesific/Profile/Competencies';
 
 const Wrapper = styled.div(({
   theme,
@@ -42,21 +43,29 @@ const Profile = () => (
       </FormDescription>
       <ContactInfo />
 
-      {/*<div className="divider" />*/}
+      <div className="divider" />
 
-      {/*<FormDescription>*/}
-      {/*  <h3>Experience</h3>*/}
-      {/*  The information here tells people about your professional experience.*/}
-      {/*</FormDescription>*/}
-      {/*<Experience />*/}
+      <FormDescription>
+        <h3>Experience</h3>
+        The information here tells people about your professional experience.
+      </FormDescription>
+      <Experience />
 
-      {/*<div className="divider" />*/}
+      <div className="divider" />
 
-      {/*<FormDescription>*/}
-      {/*  <h3>Education</h3>*/}
-      {/*  The information here tells people about your education.*/}
-      {/*</FormDescription>*/}
-      {/*<Education />*/}
+      <FormDescription>
+        <h3>Education</h3>
+        The information here tells people about your education.
+      </FormDescription>
+      <Education />
+
+      <div className="divider" />
+
+      <FormDescription>
+        <h3>Competencies</h3>
+        The information here tells people about your competencies.
+      </FormDescription>
+      <Competencies />
 
     </Wrapper>
   </Container>

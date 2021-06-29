@@ -18,10 +18,6 @@ const Wrapper = styled.div(({
     width: 45%;
     margin: 1rem;
   }
-
-  .social-account-input {
-    
-  }
   
   h4 {
     margin: 2rem 0;
@@ -61,8 +57,8 @@ const ContactInfo = () => {
   const defaultValues = {
     socialAccounts: [
       { id: 0, network: 'Instagram', userName: '@hakan' },
-      { id: 0, network: 'Instagram', userName: '@hakan' },
-      { id: 0, network: 'Instagram', userName: '@hakan' },
+      { id: 1, network: 'Instagram', userName: '@hakan' },
+      { id: 2, network: 'Instagram', userName: '@hakan' },
     ],
   };
 
@@ -74,7 +70,7 @@ const ContactInfo = () => {
   });
 
   return (
-    <FormBase onSubmit={handleSubmit((e) => {})}>
+    <FormBase onSubmit={handleSubmit((e) => { console.log(e); })}>
       <Wrapper>
 
         <TextInput

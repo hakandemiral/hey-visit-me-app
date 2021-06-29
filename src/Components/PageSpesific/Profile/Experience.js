@@ -1,9 +1,12 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { useForm, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import FormBase from '../../Generic/Forms/FormBase';
 import TextInput from '../../Generic/Inputs/TextInput';
 import TextArea from '../../Generic/Inputs/TextArea';
-import Checkbox from '../../Generic/Inputs/Checkbox';
+import DateRange from '../../Generic/Inputs/DateRange';
 
 const Wrapper = styled.div(({
   theme,
@@ -39,7 +42,28 @@ const Wrapper = styled.div(({
   }
 `);
 
+const validationSchema = yup.object({
+  dateRange: yup.object(),
+});
+
 const Experience = () => {
+  const defaultValues = {
+    dateRange: {
+      currentWorking: true,
+      startMonth: 'August',
+      startYear: '2021',
+      endMonth: 'May',
+      endYear: '2048',
+    },
+  };
+
+  const {
+    register, watch, handleSubmit, control, formState: { errors },
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+    defaultValues,
+  });
+
   return (
     <FormBase onSubmit={(e) => { e.preventDefault(); }}>
       <Wrapper>
@@ -68,19 +92,17 @@ const Experience = () => {
           placeholder="Ireland"
         />
 
-        <TextInput
-          name="Start Month"
-          label="Start Month"
-          placeholder="July"
+        <Controller
+          name="dateRange"
+          control={control}
+          render={({ field }) => (
+            <DateRange
+              fields={field}
+              checkboxLabel="I am currently working here"
+              name="dateRange"
+            />
+          )}
         />
-
-        <TextInput
-          name="Start Year"
-          label="Start Year"
-          placeholder="2006"
-        />
-
-        <Checkbox label="Test test test" name="asd" />
 
         <TextArea
           label="Description"

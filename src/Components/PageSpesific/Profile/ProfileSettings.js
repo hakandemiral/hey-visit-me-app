@@ -213,6 +213,7 @@ const ProfileSettings = () => {
           name="accountStatus"
           render={({ field }) => (
             <DropdownInput
+              name="accountStatus"
               field={field}
               placeholder="Account Status"
               label="Account Status"

@@ -169,7 +169,7 @@ const TextInput = ({
           name={name}
           placeholder={placeholder}
           disabled={disabled}
-          onBlur={(e) => controlledInput(e.target.value)}
+          onChange={(e) => controlledInput(e.target.value)}
           {...props}
           {...hookForm}
         />

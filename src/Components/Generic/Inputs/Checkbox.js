@@ -37,9 +37,9 @@ const Label = styled.label(({
 `);
 
 const Checkbox = ({
-  label, hookForm, name, controlledComponent,
+  label, hookForm, name, controlledComponent, value,
 }) => {
-  const [checked, setChecked] = useState();
+  const [checked, setChecked] = useState(value || false);
 
   useEffect(() => {
     if (controlledComponent) {
@@ -53,7 +53,7 @@ const Checkbox = ({
         id={name}
         type="checkbox"
         checked={checked}
-        onClick={() => setChecked(!checked)}
+        onChange={() => setChecked(!checked)}
         {...hookForm}
       />
       <Label htmlFor={name}>{label}</Label>
@@ -66,11 +66,13 @@ Checkbox.propTypes = {
   hookForm: propTypes.any,
   name: propTypes.string.isRequired,
   controlledComponent: propTypes.func,
+  value: propTypes.bool,
 };
 
 Checkbox.defaultProps = {
   hookForm: null,
   controlledComponent: null,
+  value: false,
 };
 
 export default Checkbox;
