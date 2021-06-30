@@ -47,6 +47,7 @@
       "react/jsx-indent": "warn",
       "react/forbid-prop-types": "off",
       "arrow-body-style": "warn",
-      "react/jsx-key": 2
+      "react/jsx-key": 2,
+      "import/prefer-default-export": "warn"
     }
 }

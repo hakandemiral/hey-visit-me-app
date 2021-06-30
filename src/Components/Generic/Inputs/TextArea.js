@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
 const Wrapper = styled.div(({
-  theme,
+  theme, error,
 }) => css`
   width: 100%;
   
@@ -39,17 +39,36 @@ const Wrapper = styled.div(({
       box-shadow: 0 0 0 0.15rem ${theme.colors.brand};
       border-color: transparent;
     }
+
+    ${error && css`
+      box-shadow: 0 0 0 0.15rem ${theme.colors.red};
+      border-color: transparent;
+
+      svg {
+        color: ${theme.colors.red} !important;
+      }
+    `}
+  }
+
+  .error-message {
+    color: ${theme.colors.red};
+    margin: 0.15rem 0 0 0.35rem;
+    font: ${theme.typography.body.medium14};
+    max-width: 100%;
   }
 `);
 
 const TextArea = ({
-  label, placeholder, hookForm,
+  label, placeholder, hookForm, error, name,
 }) => (
-  <Wrapper className="text-area">
+  <Wrapper className="text-area" error={Boolean(error[name])}>
     <div className="top">
       { label && <span className="label">{label}</span> }
     </div>
     <textarea placeholder={placeholder && `${placeholder} (max 1000 character)`} {...hookForm} />
+    <div className="error-message">
+      { error[name] && error[name].message }
+    </div>
   </Wrapper>
 );
 
@@ -57,12 +76,16 @@ TextArea.propTypes = {
   label: propTypes.string,
   placeholder: propTypes.string,
   hookForm: propTypes.any,
+  error: propTypes.object,
+  name: propTypes.string,
 };
 
 TextArea.defaultProps = {
   label: '',
   placeholder: '',
   hookForm: null,
+  error: false,
+  name: '',
 };
 
 export default TextArea;

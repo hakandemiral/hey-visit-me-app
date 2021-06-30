@@ -11,6 +11,8 @@ import Overview from './Components/Pages/Overview';
 import Profile from './Components/Pages/Profile';
 import Settings from './Components/Pages/Settings';
 import Help from './Components/Pages/Help';
+import DialogHandler from './Components/Generic/Dialogs/Base/DialogHandler';
+import PrivacyPolicy from './Components/Pages/PrivacyPolicy';
 
 const App = () => (
   <>
@@ -19,7 +21,9 @@ const App = () => (
     <Route component={Profile} path="/profile" exact />
     <Route component={Settings} path="/settings" exact />
     <Route component={Help} path="/help" exact />
+    <Route component={PrivacyPolicy} path="/privacy-policy" exact />
     <Footer />
+    <DialogHandler />
   </>
 );
 

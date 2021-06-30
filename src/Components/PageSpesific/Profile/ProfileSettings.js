@@ -224,6 +224,7 @@ const ProfileSettings = () => {
             />
           )}
         />
+
         <TextArea
           label="Bio"
           placeholder="Brief description about yourself. Personal information and details..."

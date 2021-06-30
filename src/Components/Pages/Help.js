@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
+import { useDispatch } from 'react-redux';
+
 import Container from '../Layout/Container';
 import SearchBox from '../PageSpesific/Help/SearchBox';
 import Card from '../PageSpesific/Help/Card';
-
 import AccountSvg from '../PageSpesific/Help/assets/images/Account.svg';
 import GeneralSvg from '../PageSpesific/Help/assets/images/All.svg';
 import AllSvg from '../PageSpesific/Help/assets/images/General.svg';
@@ -11,6 +12,8 @@ import PrivacySvg from '../PageSpesific/Help/assets/images/Privacy.svg';
 
 import Accordion from '../PageSpesific/Help/Accordion';
 import faqData from '../PageSpesific/Help/assets/datas/faq.json';
+import { setOpen } from '../../features/dialog/dialogSlice';
+import { CONTACT_US } from '../Generic/Dialogs/DialogTypes';
 
 const Wrapper = styled.div(({
   theme,
@@ -25,6 +28,11 @@ const Wrapper = styled.div(({
     font: ${theme.typography.body.regular16};
     color: ${theme.colors.bodyText};
     margin-bottom: 2rem;
+    
+    span {
+      color: ${theme.colors.brand};
+      cursor: pointer;
+    }
   }
   
   .help-search-box {
@@ -45,6 +53,7 @@ const Wrapper = styled.div(({
 `);
 
 const Help = () => {
+  const dispatch = useDispatch();
   const [categoryFilter, setCategoryFilter] = useState('');
   const [search, setSearch] = useState('');
 
@@ -60,9 +69,10 @@ const Help = () => {
         <p>
           You can find answers to basic questions about Heyvisit.me. Choose one of these popular
           categories to continue or search anything. Can’t find the answers you’re looking for?
-          Contact us and ask us anything.
+          <span onClick={() => dispatch(setOpen(CONTACT_US))}> Contact us </span>
+          and ask us anything.
         </p>
-        <SearchBox onChange={(e) => handleSearch(e.target.value)} />
+        <SearchBox value={search} onChange={(e) => handleSearch(e.target.value)} />
 
         <div className="cards">
           <Card className={categoryFilter === '' && 'selectedCategory'} type="All" icon={AllSvg} onClick={() => setCategoryFilter('')} />
@@ -80,7 +90,12 @@ const Help = () => {
             || (item.title.toLowerCase().includes(search.toLowerCase()))
           ))
           .map((item) => (
-            <Accordion key={item.id} body={item.body} title={item.title} />
+            <Accordion
+              key={item.id}
+              body={item.body}
+              title={item.title}
+              initialExpanded={search !== ''}
+            />
           ))}
 
       </Wrapper>

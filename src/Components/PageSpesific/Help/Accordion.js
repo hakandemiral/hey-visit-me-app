@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { Minus, Plus } from '../../Icons';
@@ -63,8 +63,12 @@ const Wrapper = styled.div(({
   }
 `);
 
-const Accordion = ({ title, body }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+const Accordion = ({ title, body, initialExpanded }) => {
+  const [isExpanded, setIsExpanded] = useState(initialExpanded);
+
+  useEffect(() => {
+    setIsExpanded(initialExpanded);
+  }, [initialExpanded]);
 
   return (
     <Wrapper className={isExpanded && 'expanded'}>
@@ -87,6 +91,11 @@ const Accordion = ({ title, body }) => {
 Accordion.propTypes = {
   title: propTypes.string.isRequired,
   body: propTypes.string.isRequired,
+  initialExpanded: propTypes.bool,
+};
+
+Accordion.defaultProps = {
+  initialExpanded: false,
 };
 
 export default Accordion;

@@ -1,8 +1,11 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import * as Icons from '../../../Icons';
 import DropDownBase from './DropDownBase';
+import { setOpen } from '../../../../features/dialog/dialogSlice';
+import { CONTACT_US, GIVE_FEEDBACK } from '../../Dialogs/DialogTypes';
 
 const List = styled(DropDownBase)(({
   theme,
@@ -39,25 +42,29 @@ const LinkItem = styled(Link)(({
   }
 `);
 
-const Support = () => (
-  <List id="dropdown">
-    <LinkItem to="/help">
-      <Icons.QuestionMarkCircle />
-      <span>Help</span>
-    </LinkItem>
-    <LinkItem to="#">
-      <Icons.YellowStar />
-      <span>Give Feedback</span>
-    </LinkItem>
-    <LinkItem to="#">
-      <Icons.PencilAlt />
-      <span>Contact Us</span>
-    </LinkItem>
-    <LinkItem to="#">
-      <Icons.ShieldCheck />
-      <span>Privacy & Terms</span>
-    </LinkItem>
-  </List>
-);
+const Support = () => {
+  const dispatch = useDispatch();
+
+  return (
+    <List id="dropdown">
+      <LinkItem to="/help">
+        <Icons.QuestionMarkCircle />
+        <span>Help</span>
+      </LinkItem>
+      <LinkItem to="#" onClick={() => dispatch(setOpen(GIVE_FEEDBACK))}>
+        <Icons.YellowStar />
+        <span>Give Feedback</span>
+      </LinkItem>
+      <LinkItem to="#" onClick={() => dispatch(setOpen(CONTACT_US))}>
+        <Icons.PencilAlt />
+        <span>Contact Us</span>
+      </LinkItem>
+      <LinkItem to="/privacy-policy">
+        <Icons.ShieldCheck />
+        <span>Privacy Policy</span>
+      </LinkItem>
+    </List>
+  );
+};
 
 export default Support;

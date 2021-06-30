@@ -72,8 +72,8 @@ const DropDown = styled.div(({
     backdrop-filter: blur(32px);
     margin-top: 0.25rem;
     padding: 1rem;
-    max-height: 26rem;
-    overflow-y: scroll;
+    max-height: 16rem;
+    overflow-y: auto;
     transition: 250ms max-height;
     z-index: 99;
     
@@ -176,7 +176,7 @@ const DropdownInput = ({
 }) => {
   const [selected, setSelected] = useState(() => {
     if (field) {
-      return options.find((item) => item.title === field.value);
+      return options.find((item) => item.title === field.value) || false;
     }
 
     if (value) {
@@ -196,7 +196,7 @@ const DropdownInput = ({
 
   useEffect(() => {
     if (field) field.onChange(selected.title);
-    controlledInput(selected.title);
+    if (controlledInput) controlledInput(selected.title);
   }, [selected]);
 
   return (
@@ -213,7 +213,7 @@ const DropdownInput = ({
 
       <button className="box" onClick={() => setListing(!listing)} type="button">
         { (Icons[selected.icon] && Icons[selected.icon]()) || (icon && Icons[icon]()) }
-        { selected.title || placeholder }
+        { (selected && selected.title) || placeholder }
         <Icons.Selector className="selector-icon" />
       </button>
 
@@ -233,7 +233,7 @@ const DropdownInput = ({
 
             {/* Input options rendering */}
             <div className="item placeholder" onClick={() => handleSelect(false)}>
-              {Icons[icon] && Icons[icon]()}
+              {/*{Icons[icon] && Icons[icon]()}*/}
               {placeholder}
             </div>
             {
@@ -283,7 +283,7 @@ DropdownInput.defaultProps = {
   searchable: true,
   value: null,
   field: null,
-  controlledInput: () => {},
+  controlledInput: null,
 };
 
 export default DropdownInput;
