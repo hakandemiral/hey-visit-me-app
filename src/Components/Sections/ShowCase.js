@@ -46,6 +46,7 @@ const Slide = styled.div(({
   position: relative;
   display: flex;
   justify-content: space-between;
+  overflow-x: hidden;
   
   button {
     display: grid;

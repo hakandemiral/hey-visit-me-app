@@ -48,7 +48,7 @@ const Top = styled.div(({
     padding: 2rem 0;
 
     button {
-      margin: 0 2rem;
+      margin: 0 1rem;
     }
   }
 

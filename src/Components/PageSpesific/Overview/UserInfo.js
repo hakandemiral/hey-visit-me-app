@@ -47,6 +47,36 @@ const Info = styled(Paper)(({
       margin-right: 1rem;
     }
   }
+  
+  @media screen and (max-width: 820px) {
+    flex-direction: column;
+    
+    img.photo {
+      margin: 0;
+      margin-bottom: 1rem;
+    }
+    
+    .actions {
+      margin-top: 1rem;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      
+      .hey-button {
+        padding: 0.5rem;
+      }
+    }
+    
+    .who {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      
+      .role {
+        text-align: center;
+      }
+    }
+  }
 `);
 
 const UserInfo = () => (

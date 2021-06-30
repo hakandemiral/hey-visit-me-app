@@ -1,0 +1,50 @@
+[
+  {
+    "id": 0,
+    "title": "Is my data safe?",
+    "category": "privacy",
+    "body": "Heyvisit.me does not ask you to provide your private information, all the information you add to your profile is published publicly at heyvisit.me/username, fill in your information with this in mind."
+  },
+  {
+    "id": 1,
+    "title": "Is my data shared with third parties?",
+    "category": "privacy",
+    "body": "Never! Even if we wanted such a thing, dealing with data collection legal procedures is the last thing a lone developer would want."
+  },
+  {
+    "id": 2,
+    "title": "Is there a fee to create a Heyvisit.me profile?",
+    "category": "account",
+    "body": "No, if a developer doesn't get greedy for money, heyvisit.me will forever remain a project he created to improve himself and test his skills."
+  },
+  {
+    "id": 3,
+    "title": "How is data protected?",
+    "category": "privacy",
+    "body": "The data you enter for your Heyvisit.me profile consists of things that you do not hesitate to share publicly, so we do not have a complex data security procedure, we pass the incoming request through Google Recaptcha V3 verification before rendering your contact information to the page in order to protect the data of our registered members from data-collecting bots."
+  },
+  {
+    "id": 4,
+    "title": "What is your revenue model?",
+    "category": "general",
+    "body": "I don't make money on Heyvisit.me, I wrote this to test and improve my developer skills."
+  },
+  {
+    "id": 5,
+    "title": "I want to unpublish my profile.",
+    "category": "account",
+    "body": "Simply select \"Account Status\" as \"Passive\" in your profile settings."
+  },
+  {
+    "id": 6,
+    "title": "I want to delete my account",
+    "category": "account",
+    "body": "Until we add a 2FA system to Heyvisit.me, you must send us your request for account deletion using the \"Contact Us\" Form."
+  },
+  {
+    "id": 7,
+    "title": "I want to give feedback",
+    "category": "general",
+    "body": "You can go the \"Give Feedback\" form from the support icon above."
+  }
+]

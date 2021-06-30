@@ -53,6 +53,14 @@ const DropDown = styled(DropDownBase)(({
         color: ${theme.colors.borderDivider};
         margin-right: 0.8rem;
       }
+      
+      &:hover {
+        color: ${theme.colors.brand};
+        
+        svg {
+          color: inherit;
+        }
+      }
     }
   }
 `);
@@ -67,10 +75,10 @@ const Profile = () => (
       </div>
     </div>
     <div className="links">
-      <a className="item">
+      <Link className="item" to="/settings">
         <Icons.Cog />
         <span>Settings</span>
-      </a>
+      </Link>
       <a className="item">
         <Icons.LogOut />
         <span>Log out</span>

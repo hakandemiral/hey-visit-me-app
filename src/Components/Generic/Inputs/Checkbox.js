@@ -13,8 +13,8 @@ const Box = styled.input(({
   theme,
 }) => css`
   appearance: none;
-  width: 1.35rem;
-  height: 1.35rem;
+  min-width: 1.35rem;
+  min-height: 1.35rem;
   border: 2px solid ${theme.colors.brand};
   border-radius: 4px;
   margin-right: 0.5rem;
@@ -37,7 +37,7 @@ const Label = styled.label(({
 `);
 
 const Checkbox = ({
-  label, hookForm, name, controlledComponent, value,
+  label, field, name, controlledComponent, value,
 }) => {
   const [checked, setChecked] = useState(value || false);
 
@@ -45,16 +45,19 @@ const Checkbox = ({
     if (controlledComponent) {
       controlledComponent(checked);
     }
+
+    if (field) {
+      field.onChange(checked);
+    }
   }, [checked]);
 
   return (
-    <Wrapper>
+    <Wrapper className="checkbox">
       <Box
         id={name}
         type="checkbox"
         checked={checked}
         onChange={() => setChecked(!checked)}
-        {...hookForm}
       />
       <Label htmlFor={name}>{label}</Label>
     </Wrapper>
@@ -63,16 +66,16 @@ const Checkbox = ({
 
 Checkbox.propTypes = {
   label: propTypes.string.isRequired,
-  hookForm: propTypes.any,
   name: propTypes.string.isRequired,
   controlledComponent: propTypes.func,
   value: propTypes.bool,
+  field: propTypes.any,
 };
 
 Checkbox.defaultProps = {
-  hookForm: null,
   controlledComponent: null,
   value: false,
+  field: null,
 };
 
 export default Checkbox;

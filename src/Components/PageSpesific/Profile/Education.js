@@ -22,6 +22,12 @@ const Wrapper = styled.div(({
     width: 100%;
     margin: 1rem;
   }
+
+  @media screen and (max-width: 960px) {
+    .text-input, .dropdown-input {
+      width: 100%;
+    }
+  }
 `);
 
 const Education = () => {

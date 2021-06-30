@@ -31,11 +31,17 @@ const LinkItem = styled(Link)(({
     font: ${theme.typography.body.regular16};
     color: ${theme.colors.bodyText};
   }
+  
+  &:hover {
+    svg, span {
+      color: ${theme.colors.brand};
+    }
+  }
 `);
 
 const Support = () => (
   <List id="dropdown">
-    <LinkItem to="#">
+    <LinkItem to="/help">
       <Icons.QuestionMarkCircle />
       <span>Help</span>
     </LinkItem>

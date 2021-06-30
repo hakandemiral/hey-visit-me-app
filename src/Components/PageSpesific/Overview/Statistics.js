@@ -35,6 +35,9 @@ const Wrapper = styled.div(({
     
     .right {
       display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
     }
   }
   
