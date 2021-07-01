@@ -14,10 +14,7 @@ import Help from './Components/Pages/Help';
 import DialogHandler from './Components/Generic/Dialogs/Base/DialogHandler';
 import PrivacyPolicy from './Components/Pages/PrivacyPolicy';
 
-import Landing from './Components/Pages/Landing/Landing';
-
 const App = () => (
-  // <Landing />
   <>
     <Header />
     <Route component={Overview} path="/overview" exact />
