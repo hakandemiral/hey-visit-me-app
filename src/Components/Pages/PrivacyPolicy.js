@@ -9,6 +9,14 @@ const Wrapper = styled(Paper)(({
   font-size: 15px;
   color: ${theme.colors.bodyText};
   
+  h1 {
+    margin-top: 2rem;
+  }
+  
+  h2 {
+    margin-top: 1rem;
+  }
+  
   a {
     color: inherit;
   }

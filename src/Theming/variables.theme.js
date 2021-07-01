@@ -10,6 +10,9 @@ const theme = {
     borderDivider: '#635F5F',
     dropDown10: 'rgba(41, 55, 66, 0.8)',
     dialogBackground: 'rgba(20, 20, 20, 0.5)',
+    authPageGraient: `
+    background: rgb(113,119,189);
+    background: radial-gradient(circle, rgba(113,119,189,1) 0%, rgba(107,125,159,1) 26%, rgba(131,105,181,1) 72%);`,
   },
   lightTheme: {
     background: '#FAFAFA',
@@ -22,6 +25,10 @@ const theme = {
     borderDivider: '#B9B6B6',
     dropDown10: 'rgba(255, 255, 255, 0.8)',
     dialogBackground: 'rgba(245, 245, 245, 0.5)',
+
+    authPageGraient: `
+    background: rgb(201,205,247);
+    background: radial-gradient(circle, rgba(201,205,247,1) 0%, rgba(203,218,248,1) 26%, rgba(234,227,247,1) 72%);`,
   },
   constantColors: {
     brand: '#6F96B6',
