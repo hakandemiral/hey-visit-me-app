@@ -53,10 +53,8 @@ const Provider = ({ children }) => {
 
   return (
     <ThemeProvider theme={theming(isDark)}>
-      {/*<RootWrapper>*/}
       <GlobalStyle />
       {children}
-      {/*</RootWrapper>*/}
     </ThemeProvider>
   );
 };

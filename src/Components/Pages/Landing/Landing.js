@@ -1,8 +1,15 @@
+// Core
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+// Components
 import Button from '../../Generic/Inputs/Button';
 import ThemeSwitch from '../../Generic/ThemeSwitch';
+import FullBand from '../../Sections/FullBand';
+import Footer from '../../Sections/Footer';
+import Accordion from '../Dashboard/Help/Accordion';
 
 // Assets
 import CircleSvg from './assets/CircleWave.svg';
@@ -17,10 +24,7 @@ import wrapProfileImg from './assets/wrapProfileImg.png';
 import EcoFriendly from './assets/EcoFriendly.svg';
 import Check from './assets/Check.svg';
 import Contact from './assets/Contact.svg';
-import FullBand from '../../Sections/FullBand';
-import Footer from '../../Sections/Footer';
 import faqData from '../Dashboard/Help/assets/datas/faq.json';
-import Accordion from '../Dashboard/Help/Accordion';
 
 const Wrapper = styled.div(({
   theme,
@@ -105,7 +109,7 @@ const Wrapper = styled.div(({
   
   .customization {
     max-width: 1440px;
-    margin: 17rem auto 0 auto;
+    margin: 10rem auto 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -118,6 +122,8 @@ const Wrapper = styled.div(({
     }
     
     h5 {
+      display: flex;
+      align-items: center;
       text-align: center;
       font: ${theme.typography.heading.medium32};
       color: ${theme.colors.brand};
@@ -160,6 +166,8 @@ const Wrapper = styled.div(({
     }
     
     h5 {
+      display: flex;
+      align-items: center;
       color: ${theme.colors.brand};
       font: ${theme.typography.heading.medium32};
       margin-bottom: 0.5rem;
@@ -189,6 +197,8 @@ const Wrapper = styled.div(({
       }
       
       h4 {
+        display: flex;
+        align-items: center;
         color: ${theme.colors.pink2};
         font: ${theme.typography.heading.regular24};
         margin-bottom: 0.5rem;
@@ -268,9 +278,8 @@ const Wrapper = styled.div(({
   .faq {
     max-width: 1080px;
     padding: 0 1rem;
-    margin: auto;
+    margin: 6rem auto 4rem auto;
     text-align: center;
-    margin-bottom: 4rem;
     
     h3 {
       color: ${theme.colors.brand};
@@ -285,21 +294,46 @@ const Wrapper = styled.div(({
     }
   }
   
+  .coming-soon {
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    background-color: ${theme.colors.brandMoreLight};
+    font: ${theme.typography.body.medium16};
+    color: ${theme.colors.brand};
+    margin-left: 1rem;
+  }
+  
 `);
 
 const Landing = () => {
+  const isLogin = useSelector((state) => state.auth.isLogin);
+
   return (
     <Wrapper>
 
       <div className="head">
 
         <div className="actions">
-          <Link to="sign-in">
-            <Button text="Sign in" />
-          </Link>
-          <Link to="sign-in">
-            <Button text="Sign up" variant="primary" />
-          </Link>
+          {isLogin
+            ? (
+              <>
+                <Link to="/dashboard">
+                  <Button text="Go to Dashboard" />
+                </Link>
+                {/*<Link to="sign-in">*/}
+                {/*  <Button text="Sign up" variant="primary" />*/}
+                {/*</Link>*/}
+              </>
+            ) : (
+              <>
+                <Link to="sign-in">
+                  <Button text="Sign in" />
+                </Link>
+                <Link to="sign-in">
+                  <Button text="Sign up" variant="primary" />
+                </Link>
+              </>
+            )}
         </div>
 
         <img className="circle" src={CircleSvg} alt="Vector" />
@@ -316,75 +350,6 @@ const Landing = () => {
           </div>
           <img src={hero} alt="Hero" />
         </div>
-      </div>
-
-      <div className="customization">
-        <h4>Customization</h4>
-        <h5>Customize your business card</h5>
-        <p>
-          Create beautiful and personalized business card without the designer and design tools.
-          No need design knowledge. Don’t pay for expensive design tools.
-          Choose color, add personal details and share with people.
-        </p>
-        <img src={customization} alt="customization preview" />
-      </div>
-
-      <div className="card-templates section">
-        <div className="section-header">
-          <img src={cardTemplateIcon} alt="Card Template" className="icon" />
-          <h6>Different Look</h6>
-          <h5>Various styles business cards</h5>
-          <p>
-            First, choose template and then costumize various styles business cards.
-            You can find business card that suits your style from different
-            templates. Each business card includes unique color schemes and font styles.
-          </p>
-        </div>
-
-        <div className="feature">
-          <h4>Plain Card Templates</h4>
-          <p>
-            If you want simple and neutral view, you can
-            choice plain style card. It includes simple color palettes and font styles.
-          </p>
-        </div>
-
-        <div className="feature highlighted">
-          <h4>Playful Card Templates</h4>
-          <p>
-            If you want to reflect yourself in a enthusiastic way,
-            you can choice playfull style card. It includes colorful and gradient backgrounds.
-          </p>
-        </div>
-
-        <div className="feature">
-          <h4>Elegant Card Templates</h4>
-          <p>
-            If you want modern and gracious view, you can choice elegant
-            style card. It includes pastel and sophisticated color palettes and font styles.
-          </p>
-        </div>
-
-        <Button text="Create Free Profile" variant="primary" />
-
-      </div>
-
-      <div className="theming section">
-
-        <div className="section-header">
-          <img src={darkModeIcon} alt="Card Template" className="icon" />
-          <h6>Dark Mode</h6>
-          <h5>User-Friendly Interfaces</h5>
-          <p>
-            Interfaces don’t disturb your eyes by adjustable mode.
-            With dark mode even usable at night.
-          </p>
-        </div>
-
-        <ThemeSwitch />
-
-        <img src={darkMode} alt="Dark mode" className="darkmodeimg" />
-
       </div>
 
       <div className="wrap-profiles section">
@@ -439,6 +404,81 @@ const Landing = () => {
             Online business card reduces paper consumption.
           </p>
         </div>
+      </div>
+
+      <div className="customization">
+        <h4>Customization</h4>
+        <h5>
+          Customize your business card
+          <span className="coming-soon">&bull; Coming soon</span>
+        </h5>
+        <p>
+          Create beautiful and personalized business card without the designer and design tools.
+          No need design knowledge. Don’t pay for expensive design tools.
+          Choose color, add personal details and share with people.
+        </p>
+        <img src={customization} alt="customization preview" />
+      </div>
+
+      <div className="card-templates section">
+        <div className="section-header">
+          <img src={cardTemplateIcon} alt="Card Template" className="icon" />
+          <h6>Different Look</h6>
+          <h5>
+            Various styles business cards
+            <span className="coming-soon">&bull; Coming soon</span>
+          </h5>
+          <p>
+            First, choose template and then costumize various styles business cards.
+            You can find business card that suits your style from different
+            templates. Each business card includes unique color schemes and font styles.
+          </p>
+        </div>
+
+        <div className="feature">
+          <h4>Plain Card Templates</h4>
+          <p>
+            If you want simple and neutral view, you can
+            choice plain style card. It includes simple color palettes and font styles.
+          </p>
+        </div>
+
+        <div className="feature highlighted">
+          <h4>Playful Card Templates</h4>
+          <p>
+            If you want to reflect yourself in a enthusiastic way,
+            you can choice playfull style card. It includes colorful and gradient backgrounds.
+          </p>
+        </div>
+
+        <div className="feature">
+          <h4>Elegant Card Templates</h4>
+          <p>
+            If you want modern and gracious view, you can choice elegant
+            style card. It includes pastel and sophisticated color palettes and font styles.
+          </p>
+        </div>
+
+        <Button text="Create Free Profile" variant="primary" />
+
+      </div>
+
+      <div className="theming section">
+
+        <div className="section-header">
+          <img src={darkModeIcon} alt="Card Template" className="icon" />
+          <h6>Dark Mode</h6>
+          <h5>User-Friendly Interfaces</h5>
+          <p>
+            Interfaces don’t disturb your eyes by adjustable mode.
+            With dark mode even usable at night.
+          </p>
+        </div>
+
+        <ThemeSwitch />
+
+        <img src={darkMode} alt="Dark mode" className="darkmodeimg" />
+
       </div>
 
       <div className="faq">

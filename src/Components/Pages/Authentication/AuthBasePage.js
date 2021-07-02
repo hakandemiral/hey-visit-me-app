@@ -1,8 +1,15 @@
+// Cores
 import React from 'react';
 import propTypes from 'prop-types';
 import styled, { css } from 'styled-components';
+import { useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+
+// Assets
 import GirlVector from './assets/GirlVector.svg';
 import CircleWave from '../Landing/assets/CircleWave.svg';
+
+// Components
 import SignIn from './SignIn';
 import CreateAccount from './CreateAccount';
 
@@ -52,8 +59,11 @@ const Wrapper = styled.div(({
 `);
 
 const AuthBasePage = ({ action }) => {
+  const isLogin = useSelector((state) => state.auth.isLogin);
+
   return (
     <Wrapper>
+      {isLogin && <Redirect to="/dashboard" />}
       <div className="form">
         { action === 'signIn' && <SignIn /> }
         { action === 'signUp' && <CreateAccount /> }

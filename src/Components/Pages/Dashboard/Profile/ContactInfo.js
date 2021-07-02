@@ -133,6 +133,7 @@ const ContactInfo = () => {
           error={errors}
         />
 
+        <h4>Social Accounts</h4>
         <Controller
           control={control}
           name="socialAccounts"

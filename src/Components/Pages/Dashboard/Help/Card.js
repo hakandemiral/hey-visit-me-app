@@ -15,7 +15,7 @@ const Wrapper = styled.div(({
   cursor: pointer;
   transition: 150ms transform;
   flex: 0 0 20%;
-  aspect-ratio: 1;
+  padding: 5% 0;
   
   .type {
     color: ${theme.colors.brand};

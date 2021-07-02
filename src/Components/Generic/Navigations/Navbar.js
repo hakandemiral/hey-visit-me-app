@@ -62,7 +62,7 @@ const Navbar = () => {
 
   return (
     <Bar>
-      <Item activeClassName="active" to={`${url}/overview`}>
+      <Item activeClassName="active" to={`${url}`} exact>
         <Icons.Home />
         Overview
       </Item>

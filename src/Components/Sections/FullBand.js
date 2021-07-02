@@ -37,7 +37,7 @@ const Text = styled.p(({
 `);
 
 const FullBand = () => (
-  <Band>
+  <Band className="full-band">
     <Title>Create business card in minutes, not hours.</Title>
     <Text>
       Speed is the most necessary element to transforming unique

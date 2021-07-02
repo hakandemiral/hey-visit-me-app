@@ -1,6 +1,7 @@
 // Core
 import React from 'react';
-import { Route, Switch, useRouteMatch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 // Components
 import Header from './Components/Sections/Header';
@@ -15,9 +16,13 @@ import DialogHandler from './Components/Generic/Dialogs/Base/DialogHandler';
 import PrivacyPolicy from './Components/Pages/PrivacyPolicy';
 import Landing from './Components/Pages/Landing/Landing';
 import AuthBasePage from './Components/Pages/Authentication/AuthBasePage';
+import UserProfile from './Components/Pages/UserProfile/UserProfile';
 
 const App = () => {
+  const isLogin = useSelector((state) => (state.auth.isLogin));
+
   return (
+    // <UserProfile />
     <>
       <Switch>
         <Route component={Landing} path="/" exact />
@@ -26,13 +31,21 @@ const App = () => {
         <Route render={() => <AuthBasePage action="signUp" />} path="/sign-up" exact />
 
         <Route path="/dashboard">
-          <Header />
-          <Route component={Overview} path="/dashboard/overview" exact />
-          <Route component={Profile} path="/dashboard/profile" exact />
-          <Route component={Settings} path="/dashboard/settings" exact />
-          <Route component={Help} path="/dashboard/help" exact />
-          <Route component={PrivacyPolicy} path="/dashboard/privacy-policy" exact />
-          <Footer />
+          {isLogin
+            ? (
+              <>
+                <Header />
+                <Route component={Overview} path="/dashboard" exact />
+                <Route component={Profile} path="/dashboard/profile" exact />
+                <Route component={Settings} path="/dashboard/settings" exact />
+                <Route component={Help} path="/dashboard/help" exact />
+                <Route component={PrivacyPolicy} path="/dashboard/privacy-policy" exact />
+                <Footer />
+              </>
+            )
+            : (
+              <Redirect to="/sign-in" />
+            )}
         </Route>
 
       </Switch>
