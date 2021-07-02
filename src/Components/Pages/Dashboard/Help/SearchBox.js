@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Search } from '../../Icons';
+import { Search } from '../../../Icons';
 
 const Wrapper = styled.div(({
   theme,

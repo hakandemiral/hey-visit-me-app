@@ -1,12 +1,12 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import FormDescription from '../Generic/Forms/FormDescription';
-import Container from '../Layout/Container';
-import ProfileSettings from '../PageSpesific/Profile/ProfileSettings';
-import ContactInfo from '../PageSpesific/Profile/ContactInfo';
-import Experience from '../PageSpesific/Profile/Experience';
-import Education from '../PageSpesific/Profile/Education';
-import Competencies from '../PageSpesific/Profile/Competencies';
+import FormDescription from '../../../Generic/Forms/FormDescription';
+import Container from '../../../Layout/Container';
+import ProfileSettings from './ProfileSettings';
+import ContactInfo from './ContactInfo';
+import Experience from './Experience';
+import Education from './Education';
+import Competencies from './Competencies';
 
 const Wrapper = styled.div(({
   theme,

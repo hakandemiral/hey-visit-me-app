@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import Container from '../../Layout/Container';
+import Container from '../../../Layout/Container';
 import UserInfo from './UserInfo';
 import CardPreview from './CardPreview';
 import ViewCounter from './ViewCounter';

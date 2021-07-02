@@ -1,8 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import Paper from '../../Layout/Paper';
-import ProfilePicture from '../../../Images/Photos/profile-picture.png';
-import Button from '../../Generic/Inputs/Button';
+import Paper from '../../../Layout/Paper';
+import ProfilePicture from '../../../../Images/Photos/profile-picture.png';
+import Button from '../../../Generic/Inputs/Button';
 
 const Info = styled(Paper)(({
   theme,

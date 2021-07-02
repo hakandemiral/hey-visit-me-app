@@ -1,10 +1,10 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { useForm, Controller } from 'react-hook-form';
-import FormBase from '../Generic/Forms/FormBase';
-import TextInput from '../Generic/Inputs/TextInput';
-import Checkbox from '../Generic/Inputs/Checkbox';
-import ThemeSwitch from '../Generic/ThemeSwitch';
+import FormBase from '../../Generic/Forms/FormBase';
+import TextInput from '../../Generic/Inputs/TextInput';
+import Checkbox from '../../Generic/Inputs/Checkbox';
+import ThemeSwitch from '../../Generic/ThemeSwitch';
 
 const Wrapper = styled.div(({
   theme,

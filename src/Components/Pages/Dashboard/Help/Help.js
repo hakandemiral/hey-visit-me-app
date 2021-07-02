@@ -2,18 +2,18 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { useDispatch } from 'react-redux';
 
-import Container from '../Layout/Container';
-import SearchBox from '../PageSpesific/Help/SearchBox';
-import Card from '../PageSpesific/Help/Card';
-import AccountSvg from '../PageSpesific/Help/assets/images/Account.svg';
-import GeneralSvg from '../PageSpesific/Help/assets/images/All.svg';
-import AllSvg from '../PageSpesific/Help/assets/images/General.svg';
-import PrivacySvg from '../PageSpesific/Help/assets/images/Privacy.svg';
+import Container from '../../../Layout/Container';
+import SearchBox from './SearchBox';
+import Card from './Card';
+import AccountSvg from './assets/images/Account.svg';
+import GeneralSvg from './assets/images/All.svg';
+import AllSvg from './assets/images/General.svg';
+import PrivacySvg from './assets/images/Privacy.svg';
 
-import Accordion from '../PageSpesific/Help/Accordion';
-import faqData from '../PageSpesific/Help/assets/datas/faq.json';
-import { setOpen } from '../../features/dialog/dialogSlice';
-import { CONTACT_US } from '../Generic/Dialogs/DialogTypes';
+import Accordion from './Accordion';
+import faqData from './assets/datas/faq.json';
+import { setOpen } from '../../../../features/dialog/dialogSlice';
+import { CONTACT_US } from '../../../Generic/Dialogs/DialogTypes';
 
 const Wrapper = styled.div(({
   theme,

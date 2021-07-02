@@ -3,8 +3,8 @@ import styled, { css } from 'styled-components';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import FormBase from '../../Generic/Forms/FormBase';
-import TextInput from '../../Generic/Inputs/TextInput';
+import FormBase from '../../../Generic/Forms/FormBase';
+import TextInput from '../../../Generic/Inputs/TextInput';
 import SocialAccountInput from './CustomInputs/SocialAccountInput';
 
 const Wrapper = styled.div(({

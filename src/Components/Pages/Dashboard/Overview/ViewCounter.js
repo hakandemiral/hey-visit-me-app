@@ -1,9 +1,9 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import Paper from '../../Layout/Paper';
-import IconedButtons from '../../Generic/Inputs/IconedButton';
-import { TrendingUp, TrendingDown } from '../../Icons';
+import Paper from '../../../Layout/Paper';
+import IconedButtons from '../../../Generic/Inputs/IconedButton';
+import { TrendingUp, TrendingDown } from '../../../Icons';
 
 const ViewCount = styled(Paper)(({
   theme,

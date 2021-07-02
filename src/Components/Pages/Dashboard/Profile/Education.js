@@ -1,10 +1,10 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { useForm } from 'react-hook-form';
-import FormBase from '../../Generic/Forms/FormBase';
-import TextInput from '../../Generic/Inputs/TextInput';
-import TextArea from '../../Generic/Inputs/TextArea';
-import DateRange from '../../Generic/Inputs/DateRange';
+import FormBase from '../../../Generic/Forms/FormBase';
+import TextInput from '../../../Generic/Inputs/TextInput';
+import TextArea from '../../../Generic/Inputs/TextArea';
+import DateRange from '../../../Generic/Inputs/DateRange';
 
 const Wrapper = styled.div(({
   theme,

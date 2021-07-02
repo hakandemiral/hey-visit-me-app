@@ -19,8 +19,8 @@ import Check from './assets/Check.svg';
 import Contact from './assets/Contact.svg';
 import FullBand from '../../Sections/FullBand';
 import Footer from '../../Sections/Footer';
-import faqData from '../../PageSpesific/Help/assets/datas/faq.json';
-import Accordion from '../../PageSpesific/Help/Accordion';
+import faqData from '../Dashboard/Help/assets/datas/faq.json';
+import Accordion from '../Dashboard/Help/Accordion';
 
 const Wrapper = styled.div(({
   theme,

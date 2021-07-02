@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import FormDescription from '../Generic/Forms/FormDescription';
-import SettingsForm from '../PageSpesific/SettingsForm';
+import SettingsForm from './Dashboard/SettingsForm';
 import Container from '../Layout/Container';
 
 const Wrapper = styled.div(({

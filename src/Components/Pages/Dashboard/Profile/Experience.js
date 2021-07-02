@@ -3,10 +3,10 @@ import styled, { css } from 'styled-components';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import FormBase from '../../Generic/Forms/FormBase';
-import TextInput from '../../Generic/Inputs/TextInput';
-import TextArea from '../../Generic/Inputs/TextArea';
-import DateRange from '../../Generic/Inputs/DateRange';
+import FormBase from '../../../Generic/Forms/FormBase';
+import TextInput from '../../../Generic/Inputs/TextInput';
+import TextArea from '../../../Generic/Inputs/TextArea';
+import DateRange from '../../../Generic/Inputs/DateRange';
 
 const Wrapper = styled.div(({
   theme,

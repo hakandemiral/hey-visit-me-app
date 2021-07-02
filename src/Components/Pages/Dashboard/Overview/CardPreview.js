@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import Paper from '../../Layout/Paper';
-import Button from '../../Generic/Inputs/Button';
+import Paper from '../../../Layout/Paper';
+import Button from '../../../Generic/Inputs/Button';
 
 const Wrapper = styled(Paper)(({
   theme,

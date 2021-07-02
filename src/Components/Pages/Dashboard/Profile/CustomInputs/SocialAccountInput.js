@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import TextInput from '../../../Generic/Inputs/TextInput';
-import DropdownInput from '../../../Generic/Inputs/DropdownInput';
-import * as Icons from '../../../Icons';
+import TextInput from '../../../../Generic/Inputs/TextInput';
+import DropdownInput from '../../../../Generic/Inputs/DropdownInput';
+import * as Icons from '../../../../Icons';
 
 const Wrapper = styled.div(({
   theme,

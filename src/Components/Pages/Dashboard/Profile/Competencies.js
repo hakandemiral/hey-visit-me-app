@@ -1,9 +1,9 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { useForm } from 'react-hook-form';
-import FormBase from '../../Generic/Forms/FormBase';
+import FormBase from '../../../Generic/Forms/FormBase';
 import LanguagesInput from './CustomInputs/LanguagesInput';
-import TagInput from '../../Generic/Inputs/TagInput';
+import TagInput from '../../../Generic/Inputs/TagInput';
 
 const Wrapper = styled.div(() => css`
   display: flex;

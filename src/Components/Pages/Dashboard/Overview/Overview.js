@@ -1,7 +1,7 @@
 import React from 'react';
-import Statistics from '../PageSpesific/Overview/Statistics';
-import ShowCase from '../Sections/ShowCase';
-import FullBand from '../Sections/FullBand';
+import Statistics from './Statistics';
+import ShowCase from '../../../Sections/ShowCase';
+import FullBand from '../../../Sections/FullBand';
 
 const Overview = () => (
   <>

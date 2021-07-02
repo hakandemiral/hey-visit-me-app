@@ -3,12 +3,12 @@ import styled, { css } from 'styled-components';
 import { useForm, Controller } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import FormBase from '../../Generic/Forms/FormBase';
-import profilePhoto from '../../../Images/Photos/profile-picture.png';
-import Button from '../../Generic/Inputs/Button';
-import TextInput from '../../Generic/Inputs/TextInput';
-import DropdownInput from '../../Generic/Inputs/DropdownInput';
-import TextArea from '../../Generic/Inputs/TextArea';
+import FormBase from '../../../Generic/Forms/FormBase';
+import profilePhoto from '../../../../Images/Photos/profile-picture.png';
+import Button from '../../../Generic/Inputs/Button';
+import TextInput from '../../../Generic/Inputs/TextInput';
+import DropdownInput from '../../../Generic/Inputs/DropdownInput';
+import TextArea from '../../../Generic/Inputs/TextArea';
 
 const Wrapper = styled.div(({
   theme,
