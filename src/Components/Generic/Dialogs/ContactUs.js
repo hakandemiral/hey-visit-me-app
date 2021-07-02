@@ -69,8 +69,6 @@ const ContactUs = () => {
     defaultValues,
   });
 
-  console.log(errors);
-
   return (
     <DialogBase onSubmit={handleSubmit((e) => {})}>
       <Wrapper>

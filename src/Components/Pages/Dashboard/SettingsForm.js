@@ -41,7 +41,6 @@ const Wrapper = styled.div(({
 const SettingsForm = () => {
   const { register, watch, control } = useForm();
 
-  console.log(watch());
   return (
     <FormBase>
       <Wrapper>
