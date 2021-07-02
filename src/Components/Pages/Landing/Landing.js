@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 import Button from '../../Generic/Inputs/Button';
 import ThemeSwitch from '../../Generic/ThemeSwitch';
 
@@ -35,7 +36,7 @@ const Wrapper = styled.div(({
       width: 100%;
       padding: 2rem 4rem 0 0;
       
-      button {
+      a {
         z-index: 2;
         &:not(:last-child) {
           margin-right: 2rem;
@@ -293,8 +294,12 @@ const Landing = () => {
       <div className="head">
 
         <div className="actions">
-          <Button text="Sign in" />
-          <Button text="Sign up" variant="primary" />
+          <Link to="sign-in">
+            <Button text="Sign in" />
+          </Link>
+          <Link to="sign-in">
+            <Button text="Sign up" variant="primary" />
+          </Link>
         </div>
 
         <img className="circle" src={CircleSvg} alt="Vector" />

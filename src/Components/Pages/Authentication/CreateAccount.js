@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
-import BasePage from './BasePage';
 import { Google, Facebook, Github } from '../../Icons';
 import TextInput from '../../Generic/Inputs/TextInput';
 import Button from '../../Generic/Inputs/Button';
@@ -131,60 +130,58 @@ const Wrapper = styled.form(({
 
 const CreateAccount = () => {
   return (
-    <BasePage>
-      <Wrapper>
-        <h2>Create your Heyvisit.me Account</h2>
-        <h3>
-          Have an account?
-          <Link to="/sign-in">Sign in</Link>
-        </h3>
+    <Wrapper>
+      <h2>Create your Heyvisit.me Account</h2>
+      <h3>
+        Have an account?
+        <Link to="/sign-in">Sign in</Link>
+      </h3>
 
-        <span>Sign up with ...</span>
-        <div className="login-with">
-          <button type="button">
-            <Google />
-          </button>
-          <button type="button">
-            <Facebook />
-          </button>
-          <button type="button">
-            <Github />
-          </button>
-        </div>
+      <span>Sign up with ...</span>
+      <div className="login-with">
+        <button type="button">
+          <Google />
+        </button>
+        <button type="button">
+          <Facebook />
+        </button>
+        <button type="button">
+          <Github />
+        </button>
+      </div>
 
-        <div className="divider">
-          <hr />
-          <span>Or</span>
-        </div>
+      <div className="divider">
+        <hr />
+        <span>Or</span>
+      </div>
 
-        <TextInput
-          name="fullName"
-          placeholder="Full name"
-        />
+      <TextInput
+        name="fullName"
+        placeholder="Full name"
+      />
 
-        <TextInput
-          name="email"
-          placeholder="E-mail"
-        />
+      <TextInput
+        name="email"
+        placeholder="E-mail"
+      />
 
-        <TextInput
-          type="password"
-          name="password"
-          placeholder="Password"
-        />
+      <TextInput
+        type="password"
+        name="password"
+        placeholder="Password"
+      />
 
-        <Button
-          text="Create Account"
-          variant="primary"
-        />
+      <Button
+        text="Create Account"
+        variant="primary"
+      />
 
-        <div className="agree">
-          By signing up, you agree to our Terms,
-          <span>Privacy Policy</span>
-          .
-        </div>
-      </Wrapper>
-    </BasePage>
+      <div className="agree">
+        By signing up, you agree to our Terms,
+        <span>Privacy Policy</span>
+        .
+      </div>
+    </Wrapper>
   );
 };
 

@@ -1,9 +1,10 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
 import GirlVector from './assets/GirlVector.svg';
 import CircleWave from '../Landing/assets/CircleWave.svg';
+import SignIn from './SignIn';
+import CreateAccount from './CreateAccount';
 
 const Wrapper = styled.div(({
   theme,
@@ -50,11 +51,12 @@ const Wrapper = styled.div(({
   }
 `);
 
-const BasePage = ({ children }) => {
+const AuthBasePage = ({ action }) => {
   return (
     <Wrapper>
       <div className="form">
-        {children}
+        { action === 'signIn' && <SignIn /> }
+        { action === 'signUp' && <CreateAccount /> }
       </div>
 
       <div className="images">
@@ -65,8 +67,8 @@ const BasePage = ({ children }) => {
   );
 };
 
-BasePage.propTypes = {
-  children: propTypes.node.isRequired,
+AuthBasePage.propTypes = {
+  action: propTypes.oneOf(['signIn', 'signUp']).isRequired,
 };
 
-export default BasePage;
+export default AuthBasePage;

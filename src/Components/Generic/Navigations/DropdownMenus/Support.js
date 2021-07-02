@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import * as Icons from '../../../Icons';
 import DropDownBase from './DropDownBase';
@@ -44,10 +44,11 @@ const LinkItem = styled(Link)(({
 
 const Support = () => {
   const dispatch = useDispatch();
+  const { url } = useRouteMatch();
 
   return (
     <List id="dropdown">
-      <LinkItem to="/help">
+      <LinkItem to={`${url}/help`}>
         <Icons.QuestionMarkCircle />
         <span>Help</span>
       </LinkItem>
@@ -59,7 +60,7 @@ const Support = () => {
         <Icons.PencilAlt />
         <span>Contact Us</span>
       </LinkItem>
-      <LinkItem to="/privacy-policy">
+      <LinkItem to={`${url}/privacy-policy`}>
         <Icons.ShieldCheck />
         <span>Privacy Policy</span>
       </LinkItem>

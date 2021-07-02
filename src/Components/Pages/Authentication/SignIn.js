@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
-import BasePage from './BasePage';
 import { Google, Facebook, Github } from '../../Icons';
 import TextInput from '../../Generic/Inputs/TextInput';
 import Button from '../../Generic/Inputs/Button';
@@ -88,7 +87,7 @@ const Wrapper = styled.form(({
   
 
   @media screen and (max-width: 500px) {
-    padding: 2rem 1rem;
+    padding: 3rem 1rem;
     
     h3 {
       margin-bottom: 1rem;
@@ -120,49 +119,47 @@ const Wrapper = styled.form(({
 
 const SignIn = () => {
   return (
-    <BasePage>
-      <Wrapper>
-        <h2>Sign in to your Heyvisit.me account</h2>
-        <h3>
-          Don’t have an account?
-          <Link to="/create-account">Create an account</Link>
-        </h3>
+    <Wrapper>
+      <h2>Sign in to your Heyvisit.me account</h2>
+      <h3>
+        Don’t have an account?
+        <Link to="/sign-up">Create an account</Link>
+      </h3>
 
-        <span>Sign in with ...</span>
-        <div className="login-with">
-          <button type="button">
-            <Google />
-          </button>
-          <button type="button">
-            <Facebook />
-          </button>
-          <button type="button">
-            <Github />
-          </button>
-        </div>
+      <span>Sign in with ...</span>
+      <div className="login-with">
+        <button type="button">
+          <Google />
+        </button>
+        <button type="button">
+          <Facebook />
+        </button>
+        <button type="button">
+          <Github />
+        </button>
+      </div>
 
-        <div className="divider">
-          <hr />
-          <span>Or</span>
-        </div>
+      <div className="divider">
+        <hr />
+        <span>Or</span>
+      </div>
 
-        <TextInput
-          name="email"
-          placeholder="E-mail"
-        />
+      <TextInput
+        name="email"
+        placeholder="E-mail"
+      />
 
-        <TextInput
-          type="password"
-          name="password"
-          placeholder="Password"
-        />
+      <TextInput
+        type="password"
+        name="password"
+        placeholder="Password"
+      />
 
-        <Button
-          text="Create Account"
-          variant="primary"
-        />
-      </Wrapper>
-    </BasePage>
+      <Button
+        text="Create Account"
+        variant="primary"
+      />
+    </Wrapper>
   );
 };
 

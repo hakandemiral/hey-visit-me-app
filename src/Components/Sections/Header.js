@@ -16,8 +16,6 @@ const Wrapper = styled.div(({
   border-bottom: 0.065rem solid ${theme.colors.borderDivider};
   z-index: -100;
   margin-bottom: 4rem;
-  
-  @media screen and (max-width: )
 `);
 
 const Top = styled.div(({

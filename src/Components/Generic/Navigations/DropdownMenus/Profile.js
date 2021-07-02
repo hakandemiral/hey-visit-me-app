@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import profilePhoto from '../../../../Images/Photos/profile-picture.png';
 import * as Icons from '../../../Icons';
 import DropDownBase from './DropDownBase';
@@ -65,26 +65,30 @@ const DropDown = styled(DropDownBase)(({
   }
 `);
 
-const Profile = () => (
-  <DropDown id="dropdown">
-    <div className="top">
-      <img src={profilePhoto} alt="Profile" />
-      <div className="text">
-        <div className="name">Gülsüm Yaşar</div>
-        <Link to="/profile">View profile</Link>
+const Profile = () => {
+  const { url } = useRouteMatch();
+
+  return (
+    <DropDown id="dropdown">
+      <div className="top">
+        <img src={profilePhoto} alt="Profile" />
+        <div className="text">
+          <div className="name">Gülsüm Yaşar</div>
+          <Link to={`${url}/profile`}>View profile</Link>
+        </div>
       </div>
-    </div>
-    <div className="links">
-      <Link className="item" to="/settings">
-        <Icons.Cog />
-        <span>Settings</span>
-      </Link>
-      <a className="item">
-        <Icons.LogOut />
-        <span>Log out</span>
-      </a>
-    </div>
-  </DropDown>
-);
+      <div className="links">
+        <Link className="item" to={`${url}/settings`}>
+          <Icons.Cog />
+          <span>Settings</span>
+        </Link>
+        <a className="item">
+          <Icons.LogOut />
+          <span>Log out</span>
+        </a>
+      </div>
+    </DropDown>
+  );
+};
 
 export default Profile;

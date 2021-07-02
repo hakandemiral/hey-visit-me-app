@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useRouteMatch } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import * as Icons from '../../Icons';
 
@@ -57,21 +57,25 @@ const Item = styled(NavLink)(({
   }
 `);
 
-const Navbar = () => (
-  <Bar>
-    <Item activeClassName="active" to="/overview">
-      <Icons.Home />
-      Overview
-    </Item>
-    <Item activeClassName="active" to="/profile">
-      <Icons.User />
-      Profile
-    </Item>
-    <Item activeClassName="active" to="/business-card">
-      <Icons.Identification />
-      Business Card
-    </Item>
-  </Bar>
-);
+const Navbar = () => {
+  const { url } = useRouteMatch();
+
+  return (
+    <Bar>
+      <Item activeClassName="active" to={`${url}/overview`}>
+        <Icons.Home />
+        Overview
+      </Item>
+      <Item activeClassName="active" to={`${url}/profile`}>
+        <Icons.User />
+        Profile
+      </Item>
+      <Item activeClassName="active" to={`${url}/bussines-card`}>
+        <Icons.Identification />
+        Business Card
+      </Item>
+    </Bar>
+  );
+};
 
 export default Navbar;
