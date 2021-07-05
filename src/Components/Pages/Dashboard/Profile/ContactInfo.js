@@ -1,4 +1,5 @@
 import React from 'react';
+import propTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -6,6 +7,7 @@ import * as yup from 'yup';
 import FormBase from '../../../Generic/Forms/FormBase';
 import TextInput from '../../../Generic/Inputs/TextInput';
 import SocialAccountInput from './CustomInputs/SocialAccountInput';
+import ProfileSettings from './ProfileSettings';
 
 const Wrapper = styled.div(({
   theme,
@@ -55,11 +57,13 @@ const validationSchema = yup.object({
 
 const ContactInfo = () => {
   const defaultValues = {
-    socialAccounts: [
-      { id: 0, network: 'Instagram', userName: '@hakan' },
-      { id: 1, network: 'Instagram', userName: '@hakan' },
-      { id: 2, network: 'Instagram', userName: '@hakan' },
-    ],
+    // phoneKind: userData.phone.kind,
+    // phoneNumber: userData.phone.number,
+    // emailKind: userData.email.kind,
+    // emailAddress: userData.email.address,
+    // websiteKind: userData.webSite.kind,
+    // websiteUrl: userData.webSite.address,
+    // socialAccounts: userData.socialAccounts,
   };
 
   const {

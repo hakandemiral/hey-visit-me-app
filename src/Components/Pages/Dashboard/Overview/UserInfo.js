@@ -1,20 +1,24 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Paper from '../../../Layout/Paper';
-import ProfilePicture from '../../../../Images/Photos/profile-picture.png';
+import profilePlaceholder from '../../../../Images/Photos/profilePlaceholder.svg';
 import Button from '../../../Generic/Inputs/Button';
 
 const Info = styled(Paper)(({
-  theme,
+  theme, profilePhoto,
 }) => css`
   display: flex;
   align-items: center;
   
-  img.photo {
+  .photo {
+    width: 5.5rem;
+    height: 5.5rem;
     border-radius: 50%;
-    max-width: 5.5rem;
-    max-height: 5.5rem;
-    margin-right: 2rem;
+    margin-right: 1rem;
+    background-image: url(${profilePhoto});
+    background-size: cover;
   }
   
   .who {
@@ -79,21 +83,25 @@ const Info = styled(Paper)(({
   }
 `);
 
-const UserInfo = () => (
-  <Info padding="wide">
-    <img src={ProfilePicture} alt="User Profile" className="photo" />
-    <div className="who">
-      <div className="name">
-        <div className="fullname">Gülsüm Yaşar</div>
-        <span className="username">@gulsumyasar</span>
+const UserInfo = () => {
+  const profileData = useSelector((state) => state.user.profile);
+  return (
+    <Info profilePhoto={profileData.photo || profilePlaceholder} padding="wide">
+      <div className="photo" />
+      <div className="who">
+        <div className="name">
+          <div className="fullname">{profileData.fullName}</div>
+          <span className="username">{`@${profileData.userName}`}</span>
+        </div>
+        <div className="role">{profileData.job}</div>
       </div>
-      <div className="role">UI Designer</div>
-    </div>
-    <div className="actions">
-      <Button text="View Profile" icon="Eye" />
-      <Button icon="DotsHorizontal" size="short" />
-    </div>
-  </Info>
-);
+      <div className="actions">
+        <Link to={`/${profileData.userName}`}>
+          <Button text="View Profile" icon="Eye" />
+        </Link>
+      </div>
+    </Info>
+  );
+};
 
 export default UserInfo;

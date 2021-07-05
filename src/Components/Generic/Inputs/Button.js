@@ -1,7 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import * as Icons from '../../Icons';
+
+const loadingAnimation = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  
+  50% {
+    transform: rotate(10deg);
+  }
+  
+  100% {
+    transform: rotate(0deg);
+  }
+`;
 
 const Button = styled.button(({
   theme, size, variant, icon, text,
@@ -14,6 +28,8 @@ const Button = styled.button(({
   font: ${theme.typography.body.medium16};
   border: none;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
 
   /* Primary Type */
   ${variant === 'primary' && css`
@@ -80,20 +96,36 @@ const Button = styled.button(({
       `}
     }
   `}
+  
+  .loading {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: ${theme.colors.dialogBackground};
+    display: grid;
+    place-items: center;
+    font-size: 1.5rem;
+    cursor: not-allowed;
+    
+    span {
+      animation: ${loadingAnimation} 1s linear infinite;
+    }
+  }
 `);
 
 const ButtonComponent = ({
-  text, variant, size, disabled, icon, ...props
+  text, variant, size, disabled, icon, loading, ...props
 }) => (
   <Button
     variant={variant}
     size={size}
-    disabled={disabled}
+    disabled={disabled || loading}
     icon={Boolean(icon)}
     text={text}
     {...props}
     className="hey-button"
   >
+    { loading && <div className="loading"><span>👋</span></div>}
     {icon && Icons[icon]()}
     {text}
   </Button>
@@ -105,6 +137,7 @@ ButtonComponent.propTypes = {
   variant: PropTypes.oneOf(['primary', 'secondary']),
   size: PropTypes.oneOf(['little', 'long', 'short']),
   disabled: PropTypes.bool,
+  loading: PropTypes.bool,
 };
 
 ButtonComponent.defaultProps = {
@@ -113,6 +146,7 @@ ButtonComponent.defaultProps = {
   size: 'long',
   disabled: false,
   icon: '',
+  loading: false,
 };
 
 export default ButtonComponent;

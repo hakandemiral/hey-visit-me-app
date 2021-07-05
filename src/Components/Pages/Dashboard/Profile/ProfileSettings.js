@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import propTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { useForm, Controller } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import FileBase64 from 'react-file-base64';
+import { useDispatch, useSelector } from 'react-redux';
 import FormBase from '../../../Generic/Forms/FormBase';
-import profilePhoto from '../../../../Images/Photos/profile-picture.png';
 import Button from '../../../Generic/Inputs/Button';
 import TextInput from '../../../Generic/Inputs/TextInput';
 import DropdownInput from '../../../Generic/Inputs/DropdownInput';
 import TextArea from '../../../Generic/Inputs/TextArea';
+import { setProfile } from '../../../../features/user/userSlice';
+import getAllCountries from '../../../../Helpers/getAllCountries';
+import placeholdePhoto from '../../../../Images/Photos/profilePlaceholder.svg';
 
 const Wrapper = styled.div(({
-  theme,
+  theme, profilePhoto,
 }) => css`
   display: flex;
   flex-wrap: wrap;
@@ -25,12 +30,33 @@ const Wrapper = styled.div(({
     
     .actions {
       display: flex;
+      
+      label {
+        position: relative;
+        margin-right: 2rem;
+        width: 172px;
+        height: auto;
+        
+        input[type="file"] {
+          display: block;
+          width: 100%;
+          height: 100%;
+          background-color: #000;
+          opacity: 0;
+          cursor: pointer;
+          position: absolute;
+          z-index: 9;
+        }
+      }
     }
     
-    img {
+    .photo {
       width: 6rem;
       height: 6rem;
+      border-radius: 50%;
       margin-right: 2rem;
+      background-image: url(${profilePhoto});
+      background-size: cover;
     }
     
     button {
@@ -103,39 +129,52 @@ const validationSchema = yup.object({
   company: yup.string(),
   country: yup.string(),
   city: yup.string(),
-  birthDate: yup.string().matches(/^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/, 'Enter a valid date. dd.mm.yyyy'),
+  birthDate: yup.string().matches(/^(3[01]|[12][0-9]|0[1-9]).(1[0-2]|0[1-9]).[0-9]{4}$/, 'Enter a valid date. dd.mm.yyyy => etc. 25.03.1998'),
+  photo: yup.string(),
+  accountStatus: yup.bool().isRequired,
 });
 
 const ProfileSettings = () => {
-  const defaultValues = {
-    fullName: 'Hakan Demiral',
-    userName: 'hakan',
-    job: 'Javascript Developer',
-    company: 'Nothing',
-    country: 'Turkey',
-    city: 'Ankara',
-    birthDate: '25.03.1998',
-    accountStatus: 'Active',
-    bio: 'I\'m Hakan, since the day I was born, I have created myself by producing something. I have not been educated in any formal education institution, I believe that I can educate myself more effectively. I\'m actively working on front-end technologies, the incredible rise of javascript in the last period and the fact that it can work wonders without realizing the platform is the main reason I work with javascript. I am excited to produce a new generation of solutions without the cumbersome traditional technologies.',
-  };
+  const { profile: profileData, formPending } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const {
-    register, watch, handleSubmit, control, formState: { errors },
+    register, watch, handleSubmit, control, formState: { errors }, reset,
   } = useForm({
     resolver: yupResolver(validationSchema),
-    defaultValues,
+    defaultValues: profileData,
   });
 
-  return (
-    <FormBase onSubmit={handleSubmit((e) => {})}>
-      <Wrapper>
+  const onSubmit = (data) => {
+    dispatch(setProfile(data));
+  };
 
+  useEffect(() => {
+    if (profileData) {
+      console.log('use effect if içi');
+      reset(profileData);
+    }
+  }, [profileData]);
+
+  console.log('RENDER::', profileData);
+
+  return (
+    <FormBase loading={formPending} onSubmit={handleSubmit(onSubmit)}>
+      <Wrapper profilePhoto={watch('photo')}>
         <div className="profile-photo">
-          <img src={profilePhoto} alt="profile" />
+          <div className="photo" />
           <div className="actions">
-            <Button text="Upload new photo" size="little" variant="primary" />
-            <Button text="Edit" size="little" />
-            <Button text="Delete" size="little" />
+            <Controller
+              name="photo"
+              control={control}
+              render={({ field }) => (
+                // eslint-disable-next-line jsx-a11y/label-has-associated-control
+                <label>
+                  <FileBase64 onDone={(file) => field.onChange(file.base64)} id="filephoto" />
+                  <Button type="button" text="Upload new photo" size="little" variant="primary" />
+                </label>
+              )}
+            />
           </div>
         </div>
 
@@ -182,11 +221,7 @@ const ProfileSettings = () => {
               name="country-select-box"
               placeholder="Country"
               label="Country"
-              options={[
-                { title: 'Norway' },
-                { title: 'Holland' },
-                { title: 'Turkey' },
-              ]}
+              options={getAllCountries()}
               error={errors}
             />
           )}
@@ -218,8 +253,8 @@ const ProfileSettings = () => {
               placeholder="Account Status"
               label="Account Status"
               options={[
-                { title: 'Active', icon: 'Eye' },
-                { title: 'Passive', icon: 'EyeOff' },
+                { title: 'Active', value: true, icon: 'Eye' },
+                { title: 'Passive', value: false, icon: 'EyeOff' },
               ]}
             />
           )}

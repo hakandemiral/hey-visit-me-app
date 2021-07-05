@@ -76,9 +76,9 @@ const SocialAccountInput = ({ field }) => {
               name="network"
               placeholder="Select one"
               options={[
-                { title: 'Instagram', icon: 'Instagram' },
-                { title: 'Facebook', icon: 'Facebook' },
-                { title: 'Figma', icon: 'Figma' },
+                { value: 'Instagram', title: 'Instagram', icon: 'Instagram' },
+                { value: 'Facebook', title: 'Facebook', icon: 'Facebook' },
+                { value: 'Figma', title: 'Figma', icon: 'Figma' },
               ]}
               icon="Link"
               controlledInput={(value) => handleInputChange(value, 'network', i)}

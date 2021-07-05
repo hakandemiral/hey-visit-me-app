@@ -19,11 +19,19 @@ const Footer = styled.div(({
   }
 `);
 
-const FormFooter = () => (
+const FormFooter = ({ loading }) => (
   <Footer>
-    <Button text="Cancel" type="reset" />
-    <Button text="Save Changes" variant="primary" type="submit" />
+    <Button loading={loading} text="Reset" type="reset" />
+    <Button loading={loading} text="Save Changes" variant="primary" type="submit" />
   </Footer>
 );
+
+FormFooter.propTypes = {
+  loading: propTypes.bool,
+};
+
+FormFooter.defaultProps = {
+  loading: false,
+};
 
 export default FormFooter;

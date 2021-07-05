@@ -48,6 +48,9 @@
       "react/forbid-prop-types": "off",
       "arrow-body-style": "off",
       "react/jsx-key": 2,
-      "import/prefer-default-export": "warn"
+      "import/prefer-default-export": "warn",
+      "import/no-cycle": "off",
+      "no-console": "off",
+      "consistent-return": "off"
     }
 }

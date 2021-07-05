@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { useSelector } from 'react-redux';
 import Container from '../../../Layout/Container';
 import UserInfo from './UserInfo';
 import CardPreview from './CardPreview';

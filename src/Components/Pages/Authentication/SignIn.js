@@ -1,9 +1,15 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { useForm, Controller } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { Link } from 'react-router-dom';
+import ReCAPTCHA from 'react-google-recaptcha';
+import { useDispatch, useSelector } from 'react-redux';
 import { Google, Facebook, Github } from '../../Icons';
 import TextInput from '../../Generic/Inputs/TextInput';
 import Button from '../../Generic/Inputs/Button';
+import { loginUser } from '../../../features/auth/authSlice';
 
 const Wrapper = styled.form(({
   theme,
@@ -12,6 +18,23 @@ const Wrapper = styled.form(({
   display: flex;
   flex-direction: column;
   align-items: center;
+  
+  .err-msg {
+    color: ${theme.colors.red};
+    font: ${theme.typography.body.medium16};
+    margin-bottom: 2rem;
+    max-width: 100%;
+    text-align: center;
+  }
+  
+  .captcha-msg {
+    color: ${theme.colors.red};
+    font: ${theme.typography.body.medium16};
+  }
+  
+  .hey-button {
+    margin-top: 1rem;
+  }
   
   h2 {
     font: ${theme.typography.heading.regular24};
@@ -117,46 +140,96 @@ const Wrapper = styled.form(({
   }
 `);
 
+const validationSchema = yup.object().shape({
+  loginString: yup.string().min(2).max(50).required(),
+  password: yup.string().min(8).max(50).required(),
+  // captcha: yup.string().required('Please resolve the captcha'),
+});
+
 const SignIn = () => {
+  const {
+    register, handleSubmit, watch, formState: { errors }, control,
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+  });
+  const isDark = useSelector((state) => state.theme.isDark);
+  const errMsg = useSelector((state) => state.auth.errorMessage);
+  const dispatch = useDispatch();
+
+  const onSubmit = (data) => {
+    dispatch(loginUser({
+      loginString: data.loginString,
+      password: data.password,
+      captcha: data.captcha,
+    }));
+    window.grecaptcha.reset();
+  };
+
   return (
-    <Wrapper>
+    <Wrapper onSubmit={handleSubmit(onSubmit)}>
       <h2>Sign in to your Heyvisit.me account</h2>
       <h3>
         Don’t have an account?
         <Link to="/sign-up">Create an account</Link>
       </h3>
 
-      <span>Sign in with ...</span>
-      <div className="login-with">
-        <button type="button">
-          <Google />
-        </button>
-        <button type="button">
-          <Facebook />
-        </button>
-        <button type="button">
-          <Github />
-        </button>
+      <div className="err-msg">
+        {errMsg}
       </div>
 
-      <div className="divider">
-        <hr />
-        <span>Or</span>
-      </div>
+      {/*<span>Sign in with ...</span>*/}
+      {/*<div className="login-with">*/}
+      {/*  <button type="button">*/}
+      {/*    <Google />*/}
+      {/*  </button>*/}
+      {/*  <button type="button">*/}
+      {/*    <Facebook />*/}
+      {/*  </button>*/}
+      {/*  <button type="button">*/}
+      {/*    <Github />*/}
+      {/*  </button>*/}
+      {/*</div>*/}
+
+      {/*<div className="divider">*/}
+      {/*  <hr />*/}
+      {/*  <span>Or</span>*/}
+      {/*</div>*/}
 
       <TextInput
-        name="email"
-        placeholder="E-mail"
+        name="loginString"
+        placeholder="E-mail or username"
+        autoComplete="username"
+        hookForm={{ ...register(('loginString')) }}
+        error={errors}
       />
 
       <TextInput
         type="password"
         name="password"
         placeholder="Password"
+        hookForm={{ ...register(('password')) }}
+        error={errors}
+      />
+
+      <Controller
+        control={control}
+        name="captcha"
+        render={({ field }) => (
+          <>
+            <ReCAPTCHA
+              sitekey="6Le8c4waAAAAAHW20PjtA_Mzf-vcXihj2xu0nZ3p"
+              theme={isDark ? 'dark' : 'light'}
+              onChange={field.onChange}
+            />
+            <div className="captcha-msg">
+              {errors.captcha && errors.captcha.message}
+            </div>
+          </>
+        )}
       />
 
       <Button
-        text="Create Account"
+        text="Sign In"
         variant="primary"
       />
     </Wrapper>

@@ -11,7 +11,7 @@ import CircleWave from '../Landing/assets/CircleWave.svg';
 
 // Components
 import SignIn from './SignIn';
-import CreateAccount from './CreateAccount';
+import SignUp from './SignUp';
 
 const Wrapper = styled.div(({
   theme,
@@ -66,7 +66,7 @@ const AuthBasePage = ({ action }) => {
       {isLogin && <Redirect to="/dashboard" />}
       <div className="form">
         { action === 'signIn' && <SignIn /> }
-        { action === 'signUp' && <CreateAccount /> }
+        { action === 'signUp' && <SignUp /> }
       </div>
 
       <div className="images">

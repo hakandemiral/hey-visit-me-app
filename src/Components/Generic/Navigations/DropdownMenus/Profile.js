@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link, useRouteMatch } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logOut } from '../../../../features/auth/authSlice';
 import profilePhoto from '../../../../Images/Photos/profile-picture.png';
 import * as Icons from '../../../Icons';
 import DropDownBase from './DropDownBase';
@@ -67,6 +69,7 @@ const DropDown = styled(DropDownBase)(({
 
 const Profile = () => {
   const { url } = useRouteMatch();
+  const dispatch = useDispatch();
 
   return (
     <DropDown id="dropdown">
@@ -82,7 +85,7 @@ const Profile = () => {
           <Icons.Cog />
           <span>Settings</span>
         </Link>
-        <a className="item">
+        <a className="item" onClick={() => dispatch(logOut())}>
           <Icons.LogOut />
           <span>Log out</span>
         </a>

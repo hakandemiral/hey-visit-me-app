@@ -176,11 +176,11 @@ const DropdownInput = ({
 }) => {
   const [selected, setSelected] = useState(() => {
     if (field) {
-      return options.find((item) => item.title === field.value) || false;
+      return options.find((item) => item.value === field.value) || false;
     }
 
     if (value) {
-      return options.find((item) => item.title === value);
+      return options.find((item) => item.value === value);
     }
 
     return false;
@@ -195,9 +195,13 @@ const DropdownInput = ({
   };
 
   useEffect(() => {
-    if (field) field.onChange(selected.title);
-    if (controlledInput) controlledInput(selected.title);
+    if (field) field.onChange(selected.value);
+    if (controlledInput) controlledInput(selected.value);
   }, [selected]);
+
+  useEffect(() => {
+    setSelected(options.find((item) => item.value === field.value) || false);
+  }, [field.value]);
 
   return (
     <DropDown
@@ -240,7 +244,7 @@ const DropdownInput = ({
               options
                 .filter((item) => item.title.toLowerCase().includes(search.toLowerCase()))
                 .map((item) => (
-                  <div key={item.title} className="item" onClick={() => handleSelect(item)}>
+                  <div key={item.value} className="item" onClick={() => handleSelect(item)}>
                     {Icons[item.icon] && Icons[item.icon]()}
                     {item.title}
                   </div>
@@ -264,6 +268,7 @@ DropdownInput.propTypes = {
   disabled: propTypes.bool,
   options: propTypes.arrayOf(propTypes.shape({
     title: propTypes.string.isRequired,
+    value: propTypes.any.isRequired,
     icon: propTypes.string,
   })),
   searchable: propTypes.bool,

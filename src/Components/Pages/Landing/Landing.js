@@ -14,20 +14,25 @@ import Accordion from '../Dashboard/Help/Accordion';
 // Assets
 import CircleSvg from './assets/CircleWave.svg';
 import hero from './assets/hero.svg';
-import customization from './assets/customization.png';
 import cardTemplateIcon from './assets/card-template-icon.svg';
-import cardTemplate from './assets/card-template.png';
 import darkModeIcon from './assets/darkMode.svg';
-import darkMode from './assets/darkmode.png';
 import wrapProfile from './assets/wrapProfile.svg';
-import wrapProfileImg from './assets/wrapProfileImg.png';
 import EcoFriendly from './assets/EcoFriendly.svg';
 import Check from './assets/Check.svg';
 import Contact from './assets/Contact.svg';
 import faqData from '../Dashboard/Help/assets/datas/faq.json';
 
+import profileDark from './assets/profileDark.png';
+import profileLight from './assets/profileLight.png';
+import customizeDark from './assets/customizeDark.png';
+import customizeLight from './assets/customizeLight.png';
+import templatesDark from './assets/templatesDark.png';
+import templatesLight from './assets/templatesLight.png';
+import themingDark from './assets/themingDark.png';
+import themingLight from './assets/themingLight.png';
+
 const Wrapper = styled.div(({
-  theme,
+  theme, isDark,
 }) => css`
   .head {
     height: 85vh;
@@ -183,7 +188,7 @@ const Wrapper = styled.div(({
   }
   
   .card-templates {
-    background: url(${cardTemplate}) no-repeat 500px 230px;
+    background: url(${isDark ? templatesDark : templatesLight}) no-repeat 500px 230px;
     
     .feature {
       border-left: 0.5rem solid ${theme.colors.brandMoreLight};
@@ -307,9 +312,10 @@ const Wrapper = styled.div(({
 
 const Landing = () => {
   const isLogin = useSelector((state) => state.auth.isLogin);
+  const isDark = useSelector((state) => state.theme.isDark);
 
   return (
-    <Wrapper>
+    <Wrapper isDark={isDark}>
 
       <div className="head">
 
@@ -373,7 +379,7 @@ const Landing = () => {
           <a href="#">Learn more about how we’re protecting your datas highly.</a>
         </div>
 
-        <img src={wrapProfileImg} alt="wrap profiles" className="wrap-profiles-img" />
+        <img src={isDark ? profileDark : profileLight} alt="wrap profiles" className="wrap-profiles-img" />
       </div>
 
       <div className="why-use">
@@ -417,7 +423,7 @@ const Landing = () => {
           No need design knowledge. Don’t pay for expensive design tools.
           Choose color, add personal details and share with people.
         </p>
-        <img src={customization} alt="customization preview" />
+        <img src={isDark ? customizeDark : customizeLight} alt="customization preview" />
       </div>
 
       <div className="card-templates section">
@@ -459,7 +465,9 @@ const Landing = () => {
           </p>
         </div>
 
-        <Button text="Create Free Profile" variant="primary" />
+        <Link to="/sign-up">
+          <Button text="Create Free Profile" variant="primary" />
+        </Link>
 
       </div>
 
@@ -477,7 +485,7 @@ const Landing = () => {
 
         <ThemeSwitch />
 
-        <img src={darkMode} alt="Dark mode" className="darkmodeimg" />
+        <img src={isDark ? themingDark : themingLight} alt="Dark mode" className="darkmodeimg" />
 
       </div>
 
