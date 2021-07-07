@@ -53,16 +53,17 @@ const Profile = () => {
         </FormDescription>
         <ContactInfos />
 
-        {/*<Experience />*/}
+        <div className="divider" />
+
+        <FormDescription>
+          <h3>Competencies</h3>
+          The information here tells people about your competencies.
+        </FormDescription>
+        <Competencies />
+
+        <Experience />
 
         <Education />
-        {/*<div className="divider" />*/}
-
-        {/*<FormDescription>*/}
-        {/*  <h3>Competencies</h3>*/}
-        {/*  The information here tells people about your competencies.*/}
-        {/*</FormDescription>*/}
-        {/*<Competencies />*/}
 
       </Wrapper>
     </Container>

@@ -98,7 +98,7 @@ export const updateExperience = createAsyncThunk(
 );
 
 export const newEducation = createAsyncThunk(
-  'user/newExperience',
+  'user/newEducation',
   async (data, thunkAPI) => {
     try {
       const res = await api.post('/user/educations/new');
@@ -146,6 +146,21 @@ export const updateEducation = createAsyncThunk(
   },
 );
 
+export const setCompetencies = createAsyncThunk(
+  'user/setCompetencies',
+  async (data, thunkAPI) => {
+    try {
+      const res = await api.post('/user/setCompetencies', data);
+
+      if (res.status === 201) {
+        return thunkAPI.fulfillWithValue(res.data);
+      }
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
 const userSlice = createSlice({
   name: 'user',
   initialState: {
@@ -174,14 +189,7 @@ const userSlice = createSlice({
     },
     experiences: [],
     educations: [],
-    competencies: {
-      skills: ['Javascript', 'React', 'Node'],
-      tools: ['Webstorm', 'Mongoose'],
-      languages: [
-        { id: 0, language: 'Turkish', level: 'Native' },
-        { id: 1, language: 'English', level: 'B1' },
-      ],
-    },
+    competencies: {},
   },
   reducers: {
 
@@ -195,7 +203,7 @@ const userSlice = createSlice({
       state.contactInfos = payload.contactInfos;
       state.experiences = payload.experiences;
       state.educations = payload.educations;
-      // state.competencies = payload.competencies;
+      state.competencies = payload.competencies;
       state.initialLoading = false;
     },
     [getFullProfile.rejected]: (state, { payload }) => {
@@ -285,6 +293,18 @@ const userSlice = createSlice({
       state.formPending = false;
     },
     [updateEducation.rejected]: (state, { payload }) => {
+      state.formPending = false;
+    },
+
+    /* Competencies Reducers */
+    [setCompetencies.pending]: (state, { payload }) => {
+      state.formPending = true;
+    },
+    [setCompetencies.fulfilled]: (state, { payload }) => {
+      state.competencies = payload;
+      state.formPending = false;
+    },
+    [setCompetencies.rejected]: (state, { payload }) => {
       state.formPending = false;
     },
   },

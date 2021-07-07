@@ -50,9 +50,7 @@ const Wrapper = styled.div(({
 
 const LanguagesInput = ({ field }) => {
   const [languagesList, setLanguagesList] = useState(() => {
-    if (field) {
-      return field.value;
-    }
+    if (field.value && field.value.length !== 0) return field.value;
 
     return [{ id: 0, language: '', level: '' }];
   });
@@ -97,13 +95,13 @@ const LanguagesInput = ({ field }) => {
               name="level"
               placeholder="Select one"
               options={[
-                { title: 'A1' },
-                { title: 'A2' },
-                { title: 'B1' },
-                { title: 'B2' },
-                { title: 'C1' },
-                { title: 'C2' },
-                { title: 'Native' },
+                { value: 'A1', title: 'A1' },
+                { value: 'A2', title: 'A2' },
+                { value: 'B1', title: 'B1' },
+                { value: 'B2', title: 'B2' },
+                { value: 'C1', title: 'C1' },
+                { value: 'C2', title: 'C2' },
+                { value: 'Native', title: 'Native' },
               ]}
               controlledInput={(value) => handleInputChange(value, 'level', i)}
               value={level}

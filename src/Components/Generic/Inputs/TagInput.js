@@ -47,9 +47,15 @@ const Wrapper = styled.div(({
 `);
 
 const TagInput = ({
-  label, icon, placeholder,
+  label, icon, placeholder, fields,
 }) => {
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState(() => {
+    if (fields) {
+      return fields.value || [];
+    }
+
+    return [];
+  });
   const [input, setInput] = useState('');
 
   const handleEnter = (e) => {
@@ -64,6 +70,12 @@ const TagInput = ({
     setTags(newTags);
   };
 
+  useEffect(() => {
+    if (fields) {
+      fields.onChange(tags);
+    }
+  }, [tags]);
+
   return (
     <Wrapper className="tag-input">
       <TextInput
@@ -76,7 +88,7 @@ const TagInput = ({
         value={input}
       />
       <div className="tags">
-        {tags.map((item, index) => (
+        {tags.map((item) => (
           <div key={item.id} className="tag">
             {item.value}
             <Icons.X onClick={() => handleRemove(item.id)} />
@@ -91,12 +103,14 @@ TagInput.propTypes = {
   label: propTypes.string,
   icon: propTypes.string,
   placeholder: propTypes.string,
+  fields: propTypes.any,
 };
 
 TagInput.defaultProps = {
   label: null,
   icon: null,
   placeholder: null,
+  fields: null,
 };
 
 export default TagInput;

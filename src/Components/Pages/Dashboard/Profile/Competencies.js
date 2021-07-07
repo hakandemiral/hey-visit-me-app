@@ -1,9 +1,11 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 import FormBase from '../../../Generic/Forms/FormBase';
 import LanguagesInput from './CustomInputs/LanguagesInput';
 import TagInput from '../../../Generic/Inputs/TagInput';
+import { setCompetencies } from '../../../../features/user/userSlice';
 
 const Wrapper = styled.div(() => css`
   display: flex;
@@ -28,25 +30,56 @@ const checkKeyDown = (e) => {
 };
 
 const Competencies = () => {
-  const { register } = useForm();
+  const dispatch = useDispatch();
+  const competencies = useSelector((state) => state.user.competencies);
+  const { control, handleSubmit } = useForm({
+    defaultValues: {
+      ...competencies,
+    },
+  });
+
+  const onSubmit = (data) => {
+    dispatch(setCompetencies(data));
+    console.log(data);
+  };
 
   return (
-    <FormBase onSubmit={(e) => e.preventDefault()} onKeyDown={(e) => checkKeyDown(e)}>
+    <FormBase onSubmit={handleSubmit(onSubmit)} onKeyDown={(e) => checkKeyDown(e)}>
       <Wrapper>
 
-        <TagInput
-          icon="BadgeCheck"
-          label="Skills and Industry Knowledge"
-          placeholder="Type a skill and press enter"
+        <Controller
+          control={control}
+          name="skills"
+          render={({ field }) => (
+            <TagInput
+              icon="BadgeCheck"
+              label="Skills and Industry Knowledge"
+              placeholder="Type a skill and press enter"
+              fields={field}
+            />
+          )}
         />
 
-        <TagInput
-          icon="DesktopComputer"
-          label="Tools & Technologies"
-          placeholder="Type a skill and press enter"
+        <Controller
+          control={control}
+          name="tools"
+          render={({ field }) => (
+            <TagInput
+              icon="DesktopComputer"
+              label="Tools & Technologies"
+              placeholder="Type a skill and press enter"
+              fields={field}
+            />
+          )}
         />
 
-        <LanguagesInput />
+        <Controller
+          control={control}
+          name="languages"
+          render={({ field }) => (
+            <LanguagesInput field={field} />
+          )}
+        />
 
       </Wrapper>
     </FormBase>
