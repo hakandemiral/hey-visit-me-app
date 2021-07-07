@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Overview from './Overview/Overview';
 import Profile from './Profile/Profile';
 import Settings from '../Settings';
@@ -12,6 +12,7 @@ import { getFullProfile } from '../../../features/user/userSlice';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
+  const initialLoading = useSelector((state) => state.user.initialLoading);
 
   useEffect(() => {
     dispatch(getFullProfile());
@@ -19,13 +20,21 @@ const Dashboard = () => {
 
   return (
     <>
-      <Header />
-      <Route component={Overview} path="/dashboard" exact />
-      <Route component={Profile} path="/dashboard/profile" exact />
-      <Route component={Settings} path="/dashboard/settings" exact />
-      <Route component={Help} path="/dashboard/help" exact />
-      <Route component={PrivacyPolicy} path="/dashboard/privacy-policy" exact />
-      <Footer />
+      {
+        initialLoading
+          ? <div>asd</div>
+          : (
+            <>
+              <Header />
+              <Route component={Overview} path="/dashboard" exact />
+              <Route component={Profile} path="/dashboard/profile" exact />
+              <Route component={Settings} path="/dashboard/settings" exact />
+              <Route component={Help} path="/dashboard/help" exact />
+              <Route component={PrivacyPolicy} path="/dashboard/privacy-policy" exact />
+              <Footer />
+            </>
+          )
+      }
     </>
   );
 };

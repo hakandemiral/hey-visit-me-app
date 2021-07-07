@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import Checkbox from './Checkbox';
@@ -37,7 +37,7 @@ const DateRange = ({
   label, name, checkboxLabel, fields,
 }) => {
   const [state, setState] = useState(() => {
-    if (fields) {
+    if (fields.value) {
       return fields.value;
     }
 
@@ -56,6 +56,12 @@ const DateRange = ({
     setState({ ...state, [date.type]: date.value });
   };
 
+  useEffect(() => {
+    if (fields) {
+      fields.onChange(state);
+    }
+  }, [state]);
+
   return (
     <Wrapper>
 
@@ -66,18 +72,18 @@ const DateRange = ({
           placeholder="Month"
           label="Month"
           options={[
-            { title: 'January' },
-            { title: 'February' },
-            { title: 'March' },
-            { title: 'April' },
-            { title: 'May' },
-            { title: 'June' },
-            { title: 'July' },
-            { title: 'August' },
-            { title: 'September' },
-            { title: 'October' },
-            { title: 'November' },
-            { title: 'December' },
+            { title: 'January', value: 'January' },
+            { title: 'February', value: 'February' },
+            { title: 'March', value: 'March' },
+            { title: 'April', value: 'April' },
+            { title: 'May', value: 'May' },
+            { title: 'June', value: 'June' },
+            { title: 'July', value: 'July' },
+            { title: 'August', value: 'August' },
+            { title: 'September', value: 'September' },
+            { title: 'October', value: 'October' },
+            { title: 'November', value: 'November' },
+            { title: 'December', value: 'December' },
           ]}
           controlledInput={(value) => handleDates({ type: 'startMonth', value })}
           value={state.startMonth}
@@ -101,18 +107,18 @@ const DateRange = ({
               placeholder="Month"
               label="Month"
               options={[
-                { title: 'January' },
-                { title: 'February' },
-                { title: 'March' },
-                { title: 'April' },
-                { title: 'May' },
-                { title: 'June' },
-                { title: 'July' },
-                { title: 'August' },
-                { title: 'September' },
-                { title: 'October' },
-                { title: 'November' },
-                { title: 'December' },
+                { title: 'January', value: 'January' },
+                { title: 'February', value: 'February' },
+                { title: 'March', value: 'March' },
+                { title: 'April', value: 'April' },
+                { title: 'May', value: 'May' },
+                { title: 'June', value: 'June' },
+                { title: 'July', value: 'July' },
+                { title: 'August', value: 'August' },
+                { title: 'September', value: 'September' },
+                { title: 'October', value: 'October' },
+                { title: 'November', value: 'November' },
+                { title: 'December', value: 'December' },
               ]}
               controlledInput={(value) => handleDates({ type: 'endMonth', value })}
               value={state.endMonth}
@@ -129,14 +135,29 @@ const DateRange = ({
         )
       }
 
+      {/*<input*/}
+      {/*  type="checkbox"*/}
+      {/*  defaultChecked={state.currentWorking}*/}
+      {/*  onChange={() => handleCurentWorking(!state.currentWorking)}*/}
+      {/*/>*/}
+
       <div className="actions">
         <Checkbox
           label={checkboxLabel}
           name={name}
-          controlledComponent={handleCurentWorking}
-          value={state.curentWorking}
+          defaultChecked={state.currentWorking}
+          onChange={() => handleCurentWorking(!state.currentWorking)}
         />
       </div>
+
+      {/*<div className="actions">*/}
+      {/*  <Checkbox*/}
+      {/*    label={checkboxLabel}*/}
+      {/*    name={name}*/}
+      {/*    controlledComponent={handleCurentWorking}*/}
+      {/*    value={state.curentWorking}*/}
+      {/*  />*/}
+      {/*</div>*/}
 
     </Wrapper>
   );

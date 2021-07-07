@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 import TextInput from '../../../../Generic/Inputs/TextInput';
 import DropdownInput from '../../../../Generic/Inputs/DropdownInput';
 import * as Icons from '../../../../Icons';
+import getAllSocialOption from '../../../../../Helpers/getAllSocialOption';
 
 const Wrapper = styled.div(({
   theme,
@@ -39,10 +40,11 @@ const Wrapper = styled.div(({
 
 const SocialAccountInput = ({ field }) => {
   const [socialList, setSocialList] = useState(() => {
-    if (field) {
-      return field.value;
+    if (field.value && field.value.length !== 0) {
+      return field.value.map((item) => (
+        { id: item._id, network: item.network, userName: item.userName }
+      ));
     }
-
     return [{ id: 0, network: '', userName: '' }];
   });
 
@@ -75,11 +77,7 @@ const SocialAccountInput = ({ field }) => {
             <DropdownInput
               name="network"
               placeholder="Select one"
-              options={[
-                { value: 'Instagram', title: 'Instagram', icon: 'Instagram' },
-                { value: 'Facebook', title: 'Facebook', icon: 'Facebook' },
-                { value: 'Figma', title: 'Figma', icon: 'Figma' },
-              ]}
+              options={getAllSocialOption}
               icon="Link"
               controlledInput={(value) => handleInputChange(value, 'network', i)}
               value={network}

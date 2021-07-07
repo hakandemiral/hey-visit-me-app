@@ -7,12 +7,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import Container from '../../../Layout/Container';
 import FormDescription from '../../../Generic/Forms/FormDescription';
 import ProfileSettings from './ProfileSettings';
-import ContactInfo from './ContactInfo';
-import Experience from './Experience';
-import Education from './Education';
+import ContactInfos from './ContactInfos';
+import Experience from './Experience/Experience';
+import Form from './Education/Form';
 import Competencies from './Competencies';
 
 import { getFullProfile } from '../../../../features/user/userSlice';
+import Education from './Education/Education';
 
 // Styling
 const Wrapper = styled.div(({
@@ -50,24 +51,11 @@ const Profile = () => {
           <h3>Contact İnformation</h3>
           This information helps people contact you.
         </FormDescription>
-        <ContactInfo />
+        <ContactInfos />
 
-        {/*<div className="divider" />*/}
-
-        {/*<FormDescription>*/}
-        {/*  <h3>Experience</h3>*/}
-        {/*  The information here tells people about your professional experience.*/}
-        {/*</FormDescription>*/}
         {/*<Experience />*/}
 
-        {/*<div className="divider" />*/}
-
-        {/*<FormDescription>*/}
-        {/*  <h3>Education</h3>*/}
-        {/*  The information here tells people about your education.*/}
-        {/*</FormDescription>*/}
-        {/*<Education />*/}
-
+        <Education />
         {/*<div className="divider" />*/}
 
         {/*<FormDescription>*/}

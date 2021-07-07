@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import styled, { css } from 'styled-components';
+import uuid from 'react-uuid';
 
 const Wrapper = styled.div(({
   theme,
@@ -37,29 +38,32 @@ const Label = styled.label(({
 `);
 
 const Checkbox = ({
-  label, field, name, controlledComponent, value,
+  label, field, name, controlledComponent, value, ...props
 }) => {
-  const [checked, setChecked] = useState(value || false);
+  // const [checked, setChecked] = useState(value || false);
+  //
+  // useEffect(() => {
+  //   if (controlledComponent) {
+  //     controlledComponent(checked);
+  //   }
+  //
+  //   if (field) {
+  //     field.onChange(checked);
+  //   }
+  // }, [checked]);
 
-  useEffect(() => {
-    if (controlledComponent) {
-      controlledComponent(checked);
-    }
-
-    if (field) {
-      field.onChange(checked);
-    }
-  }, [checked]);
+  const uniqueId = name + uuid();
 
   return (
     <Wrapper className="checkbox">
       <Box
-        id={name}
+        id={uniqueId}
         type="checkbox"
-        checked={checked}
-        onChange={() => setChecked(!checked)}
+        // checked={checked}
+        // onChange={() => setChecked(!checked)}
+        {...props}
       />
-      <Label htmlFor={name}>{label}</Label>
+      <Label htmlFor={uniqueId}>{label}</Label>
     </Wrapper>
   );
 };

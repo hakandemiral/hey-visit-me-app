@@ -51,6 +51,7 @@
       "import/prefer-default-export": "warn",
       "import/no-cycle": "off",
       "no-console": "off",
-      "consistent-return": "off"
+      "consistent-return": "off",
+      "no-underscore-dangle": "off"
     }
 }

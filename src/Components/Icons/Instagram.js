@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-function SvgInstagram(props) {
+function Svgİnstagram(props) {
   return (
     <svg
       width="1em"
@@ -11,20 +11,15 @@ function SvgInstagram(props) {
       {...props}
     >
       <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M12 7a5 5 0 100 10 5 5 0 000-10zm-3 5a3 3 0 106 0 3 3 0 00-6 0z"
+        d="M15.75 2h-7.5A6.25 6.25 0 002 8.25v7.5A6.25 6.25 0 008.25 22h7.5A6.25 6.25 0 0022 15.75v-7.5A6.25 6.25 0 0015.75 2zm4.375 13.75a4.38 4.38 0 01-4.375 4.375h-7.5a4.38 4.38 0 01-4.375-4.375v-7.5A4.38 4.38 0 018.25 3.875h7.5a4.38 4.38 0 014.375 4.375v7.5z"
         fill="currentColor"
       />
-      <path d="M18 5a1 1 0 100 2 1 1 0 000-2z" fill="currentColor" />
       <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M5 1a4 4 0 00-4 4v14a4 4 0 004 4h14a4 4 0 004-4V5a4 4 0 00-4-4H5zm14 2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2z"
+        d="M12 7a5 5 0 100 10 5 5 0 000-10zm0 8.125A3.13 3.13 0 018.875 12 3.129 3.129 0 0112 8.875 3.129 3.129 0 0115.125 12 3.13 3.13 0 0112 15.125zM17.375 7.291a.666.666 0 100-1.332.666.666 0 000 1.332z"
         fill="currentColor"
       />
     </svg>
   );
 }
 
-export default SvgInstagram;
+export default Svgİnstagram;

@@ -6,7 +6,6 @@ import FullBand from '../../Sections/FullBand';
 import Footer from '../../Sections/Footer';
 import Contact from './Components/Contact';
 import * as Icons from '../../Icons';
-import profilePhoto from '../../../Images/Photos/profile-picture.png';
 
 const Wrapper = styled.div(({
   theme,

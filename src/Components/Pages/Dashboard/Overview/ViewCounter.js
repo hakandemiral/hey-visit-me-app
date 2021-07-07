@@ -1,15 +1,22 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import styled, { css } from 'styled-components';
+import { useSelector } from 'react-redux';
 import Paper from '../../../Layout/Paper';
 import IconedButtons from '../../../Generic/Inputs/IconedButton';
 import { TrendingUp, TrendingDown } from '../../../Icons';
+import yandexMetricaLogo from '../../../../Images/Photos/metrica.svg';
+import yandexMetricaWhiteLogo from '../../../../Images/Photos/metricaWhite.svg';
 
 const ViewCount = styled(Paper)(({
-  theme,
+  theme, isDark,
 }) => css`
   display: flex;
   align-items: center;
+  background-image: url(${isDark ? yandexMetricaWhiteLogo : yandexMetricaLogo});
+  background-size: 70px;
+  background-repeat: no-repeat;
+  background-position: bottom 10px right 10px;
   
   .stats {
     .title {
@@ -60,21 +67,25 @@ const Icon = styled(IconedButtons)(({
   cursor: default;
 `);
 
-const ViewCounter = () => (
-  <ViewCount padding="narrow">
-    <Icon icon="Eye" />
-    <div className="stats">
-      <div className="title">Total business card views</div>
-      <div className="count">
-        <span className="big">1.248</span>
-        <span className="small">from 1.040</span>
+const ViewCounter = () => {
+  const isDark = useSelector((state) => state.theme.isDark);
+
+  return (
+    <ViewCount isDark={isDark} padding="narrow">
+      <Icon icon="Eye" />
+      <div className="stats">
+        <div className="title">Total business card views</div>
+        <div className="count">
+          <span className="big">1</span>
+          <span className="small">from 0</span>
+        </div>
       </div>
-    </div>
-    <div className="ratio">
-      <TrendingUp />
-      <div className="percent">20%</div>
-    </div>
-  </ViewCount>
-);
+      <div className="ratio">
+        <TrendingUp />
+        <div className="percent">100%</div>
+      </div>
+    </ViewCount>
+  );
+};
 
 export default ViewCounter;

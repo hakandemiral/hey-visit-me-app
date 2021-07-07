@@ -129,13 +129,13 @@ const validationSchema = yup.object({
   company: yup.string(),
   country: yup.string(),
   city: yup.string(),
-  birthDate: yup.string().matches(/^(3[01]|[12][0-9]|0[1-9]).(1[0-2]|0[1-9]).[0-9]{4}$/, 'Enter a valid date. dd.mm.yyyy => etc. 25.03.1998'),
+  birthDate: yup.string(),
   photo: yup.string(),
   accountStatus: yup.bool().isRequired,
 });
 
 const ProfileSettings = () => {
-  const { profile: profileData, formPending } = useSelector((state) => state.user);
+  const { profile: profileData } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const {
@@ -149,17 +149,8 @@ const ProfileSettings = () => {
     dispatch(setProfile(data));
   };
 
-  useEffect(() => {
-    if (profileData) {
-      console.log('use effect if içi');
-      reset(profileData);
-    }
-  }, [profileData]);
-
-  console.log('RENDER::', profileData);
-
   return (
-    <FormBase loading={formPending} onSubmit={handleSubmit(onSubmit)}>
+    <FormBase onSubmit={handleSubmit(onSubmit)}>
       <Wrapper profilePhoto={watch('photo')}>
         <div className="profile-photo">
           <div className="photo" />
@@ -179,6 +170,7 @@ const ProfileSettings = () => {
         </div>
 
         <TextInput
+          autoComplate="name"
           hookForm={{ ...register('fullName') }}
           name="fullName"
           placeholder="John Doe"
@@ -188,6 +180,7 @@ const ProfileSettings = () => {
         />
 
         <TextInput
+          autoComplate="nickname"
           name="userName"
           hookForm={{ ...register('userName') }}
           placeholder="johndoe"
@@ -205,6 +198,7 @@ const ProfileSettings = () => {
         />
 
         <TextInput
+          autoComplate="organization"
           name="company"
           hookForm={{ ...register('company') }}
           placeholder="example Stripe"
@@ -264,6 +258,7 @@ const ProfileSettings = () => {
           label="Bio"
           placeholder="Brief description about yourself. Personal information and details..."
           hookForm={{ ...register('bio') }}
+          error={errors}
         />
       </Wrapper>
     </FormBase>

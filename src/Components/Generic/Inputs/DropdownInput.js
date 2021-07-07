@@ -199,9 +199,11 @@ const DropdownInput = ({
     if (controlledInput) controlledInput(selected.value);
   }, [selected]);
 
-  useEffect(() => {
-    setSelected(options.find((item) => item.value === field.value) || false);
-  }, [field.value]);
+  if (field) {
+    useEffect(() => {
+      setSelected(options.find((item) => item.value === field.value) || false);
+    }, [(field.value)]);
+  }
 
   return (
     <DropDown
@@ -216,7 +218,7 @@ const DropdownInput = ({
       { label && <span className="label">{label}</span> }
 
       <button className="box" onClick={() => setListing(!listing)} type="button">
-        { (Icons[selected.icon] && Icons[selected.icon]()) || (icon && Icons[icon]()) }
+        { (Icons[selected.icon] && Icons[selected.icon]()) || (Icons[icon] && Icons[icon]()) }
         { (selected && selected.title) || placeholder }
         <Icons.Selector className="selector-icon" />
       </button>

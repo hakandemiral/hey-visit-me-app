@@ -96,7 +96,7 @@ const UserInfo = () => {
         <div className="role">{profileData.job}</div>
       </div>
       <div className="actions">
-        <Link to={`/${profileData.userName}`}>
+        <Link to={`/${profileData.userName}`} target="_blank">
           <Button text="View Profile" icon="Eye" />
         </Link>
       </div>

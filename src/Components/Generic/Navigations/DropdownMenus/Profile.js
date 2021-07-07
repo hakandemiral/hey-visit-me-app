@@ -1,14 +1,13 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link, useRouteMatch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from '../../../../features/auth/authSlice';
-import profilePhoto from '../../../../Images/Photos/profile-picture.png';
 import * as Icons from '../../../Icons';
 import DropDownBase from './DropDownBase';
 
 const DropDown = styled(DropDownBase)(({
-  theme,
+  theme, profilePhoto,
 }) => css`
   .top {
     display: flex;
@@ -16,10 +15,13 @@ const DropDown = styled(DropDownBase)(({
     padding: 1rem 2rem;
     border-bottom: solid 1px ${theme.colors.borderDivider};
     
-    img {
+    .photo {
       width: 4.25rem;
       height: 4.25rem;
       margin-right: 1rem;
+      background-size: cover;
+      background-image: url(${profilePhoto});
+      border-radius: 50%;
     }
     
     .text {
@@ -70,14 +72,15 @@ const DropDown = styled(DropDownBase)(({
 const Profile = () => {
   const { url } = useRouteMatch();
   const dispatch = useDispatch();
+  const profile = useSelector((state) => state.user.profile);
 
   return (
-    <DropDown id="dropdown">
+    <DropDown profilePhoto={profile.photo} id="dropdown">
       <div className="top">
-        <img src={profilePhoto} alt="Profile" />
+        <div className="photo" />
         <div className="text">
-          <div className="name">Gülsüm Yaşar</div>
-          <Link to={`${url}/profile`}>View profile</Link>
+          <div className="name">{profile.fullName}</div>
+          <Link to={`/${profile.userName}`} target="_blank">View profile</Link>
         </div>
       </div>
       <div className="links">

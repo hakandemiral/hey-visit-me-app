@@ -1,5 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 import Button from '../Inputs/Button';
 
@@ -19,19 +20,15 @@ const Footer = styled.div(({
   }
 `);
 
-const FormFooter = ({ loading }) => (
-  <Footer>
-    <Button loading={loading} text="Reset" type="reset" />
-    <Button loading={loading} text="Save Changes" variant="primary" type="submit" />
-  </Footer>
-);
+const FormFooter = () => {
+  const formPending = useSelector((state) => state.user.formPending);
 
-FormFooter.propTypes = {
-  loading: propTypes.bool,
-};
-
-FormFooter.defaultProps = {
-  loading: false,
+  return (
+    <Footer>
+      <Button loading={formPending} text="Reset" type="reset" />
+      <Button loading={formPending} text="Save Changes" variant="primary" type="submit" />
+    </Footer>
+  );
 };
 
 export default FormFooter;

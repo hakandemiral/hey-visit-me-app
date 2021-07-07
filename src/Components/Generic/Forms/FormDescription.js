@@ -14,6 +14,10 @@ const Description = styled.div(({
     color: ${theme.colors.heading};
     margin-bottom: 0.5rem;
   }
+  
+  .hey-button {
+    margin-top: 1rem;
+  }
 
   @media screen and (max-width: 1440px) {
     margin-bottom: 1rem;
