@@ -1,4 +1,5 @@
 import React from 'react';
+import propTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import * as Icons from '../../../Icons';
 
@@ -32,27 +33,51 @@ const Wrapper = styled.div(({
   }
 `);
 
-const Contact = () => {
+const Contact = ({
+  birthday, mail, phone, website,
+}) => {
   return (
     <Wrapper>
-      <div className="item">
-        <Icons.Birthday />
-        July 25, 1998
-      </div>
-      <div className="item">
-        <Icons.Mail />
-        wcnxxx@gmail.com
-      </div>
-      <div className="item">
-        <Icons.Phone />
-        +55 555 555 55 55
-      </div>
-      <div className="item">
-        <Icons.ExternalLink />
-        https:/asdsadasd.com.be
-      </div>
+      {birthday && (
+        <div className="item">
+          <Icons.Birthday />
+          {birthday}
+        </div>
+      )}
+      {mail && (
+        <div className="item">
+          <Icons.Mail />
+          {mail}
+        </div>
+      )}
+      {phone && (
+        <div className="item">
+          <Icons.Phone />
+          {phone}
+        </div>
+      )}
+      {website && (
+        <div className="item">
+          <Icons.ExternalLink />
+          {website}
+        </div>
+      )}
     </Wrapper>
   );
+};
+
+Contact.propTypes = {
+  birthday: propTypes.string,
+  mail: propTypes.string,
+  phone: propTypes.string,
+  website: propTypes.string,
+};
+
+Contact.defaultProps = {
+  birthday: '',
+  mail: '',
+  phone: '',
+  website: '',
 };
 
 export default Contact;

@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
-import TimeLine from './Components/TimeLine';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import Experiences from './Components/Experiences';
 import Competence from './Components/Competence';
 import FullBand from '../../Sections/FullBand';
 import Footer from '../../Sections/Footer';
 import Contact from './Components/Contact';
 import * as Icons from '../../Icons';
+import Educations from './Components/Educations';
 
 const Wrapper = styled.div(({
   theme,
@@ -115,73 +118,92 @@ const Wrapper = styled.div(({
 `);
 
 const UserProfile = () => {
+  const [user, setUser] = useState();
+  const { userName } = useParams();
+
+  useEffect(async () => {
+    const { data } = await axios.get(`http://localhost:3001/public/getUser/${userName}`);
+
+    setUser(data);
+  }, []);
+
+  console.log(user);
+
   return (
-    <Wrapper>
-      <div className="head">
+    <>
+      {user && (
+        <Wrapper>
+          <div className="head">
 
-        <img src={profilePhoto} alt="Profile" />
+            <img src={user.profile.photo} alt="Profile" />
 
-        <div className="name">
-          Gülsüm Yaşar
-        </div>
+            <div className="name">
+              {user.profile.fullName}
+            </div>
 
-        <div className="job">
-          UI Designer
-        </div>
+            <div className="job">
+              {user.profile.job}
+            </div>
 
-        <div className="where">
-          <div className="item">
-            <Icons.Location />
-            Istanbul, Turkey
+            <div className="where">
+              <div className="item">
+                <Icons.Location />
+                {user.profile.city}
+              </div>
+              <div className="item">
+                <Icons.Office />
+                {user.profile.company}
+              </div>
+            </div>
+
+            <div className="socials">
+              <a href="#">
+                <Icons.Figma />
+              </a>
+              <a href="#">
+                <Icons.Twiter />
+              </a>
+              <a href="#">
+                <Icons.Instagram />
+              </a>
+              <a href="#">
+                <Icons.Link />
+              </a>
+              <a href="#">
+                <Icons.AtSymbol />
+              </a>
+            </div>
+
+            <div className="bio">
+              {user.profile.bio}
+            </div>
           </div>
-          <div className="item">
-            <Icons.Office />
-            Freelance
+
+          <div className="container">
+            <Contact
+              birthday={user.profile.birthDate}
+              phone={user.contactInfos.phoneValue}
+              mail={user.contactInfos.emailValue}
+              website={user.contactInfos.websiteValue}
+            />
+
+            <Experiences
+              data={user.experiences}
+            />
+
+            <Educations
+              data={user.educations}
+            />
+
+            <h4>Competencies</h4>
+            <Competence />
           </div>
-        </div>
 
-        <div className="socials">
-          <a href="#">
-            <Icons.Figma />
-          </a>
-          <a href="#">
-            <Icons.Twiter />
-          </a>
-          <a href="#">
-            <Icons.Instagram />
-          </a>
-          <a href="#">
-            <Icons.Link />
-          </a>
-          <a href="#">
-            <Icons.AtSymbol />
-          </a>
-        </div>
-
-        <div className="bio">
-          I&apos;m Hakan, since the day I was born, I have created myself by producing something.
-          I have not been educated in any formal education institution, I believe that I can
-          educate myself more effectively. I&apos;m actively working on front-end technologies,
-          the incredible rise of javascript in the last period and the fact that it can work
-          wonders without realizing the platform is the main reason I work with javascript.
-          I am excited to produce a new generation of solutions without
-          the cumbersome traditional technologies.
-          It is a great pleasure for me to build reusable and component-based architectures.
-          I develop myself to be able to write code that complies with standards and teamwork.
-          Nothing is done until I find the best performance path,
-          I hate unnecessary use of system resources.
-        </div>
-      </div>
-      <div className="container">
-        <Contact />
-        <TimeLine />
-        <h4>Competencies</h4>
-        <Competence />
-      </div>
-
-      <FullBand />
-      <Footer />
-    </Wrapper>
+          <FullBand />
+          <Footer />
+        </Wrapper>
+      )}
+    </>
   );
 };
 

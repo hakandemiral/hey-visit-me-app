@@ -59,6 +59,7 @@ const DateRange = ({
   useEffect(() => {
     if (fields) {
       fields.onChange(state);
+      console.log(state);
     }
   }, [state]);
 
@@ -146,6 +147,7 @@ const DateRange = ({
           label={checkboxLabel}
           name={name}
           defaultChecked={state.currentWorking}
+          checked={state.currentWorking}
           onChange={() => handleCurentWorking(!state.currentWorking)}
         />
       </div>

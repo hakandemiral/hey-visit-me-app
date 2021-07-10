@@ -13,7 +13,6 @@ import DropdownInput from '../../../Generic/Inputs/DropdownInput';
 import TextArea from '../../../Generic/Inputs/TextArea';
 import { setProfile } from '../../../../features/user/userSlice';
 import getAllCountries from '../../../../Helpers/getAllCountries';
-import placeholdePhoto from '../../../../Images/Photos/profilePlaceholder.svg';
 
 const Wrapper = styled.div(({
   theme, profilePhoto,
@@ -135,7 +134,7 @@ const validationSchema = yup.object({
 });
 
 const ProfileSettings = () => {
-  const { profile: profileData } = useSelector((state) => state.user);
+  const { profile: profileData, messages } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const {
@@ -150,7 +149,7 @@ const ProfileSettings = () => {
   };
 
   return (
-    <FormBase onSubmit={handleSubmit(onSubmit)}>
+    <FormBase message={messages.profile} onSubmit={handleSubmit(onSubmit)}>
       <Wrapper profilePhoto={watch('photo')}>
         <div className="profile-photo">
           <div className="photo" />

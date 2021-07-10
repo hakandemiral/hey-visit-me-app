@@ -8,12 +8,12 @@ import DialogHandler from './Components/Generic/Dialogs/Base/DialogHandler';
 import Landing from './Components/Pages/Landing/Landing';
 import AuthBasePage from './Components/Pages/Authentication/AuthBasePage';
 import Dashboard from './Components/Pages/Dashboard/Dashboard';
+import UserProfile from './Components/Pages/UserProfile/UserProfile';
 
 const App = () => {
   const isLogin = useSelector((state) => (state.auth.isLogin));
 
   return (
-    // <UserProfile />
     <>
       <Switch>
         <Route component={Landing} path="/" exact />
@@ -30,8 +30,8 @@ const App = () => {
               <Redirect to="/sign-in" />
             )}
         </Route>
-
       </Switch>
+      <Route component={UserProfile} path="/:userName" />
       <DialogHandler />
     </>
   );

@@ -68,7 +68,7 @@ const Form = ({ id }) => {
         startYear: experience.startYear,
         endMonth: experience.endMonth,
         endYear: experience.endYear,
-        currentlyWorking: experience.currentWorking,
+        currentWorking: experience.currentlyWorking,
       },
     },
   });

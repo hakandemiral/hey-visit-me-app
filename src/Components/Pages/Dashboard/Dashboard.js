@@ -9,6 +9,7 @@ import Header from '../../Sections/Header';
 import PrivacyPolicy from '../PrivacyPolicy';
 import Footer from '../../Sections/Footer';
 import { getFullProfile } from '../../../features/user/userSlice';
+import LoadingScreen from './LoadingScreen';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const Dashboard = () => {
     <>
       {
         initialLoading
-          ? <div>asd</div>
+          ? <LoadingScreen />
           : (
             <>
               <Header />

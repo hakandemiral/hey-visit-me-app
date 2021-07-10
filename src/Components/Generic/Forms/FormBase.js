@@ -31,23 +31,23 @@ const InputArea = styled.div(({
 `);
 
 const FormBase = ({
-  children, loading, ...props
+  children, message, ...props
 }) => (
   <Form {...props}>
     <InputArea>
       {children}
     </InputArea>
-    <FormFooter loading={loading} />
+    <FormFooter message={message} />
   </Form>
 );
 
 FormBase.propTypes = {
   children: propTypes.node.isRequired,
-  loading: propTypes.bool,
+  message: propTypes.object,
 };
 
 FormBase.defaultProps = {
-  loading: false,
+  message: null,
 };
 
 export default FormBase;

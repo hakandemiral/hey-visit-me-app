@@ -41,7 +41,6 @@ export const registerUser = createAsyncThunk(
         auth.logIn(res.data.token);
       }
     } catch (err) {
-      console.log(err.response.data);
       return thunkAPI.rejectWithValue(err.response.data);
     }
   },

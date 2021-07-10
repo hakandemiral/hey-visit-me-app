@@ -32,9 +32,21 @@ const checkKeyDown = (e) => {
 const Competencies = () => {
   const dispatch = useDispatch();
   const competencies = useSelector((state) => state.user.competencies);
-  const { control, handleSubmit } = useForm({
+
+  const languageMapper = () => {
+    if (typeof competencies.languages === typeof []) {
+      return competencies.languages.map((item) => {
+        return { id: item.id, language: item.language, level: item.level };
+      });
+    }
+
+    return [];
+  };
+
+  const { control, handleSubmit, watch } = useForm({
     defaultValues: {
       ...competencies,
+      languages: languageMapper(),
     },
   });
 
@@ -42,6 +54,8 @@ const Competencies = () => {
     dispatch(setCompetencies(data));
     console.log(data);
   };
+
+  console.log(watch());
 
   return (
     <FormBase onSubmit={handleSubmit(onSubmit)} onKeyDown={(e) => checkKeyDown(e)}>

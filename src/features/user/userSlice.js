@@ -19,6 +19,7 @@ export const getFullProfile = createAsyncThunk(
 export const setProfile = createAsyncThunk(
   'user/setProfile',
   async (data, thunkAPI) => {
+    console.log(data);
     try {
       const res = await api.post('/user/setProfile', data);
 
@@ -26,7 +27,7 @@ export const setProfile = createAsyncThunk(
         return thunkAPI.fulfillWithValue(res.data);
       }
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   },
 );
@@ -166,6 +167,9 @@ const userSlice = createSlice({
   initialState: {
     initialLoading: false,
     formPending: false,
+    messages: {
+      profile: {},
+    },
     profile: {
       fullName: '',
       userName: '',
@@ -189,10 +193,7 @@ const userSlice = createSlice({
     },
     experiences: [],
     educations: [],
-    competencies: {},
-  },
-  reducers: {
-
+    competencies: [],
   },
   extraReducers: {
     [getFullProfile.pending]: (state, { payload }) => {
@@ -213,12 +214,18 @@ const userSlice = createSlice({
     /* Profile settings reducers */
     [setProfile.pending]: (state, { payload }) => {
       state.formPending = true;
+      state.messages.profile.type = '';
+      state.messages.profile.text = '';
     },
     [setProfile.fulfilled]: (state, { payload }) => {
       state.profile = payload;
       state.formPending = false;
+      state.messages.profile.type = 'success';
+      state.messages.profile.text = 'Succesfully saved!';
     },
     [setProfile.rejected]: (state, { payload }) => {
+      state.messages.profile.type = 'error';
+      state.messages.profile.text = payload;
       state.formPending = false;
     },
 
