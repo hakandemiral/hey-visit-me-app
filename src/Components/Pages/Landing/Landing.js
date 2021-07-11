@@ -3,6 +3,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Helmet } from 'react-helmet';
 
 // Components
 import Button from '../../Generic/Inputs/Button';
@@ -35,7 +36,7 @@ const Wrapper = styled.div(({
   theme, isDark,
 }) => css`
   .head {
-    height: 85vh;
+    height: 80%;
     background-color: #fff;
     ${theme.colors.authPageGraient};
     
@@ -79,7 +80,7 @@ const Wrapper = styled.div(({
           color: ${theme.colors.brand};
           font: ${theme.typography.heading.medium32};
           margin-bottom: 0.5rem;
-          background-color: rgba(0, 0, 0, 0.3);
+          background-color: rgba(0, 0, 0, 0.2);
           border-radius: 1rem;
           padding: 1rem;
         }
@@ -322,7 +323,6 @@ const Landing = () => {
 
   return (
     <Wrapper isDark={isDark}>
-
       <div className="head">
 
         <div className="actions">
