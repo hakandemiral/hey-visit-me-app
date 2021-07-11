@@ -172,7 +172,7 @@ const DropDown = styled.div(({
 
 const DropdownInput = ({
   placeholder, icon, label, error, disabled, options, searchable, field, name,
-  controlledInput, value,
+  controlledInput, value, ...props
 }) => {
   const [selected, setSelected] = useState(() => {
     if (field) {
@@ -213,6 +213,8 @@ const DropdownInput = ({
       selected={selected}
       listing={listing}
       className="dropdown-input"
+      data-testid="drop-down-input"
+      {...props}
     >
 
       { label && <span className="label">{label}</span> }
@@ -246,7 +248,7 @@ const DropdownInput = ({
               options
                 .filter((item) => item.title.toLowerCase().includes(search.toLowerCase()))
                 .map((item) => (
-                  <div key={item.value} className="item" onClick={() => handleSelect(item)}>
+                  <div key={item.value} id={item.value} className="item" onClick={() => handleSelect(item)}>
                     {Icons[item.icon] && Icons[item.icon]()}
                     {item.title}
                   </div>

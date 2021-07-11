@@ -80,11 +80,31 @@ const Wrapper = styled.div(({
       justify-content: space-evenly;
       margin: 1rem auto;
       
-      a {
+      .item {
         color: ${theme.colors.borderDivider};
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        &:hover span {
+          opacity: 1;
+        }
         
         svg {
           font-size: 1.5rem;
+        }
+        
+        span {
+          opacity: 0;
+          color: ${theme.colors.bodyText};
+          background-color: ${theme.colors.paper};
+          bottom: 1.8rem;
+          position: absolute;
+          padding: 0.05rem 0.25rem;
+          border: 0.8px solid ${theme.colors.brand};
+          border-radius: 0.25rem;
+          transition: 150ms opacity;
         }
       }
     }
@@ -157,21 +177,12 @@ const UserProfile = () => {
             </div>
 
             <div className="socials">
-              <a href="#">
-                <Icons.Figma />
-              </a>
-              <a href="#">
-                <Icons.Twiter />
-              </a>
-              <a href="#">
-                <Icons.Instagram />
-              </a>
-              <a href="#">
-                <Icons.Link />
-              </a>
-              <a href="#">
-                <Icons.AtSymbol />
-              </a>
+              {user.contactInfos.socialAccounts.map((item) => (
+                <div key={item._id} className="item">
+                  {Icons[item.network]()}
+                  <span className="userName">{item.userName}</span>
+                </div>
+              ))}
             </div>
 
             <div className="bio">
@@ -196,7 +207,24 @@ const UserProfile = () => {
             />
 
             <h4>Competencies</h4>
-            <Competence />
+            <Competence
+              title="Languages"
+              data={user.competencies.languages}
+              icon="Translate"
+            />
+
+            <Competence
+              title="Skills & Industry Knowledge"
+              data={user.competencies.skills}
+              icon="BadgeCheck"
+            />
+
+            <Competence
+              title="Tools & Technologies"
+              data={user.competencies.tools}
+              icon="DesktopComputer"
+            />
+
           </div>
 
           <FullBand />

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 import Button from '../Generic/Inputs/Button';
 
 const Band = styled.div(({
@@ -38,14 +39,13 @@ const Text = styled.p(({
 
 const FullBand = () => (
   <Band className="full-band">
-    <Title>Create business card in minutes, not hours.</Title>
+    <Title>Create profile in minutes, not hours.</Title>
     <Text>
-      Speed is the most necessary element to transforming unique
-      ideas roaming in the
-      <br />
-      creative minds into actions.
+      Create your profile for free in minutes, send it to people!
     </Text>
-    <Button text="Create Business Card" variant="primary" />
+    <Link to="/sign-up">
+      <Button text="Create Profile" variant="primary" />
+    </Link>
   </Band>
 );
 

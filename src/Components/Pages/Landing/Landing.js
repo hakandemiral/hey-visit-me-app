@@ -72,18 +72,24 @@ const Wrapper = styled.div(({
         z-index: 2;
         margin-top: 6rem;
         max-width: 40rem;
+        height: auto;
         margin-right: 2rem;
         
         h2 {
           color: ${theme.colors.brand};
           font: ${theme.typography.heading.medium32};
           margin-bottom: 0.5rem;
+          background-color: rgba(0, 0, 0, 0.3);
+          border-radius: 1rem;
+          padding: 1rem;
         }
         
         p {
           color: ${theme.colors.bodyText};
           font: ${theme.typography.body.regular16};
           margin-bottom: 4rem;
+          border-radius: 1rem;
+          padding: 1rem;
         }
       }
       
@@ -326,19 +332,11 @@ const Landing = () => {
                 <Link to="/dashboard">
                   <Button text="Go to Dashboard" />
                 </Link>
-                {/*<Link to="sign-in">*/}
-                {/*  <Button text="Sign up" variant="primary" />*/}
-                {/*</Link>*/}
               </>
             ) : (
-              <>
-                <Link to="sign-in">
-                  <Button text="Sign in" />
-                </Link>
-                <Link to="sign-in">
-                  <Button text="Sign up" variant="primary" />
-                </Link>
-              </>
+              <Link to="sign-in">
+                <Button text="Sign in" />
+              </Link>
             )}
         </div>
 

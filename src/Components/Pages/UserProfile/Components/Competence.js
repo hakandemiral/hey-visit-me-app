@@ -1,7 +1,9 @@
 import React from 'react';
+import propTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import * as Icons from '../../../Icons';
 import CompetenceLevel from './CompetenceLevel';
+import languageLevel from '../Helpers/languageLevel';
 
 const Wrapper = styled.div(({
   theme,
@@ -64,32 +66,39 @@ const Wrapper = styled.div(({
   }
 `);
 
-const Competence = () => {
+const Competence = ({ title, data, icon }) => {
+  console.log(data);
   return (
     <Wrapper className="competence">
       <div className="icon">
-        <Icons.Translate />
+        {Icons[icon]()}
       </div>
 
       <h3>
-        Language
-        <span>· 2</span>
+        {title}
+        <span>
+          ·
+          {data.length}
+        </span>
       </h3>
 
       <ul>
-        <li>
-          <span>Turkish</span>
-          <CompetenceLevel denominator={7} message="Native" numerator={7} />
-        </li>
-
-        <li>
-          <span>English</span>
-          <CompetenceLevel denominator={7} message="B1" numerator={3} />
-        </li>
+        {data.map((item) => (
+          <li key={item.id}>
+            <span>{item.language || item.value}</span>
+            {title === 'Languages' && <CompetenceLevel denominator={7} message={item.level} numerator={languageLevel(item.level)} />}
+          </li>
+        ))}
       </ul>
 
     </Wrapper>
   );
+};
+
+Competence.propTypes = {
+  title: propTypes.string.isRequired,
+  data: propTypes.array.isRequired,
+  icon: propTypes.string.isRequired,
 };
 
 export default Competence;

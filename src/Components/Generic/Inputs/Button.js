@@ -7,11 +7,11 @@ const loadingAnimation = keyframes`
   0% {
     transform: rotate(0deg);
   }
-  
+
   50% {
     transform: rotate(10deg);
   }
-  
+
   100% {
     transform: rotate(0deg);
   }

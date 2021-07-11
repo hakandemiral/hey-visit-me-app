@@ -6,12 +6,18 @@ export default {
   title: 'Drop Down Input',
   compoent: DropdownInput,
   args: {
-    placeholder: 'City',
-    icon: 'Location',
+    placeholder: 'Select One',
+    icon: 'Link',
     label: 'Dropdown',
     error: false,
     disabled: false,
-    options: ['Facebook', 'Dribble', 'Figma', 'Instagram'],
+    options: [
+      { value: 'Test', title: 'Test' },
+      { value: 'Test', title: 'Test' },
+      { value: 'Test', title: 'Test' },
+      { value: 'Test', title: 'Test' },
+      { value: 'Test', title: 'Test' },
+    ],
   },
   argTypes: {
     icon: {

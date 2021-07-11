@@ -37,8 +37,8 @@ const DateRange = ({
   label, name, checkboxLabel, fields,
 }) => {
   const [state, setState] = useState(() => {
-    if (fields.value) {
-      return fields.value;
+    if (fields) {
+      return fields.value || {};
     }
 
     return {};

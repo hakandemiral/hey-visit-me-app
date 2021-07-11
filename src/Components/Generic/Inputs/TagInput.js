@@ -47,7 +47,7 @@ const Wrapper = styled.div(({
 `);
 
 const TagInput = ({
-  label, icon, placeholder, fields,
+  label, icon, placeholder, fields, ...props
 }) => {
   const [tags, setTags] = useState(() => {
     if (fields) {
@@ -77,7 +77,7 @@ const TagInput = ({
   }, [tags]);
 
   return (
-    <Wrapper className="tag-input">
+    <Wrapper className="tag-input" {...props} data-testid="tag-input">
       <TextInput
         name="tagInput"
         label={label}
@@ -86,6 +86,7 @@ const TagInput = ({
         onKeyDown={(e) => handleEnter(e)}
         controlledInput={(value) => setInput(value)}
         value={input}
+        {...props}
       />
       <div className="tags">
         {tags.map((item) => (

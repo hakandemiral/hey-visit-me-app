@@ -152,6 +152,8 @@ const TextInput = ({
       prefix={prefix}
       disabled={disabled}
       className="text-input"
+      data-testid="text-input-wrapper"
+      {...props}
     >
 
       { label && <span className="label">{label}</span> }
