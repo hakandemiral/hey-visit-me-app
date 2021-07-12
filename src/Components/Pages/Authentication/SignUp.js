@@ -166,7 +166,6 @@ const SignUp = () => {
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
-    console.log(data);
     dispatch(registerUser({
       userName: data.userName,
       email: data.email,

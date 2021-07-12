@@ -52,10 +52,7 @@ const Competencies = () => {
 
   const onSubmit = (data) => {
     dispatch(setCompetencies(data));
-    console.log(data);
   };
-
-  console.log(watch());
 
   return (
     <FormBase onSubmit={handleSubmit(onSubmit)} onKeyDown={(e) => checkKeyDown(e)}>

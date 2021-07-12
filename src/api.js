@@ -2,7 +2,7 @@ import axios from 'axios';
 import auth from './features/auth/auth';
 
 const api = axios.create({
-  baseURL: process.env.NODE_ENV === 'production' ? 'https://hey-visit-me.herokuapp.com' : 'http://localhost:3001',
+  baseURL: process.env.REACT_APP_VERCEL_ENV === 'production' ? 'https://hey-visit-me.herokuapp.com' : 'http://localhost:3001',
   headers: {
     'Content-Type': 'application/json',
   },

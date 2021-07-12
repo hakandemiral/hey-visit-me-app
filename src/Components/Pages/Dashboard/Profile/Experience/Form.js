@@ -90,8 +90,6 @@ const Form = ({ id }) => {
     dispatch(updateExperience(newData));
   };
 
-  console.log(watch());
-
   return (
     <FormBase onSubmit={handleSubmit(onSubmit)}>
       <Wrapper>

@@ -76,7 +76,6 @@ const Form = ({ id }) => {
       description: data.description,
     };
     dispatch(updateEducation(newData));
-    console.log(newData);
   };
 
   return (

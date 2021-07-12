@@ -59,7 +59,6 @@ const DateRange = ({
   useEffect(() => {
     if (fields) {
       fields.onChange(state);
-      console.log(state);
     }
   }, [state]);
 

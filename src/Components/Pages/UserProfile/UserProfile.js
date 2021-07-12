@@ -147,8 +147,6 @@ const UserProfile = () => {
     setUser(data);
   }, []);
 
-  console.log(user);
-
   return (
     <>
       {user && (

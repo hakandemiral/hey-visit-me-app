@@ -67,7 +67,6 @@ const Wrapper = styled.div(({
 `);
 
 const Competence = ({ title, data, icon }) => {
-  console.log(data);
   return (
     <Wrapper className="competence">
       <div className="icon">
