@@ -177,7 +177,7 @@ const UserProfile = () => {
             <div className="socials">
               {user.contactInfos.socialAccounts.map((item) => (
                 <div key={item._id} className="item">
-                  {Icons[item.network]()}
+                  {Icons[item.network] && Icons[item.network]()}
                   <span className="userName">{item.userName}</span>
                 </div>
               ))}

@@ -401,7 +401,6 @@ const Landing = () => {
             has taken security measures for bot scans.
           </p>
 
-          <a href="#">Learn more about how we’re protecting your datas highly.</a>
         </div>
 
         <img src={isDark ? profileDark : profileLight} alt="wrap profiles" className="wrap-profiles-img" />

@@ -81,7 +81,7 @@ const Wrapper = styled.div(({
       .description {
         font: ${theme.typography.body.regular16};
         max-width: 80%;
-        color: ${theme.colors.white};
+        color: ${theme.colors.bodyText};
       }
     }
     
