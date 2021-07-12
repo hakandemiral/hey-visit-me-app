@@ -35,6 +35,34 @@ const Footer = styled.div(({
       color: ${theme.colors.green};
     }
   }
+
+  @media screen and (max-width: 540px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    .actions {
+      margin: 0;
+      align-items: center;
+      
+      .hey-button {
+        
+      }
+    }
+    
+    .message {
+      margin-bottom: 0.75rem;
+    }
+  }
+
+  @media screen and (max-width: 370px) {
+    .actions {
+      
+      .hey-button {
+        padding: 0.5rem 1rem;
+      }
+    }
+  }
   
 `);
 

@@ -3,7 +3,6 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Helmet } from 'react-helmet';
 
 // Components
 import Button from '../../Generic/Inputs/Button';
@@ -107,14 +106,39 @@ const Wrapper = styled.div(({
         
         img {
           display: block;
-          width: 80%;
+          width: 60%;
           margin: 8rem auto 0 auto;
         }
       }
 
       .circle {
-        left: -30%;
-        top: 43%;
+        left: -50%;
+        top: 63%;
+      }
+    }
+    
+    @media screen and (max-width: 600px) {
+      .container {
+        margin: 0 auto;
+        
+        .texts {
+          margin: 2rem auto;
+          text-align: center;
+        }
+      }
+    }
+    
+    @media screen and (max-width: 340px) {
+      .container {
+        img {
+          width: 100%;
+        }
+      }
+      
+      .circle {
+        width: 350px;
+        left: -70%;
+        top: 83%;
       }
     }
   }
@@ -410,6 +434,25 @@ const Landing = () => {
         </div>
       </div>
 
+      <div className="theming section">
+
+        <div className="section-header">
+          <img src={darkModeIcon} alt="Card Template" className="icon" />
+          <h6>Dark Mode</h6>
+          <h5>User-Friendly Interfaces</h5>
+          <p>
+            Interfaces don’t disturb your eyes by adjustable mode.
+            With dark mode even usable at night.
+          </p>
+        </div>
+
+        <ThemeSwitch />
+
+        <img src={isDark ? themingDark : themingLight} alt="Dark mode" className="darkmodeimg" />
+
+      </div>
+
+
       <div className="customization">
         <h4>Customization</h4>
         <h5>
@@ -466,24 +509,6 @@ const Landing = () => {
         <Link to="/sign-up">
           <Button text="Create Free Profile" variant="primary" />
         </Link>
-
-      </div>
-
-      <div className="theming section">
-
-        <div className="section-header">
-          <img src={darkModeIcon} alt="Card Template" className="icon" />
-          <h6>Dark Mode</h6>
-          <h5>User-Friendly Interfaces</h5>
-          <p>
-            Interfaces don’t disturb your eyes by adjustable mode.
-            With dark mode even usable at night.
-          </p>
-        </div>
-
-        <ThemeSwitch />
-
-        <img src={isDark ? themingDark : themingLight} alt="Dark mode" className="darkmodeimg" />
 
       </div>
 

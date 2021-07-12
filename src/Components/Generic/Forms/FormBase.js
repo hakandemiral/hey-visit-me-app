@@ -28,6 +28,10 @@ const InputArea = styled.div(({
   @media screen and (max-width: 420px) {
     padding: 2rem 0;
   }
+
+  @media screen and (max-width: 370px) {
+    padding: 1rem 0;
+  }
 `);
 
 const FormBase = ({
