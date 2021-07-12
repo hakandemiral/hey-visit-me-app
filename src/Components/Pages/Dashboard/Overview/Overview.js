@@ -9,7 +9,6 @@ const Overview = () => (
     <ShowCase showCaseId={1} />
     <ShowCase showCaseId={2} />
     <ShowCase showCaseId={3} />
-    <FullBand />
   </>
 );
 

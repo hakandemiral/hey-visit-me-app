@@ -142,7 +142,7 @@ const UserProfile = () => {
   const { userName } = useParams();
 
   useEffect(async () => {
-    const { data } = await axios.get(`http://localhost:3001/public/getUser/${userName}`);
+    const { data } = await axios.get(`https://hey-visit-me.herokuapp.com/public/getUser/${userName}`);
 
     setUser(data);
   }, []);

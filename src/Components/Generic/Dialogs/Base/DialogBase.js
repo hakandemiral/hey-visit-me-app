@@ -40,6 +40,10 @@ const InputArea = styled.div(({
   @media screen and (max-width: 320px) {
     padding: 1rem;
   }
+  
+  @media screen and (max-height: 720px) {
+    padding: 1rem 4rem;
+  }
 `);
 
 const DialogBase = ({ children, ...props }) => (

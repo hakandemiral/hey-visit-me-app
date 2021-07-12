@@ -95,6 +95,7 @@ const Wrapper = styled.div(({
       
       img {
         z-index: 2;
+        margin-bottom: -100px;
       }
     }
     
@@ -374,7 +375,9 @@ const Landing = () => {
               and companies can safely present their contact information, portfolio,
               flows in social networks, visions and much more. Also it is free !
             </p>
-            <Button text="Create Free Profile" variant="primary" />
+            <Link to="/sign-up">
+              <Button text="Create Account" variant="primary" />
+            </Link>
           </div>
           <img src={hero} alt="Hero" />
         </div>
@@ -506,7 +509,7 @@ const Landing = () => {
         </div>
 
         <Link to="/sign-up">
-          <Button text="Create Free Profile" variant="primary" />
+          <Button text="Create Account" variant="primary" />
         </Link>
 
       </div>

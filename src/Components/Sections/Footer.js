@@ -39,10 +39,10 @@ const Link = styled.a(({
   }
   
   &:hover {
-    color: ${theme.colors.brandMoreLight};
+    color: ${theme.colors.purple};
 
     svg {
-      color: ${theme.colors.brandMoreLight};
+      color: ${theme.colors.purple};
     }
   }
 `);
