@@ -452,7 +452,6 @@ const Landing = () => {
 
       </div>
 
-
       <div className="customization">
         <h4>Customization</h4>
         <h5>
