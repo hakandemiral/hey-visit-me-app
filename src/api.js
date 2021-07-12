@@ -17,6 +17,7 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-console.log('API::URL::', process.env.API_URL);
+console.log('API::URL::', process);
+console.log('API::URL::', JSON.stringify(process));
 
 export default api;
