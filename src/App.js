@@ -9,6 +9,7 @@ import Landing from './Components/Pages/Landing/Landing';
 import AuthBasePage from './Components/Pages/Authentication/AuthBasePage';
 import Dashboard from './Components/Pages/Dashboard/Dashboard';
 import UserProfile from './Components/Pages/UserProfile/UserProfile';
+import NotFound404 from './Components/Pages/NotFound404';
 
 const App = () => {
   const isLogin = useSelector((state) => (state.auth.isLogin));
@@ -30,8 +31,10 @@ const App = () => {
               <Redirect to="/sign-in" />
             )}
         </Route>
+
+        <Route component={UserProfile} path="/:userName" />
+
       </Switch>
-      <Route component={UserProfile} path="/:userName" />
       <DialogHandler />
     </>
   );

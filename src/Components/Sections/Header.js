@@ -36,7 +36,7 @@ const Top = styled.div(({
   }
   
   .theme-switch {
-    margin-right: 1rem;
+    margin-right: 1.5rem;
   }
   
   @media screen and (max-width: 960px) {
@@ -70,7 +70,7 @@ const Header = () => (
       <Top>
         <ThemeSwitch />
         <div className="iconed-buttons">
-          <IconedButtonExt icon="Bell" badge={8}>
+          <IconedButtonExt icon="Bell" badge={0}>
             <NotificationDropDown />
           </IconedButtonExt>
           <IconedButtonExt icon="Support">

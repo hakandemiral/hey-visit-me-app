@@ -26,6 +26,10 @@ const Wrapper = styled.div(({
       margin-right: 0.5rem;
       font-size: 1.5rem;
     }
+    
+    a {
+      color: inherit;
+    }
   }
   
   @media screen and (max-width: 578px) {
@@ -59,7 +63,7 @@ const Contact = ({
       {website && (
         <div className="item">
           <Icons.ExternalLink />
-          {website}
+          <a target="_blank" rel="noreferrer" href={website}>{website}</a>
         </div>
       )}
     </Wrapper>

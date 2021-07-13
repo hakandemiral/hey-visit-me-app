@@ -2,7 +2,7 @@ import axios from 'axios';
 import auth from './features/auth/auth';
 
 const api = axios.create({
-  baseURL: 'https://hey-visit-me.herokuapp.com',
+  baseURL: 'http://hey-visit-me.herokuapp.com',
   headers: {
     'Content-Type': 'application/json',
   },

@@ -110,6 +110,10 @@ const Experiences = ({ data }) => {
 
           const { months, years } = moment.preciseDiff(startDate, endDate, true);
 
+          if (years === 0) {
+            return `${months} Month`;
+          }
+
           return `${years} Year ${months} Month`;
         };
 
@@ -125,10 +129,12 @@ const Experiences = ({ data }) => {
               </div>
             </div>
             <div className="bottom">
-              <div className="bottom-item">
-                <Icons.Office />
-                {item.company}
-              </div>
+              {item.company && (
+                <div className="bottom-item">
+                  <Icons.Office />
+                  {item.company}
+                </div>
+              )}
               <div className="bottom-item">
                 <Icons.Calendar />
                 {`${item.startMonth} ${item.startYear}`}
@@ -139,10 +145,12 @@ const Experiences = ({ data }) => {
                   </>
                 )}
               </div>
-              <div className="bottom-item">
-                <Icons.Location />
-                {item.location}
-              </div>
+              {item.location && (
+                <div className="bottom-item">
+                  <Icons.Location />
+                  {item.location}
+                </div>
+              )}
               <div className="description">
                 {item.description}
               </div>
