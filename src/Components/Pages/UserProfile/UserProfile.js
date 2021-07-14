@@ -149,7 +149,7 @@ const UserProfile = () => {
 
   useEffect(async () => {
     try {
-      const res = await axios.get(`http://localhost:3001/public/getUser/${userName}`);
+      const res = await axios.get(`https://hey-visit-me.herokuapp.com/public/getUser/${userName}`);
       if (res.status === 200) {
         setUser(res.data);
         setStatus('success');
