@@ -11,6 +11,7 @@ import * as Icons from '../../Icons';
 import Educations from './Components/Educations';
 import LoadingScreen from '../Dashboard/LoadingScreen';
 import NotFound404 from '../NotFound404';
+import InactiveUser from './InactiveUser';
 
 const Wrapper = styled.div(({
   theme, profilePhoto,
@@ -148,18 +149,17 @@ const UserProfile = () => {
 
   useEffect(async () => {
     try {
-      const res = await axios.get(`https://hey-visit-me.herokuapp.com/public/getUser/${userName}`);
+      const res = await axios.get(`http://localhost:3001/public/getUser/${userName}`);
       if (res.status === 200) {
         setUser(res.data);
         setStatus('success');
       }
     } catch (error) {
-      console.log(error.response.status);
       if (error.response.status === 404) {
         setStatus('notFound');
       }
-      if (error.response.status === 500) {
-        setStatus('failed');
+      if (error.response.status === 406) {
+        setStatus('inactiveUser');
       }
     }
   }, []);
@@ -170,6 +170,10 @@ const UserProfile = () => {
 
   if (status === 'notFound') {
     return <NotFound404 />;
+  }
+
+  if (status === 'inactiveUser') {
+    return <InactiveUser />;
   }
 
   if (status === 'success') {
@@ -232,7 +236,6 @@ const UserProfile = () => {
             />
           )}
 
-          <h4>Competencies</h4>
           {user.competencies.languages.length !== 0 && (
             <Competence
               title="Languages"

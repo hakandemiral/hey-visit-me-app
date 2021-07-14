@@ -152,7 +152,7 @@ const validationSchema = yup.object().shape({
   userName: yup.string().min(2).max(50).required(),
   email: yup.string().email().required(),
   password: yup.string().min(8).max(50).required(),
-  // captcha: yup.string().required('Please resolve the captcha'),
+  captcha: yup.string().required('Please resolve the captcha'),
 });
 
 const SignUp = () => {
@@ -162,7 +162,7 @@ const SignUp = () => {
     resolver: yupResolver(validationSchema),
   });
   const isDark = useSelector((state) => state.theme.isDark);
-  const errMsg = useSelector((state) => state.auth.errorMessage);
+  const { errorMessage, isPending } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
@@ -184,7 +184,7 @@ const SignUp = () => {
       </h3>
 
       <div className="err-msg">
-        {errMsg}
+        {errorMessage}
       </div>
 
       {/*<span>Sign up with ...</span>*/}
@@ -249,6 +249,7 @@ const SignUp = () => {
       <Button
         text="Create Account"
         variant="primary"
+        loading={isPending}
       />
 
       <div className="agree">

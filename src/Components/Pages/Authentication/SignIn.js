@@ -143,7 +143,7 @@ const Wrapper = styled.form(({
 const validationSchema = yup.object().shape({
   loginString: yup.string().min(2).max(50).required(),
   password: yup.string().min(8).max(50).required(),
-  // captcha: yup.string().required('Please resolve the captcha'),
+  captcha: yup.string().required('Please resolve the captcha'),
 });
 
 const SignIn = () => {
@@ -153,7 +153,7 @@ const SignIn = () => {
     resolver: yupResolver(validationSchema),
   });
   const isDark = useSelector((state) => state.theme.isDark);
-  const errMsg = useSelector((state) => state.auth.errorMessage);
+  const { errorMessage, isPending } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
@@ -174,7 +174,7 @@ const SignIn = () => {
       </h3>
 
       <div className="err-msg">
-        {errMsg}
+        {errorMessage}
       </div>
 
       {/*<span>Sign in with ...</span>*/}
@@ -231,6 +231,7 @@ const SignIn = () => {
       <Button
         text="Sign In"
         variant="primary"
+        loading={isPending}
       />
     </Wrapper>
   );

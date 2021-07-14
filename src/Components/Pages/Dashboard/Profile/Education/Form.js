@@ -36,7 +36,7 @@ const Wrapper = styled.div(({
 `);
 
 const validationSchema = yup.object({
-  school: yup.string().max(50),
+  school: yup.string().max(120),
   department: yup.string().max(34),
   degree: yup.string().max(20),
   description: yup.string().max(1000),

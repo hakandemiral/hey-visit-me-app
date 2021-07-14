@@ -46,7 +46,7 @@ const Wrapper = styled.div(({
 `);
 
 const validationSchema = yup.object({
-  company: yup.string().max(50),
+  company: yup.string().max(120),
   currentlyWorking: yup.bool(),
   description: yup.string().max(1000),
   employmentType: yup.string(),

@@ -49,6 +49,7 @@ export const registerUser = createAsyncThunk(
 export const authSlice = createSlice({
   name: 'auth',
   initialState: {
+    isPending: false,
     errorMessage: '',
     isLogin: auth.isAuthenticated(),
   },
@@ -59,19 +60,29 @@ export const authSlice = createSlice({
     },
   },
   extraReducers: {
+    [loginUser.pending]: (state) => {
+      state.isPending = true;
+    },
     [loginUser.fulfilled]: (state) => {
       state.isLogin = true;
       state.errorMessage = '';
+      state.isPending = false;
     },
     [loginUser.rejected]: (state, { payload }) => {
       state.errorMessage = payload;
+      state.isPending = false;
+    },
+    [registerUser.pending]: (state) => {
+      state.isPending = true;
     },
     [registerUser.fulfilled]: (state) => {
       state.isLogin = true;
       state.errorMessage = '';
+      state.isPending = false;
     },
     [registerUser.rejected]: (state, { payload }) => {
       state.errorMessage = payload;
+      state.isPending = false;
     },
   },
 });
